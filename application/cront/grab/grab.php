@@ -1,14 +1,15 @@
 <?php
 
-$APPPATH='/Users/jason/project/picture/grabroom/emule/';
+$APPPATH=dirname(__FILE__).'/';
 include_once($APPPATH.'config.php');
 include_once($APPPATH.'model.php');
 
 $model=new Model();
 
-$url='http://www.ed2kers.com/%E5%9B%BE%E4%B9%A6/%E7%94%9F%E6%B4%BB';
-getinfolist($url);
-
+$url='http://www.ed2kers.com/图书/生活/435006.html';
+$name='《DK目击者旅游指南：英国》全彩版[PDF]';
+$ainfo=array('url'=>$url,'name'=>$name);
+getinfodetail($ainfo);
 
 function getAllcate(){
   global $model,$_root,$subcatelistPattern,$catelistPattern;
@@ -30,10 +31,76 @@ function getAllcate(){
 
 function getinfolist(&$cateurl){
   global $model,$action,$_root,$listPattern,$pagesizePattern;
-  $html=getHtml($cateurl);
-  preg_match_all($listPattern,$html,$match,PREG_SET_ORDER);
+  $psize=1;
+  for($i=1;$i<=$psize;$i++){
+    $html=getHtml($cateurl);
+    preg_match_all($listPattern,$html,$matchs,PREG_SET_ORDER);
+    foreach($matchs as $list){
+      $oid=preg_replace('#[^\d]+#','',$list[1]);
+      $utime=strtotime(trim($list[4]));
+      $aid=$model->checkArticleByOid($oid,$utime);
+      if($aid){
+         echo "$aid已存在未更新!\r\n";
+         continue;
+      }
+      $purl=$_root.$list[1];
+      $ptime=strtotime(trim($list[3]));
+      $ainfo=array('url'=>$purl,'name'=>trim($list[2]),'ptime'=>$ptime,'utime'=>$utime);
+      getinfodetail($ainfo);
+    }
+    if($psize==1){
+       preg_match($pagesizePattern,$html,$matchs);
+       $psize=isset($matches[1])?$matches[1]:1;
+       
+    }
+  }
+}
+
+function getinfodetail(&$data){
+  global $model,$bookimg,$bookdownPattern,$strreplace,$pregreplace,$bookdesPattern;
   
-  var_dump($match);exit;
+  $html=getHtml($data['url']);
+  //kw
+  preg_match('#<meta name="keywords" content="(.+)" />#U',$html,$match);
+  $$data['ketwords']=$match[1];
+  //description
+  preg_match('#<meta name="description" content="(.+)" />#U',$html,$match);
+  $data['description']=$match[1];
+  //
+  preg_match($bookimg,$html,$match);
+  $data['thum']=$match[1];
+  //
+  preg_match($bookdownPattern,$html,$match);
+  $data['downurl']=$match[1];
+  foreach($strreplace as $val){
+    $data['downurl']=str_replace($val['from'],$val['to'],$data['downurl']);
+  }
+  foreach($pregreplace as $val){
+    $data['downurl']=preg_replace($val['from'],$val['to'],$data['downurl']);
+  }
+  $data['downurl']=trim($data['downurl']);
+  //
+  preg_match($bookdesPattern,$html,$match);
+  $data['intro']=$match[1];
+  foreach($strreplace as $val){
+    $data['intro']=str_replace($val['from'],$val['to'],$data['intro']);
+  }
+  foreach($pregreplace as $val){
+    $data['intro']=preg_replace($val['from'],$val['to'],$data['intro']);
+  }
+  $data['intro']=trim($data['intro']);
+  if(!$data['name'] || !$data['intro']){
+     echo "抓取失败 $ainfo[url] \r\n";
+     return false;
+  }
+  $data['intro']='<table>'.$data['intro'].'</table>';
+  echo '<pre>';var_dump($data);exit;
+  $aid=$mode->addArticle($data);
+  if(!$aid){
+    echo "添加失败! $ainfo[url] \r\n";
+    return false;
+  }
+  echo "添加成功! $aid \r\n";
 }
 
 function getHtml($url){

@@ -1,6 +1,6 @@
 <?php
 
-include_once($APPPATH.'../db.class.php');
+include_once($APPPATH.'db.class.php');
 
 class Model{
   protected $db;
