@@ -1,5 +1,6 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f        
-#//此处有大坑。加上这句可保证一般css、js文件正常加载。(注意删掉这句注释哦)
-RewriteCond $1 !^(index\.php|images|robots\.txt)
-RewriteRule ^(.*)$ /index.php/$1 [L]
+RewriteEngine On
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule !.(js|ico|gif|jpe?g|bmp|png|css)$ /index.php [NC,L]
