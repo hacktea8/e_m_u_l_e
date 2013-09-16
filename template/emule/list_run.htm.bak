@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:common.head' load='true' />
+<link href="{@theme:css}/style.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+<link href="{@theme:css}/tip-dig.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+<link href="{@theme:css}/global-broad.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+<link href="{@theme:css}/v3-blog.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+<link href="{@theme:css}/topbar_0.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+
+<style>
+.aPre{
+        cursor:url({@theme:site.images}/common/pre.cur),auto;
+}
+.aNext{
+        cursor:url({@theme:site.images}/common/next.cur),auto;right:0;
+}
+</style>
+</head>
+<body>
+<div id="page-wrapper" class="package">
+
+<div class="wrap">
+<template source='TPL:common.header' load='true' />
+<template source='TPL:emule.common.nav' load='true' />
+<style type="text/css">
+dl#libCatalog dd .on {
+	margin-left: 2px;
+	text-decoration: none;
+	background: #E7E7E7;
+}
+
+.box_7 {
+	border: 4px solid #E6E6E6;
+	padding: 0px;
+	background: #E6E6E6;
+}
+
+.box_7 .title {
+	
+}
+
+.box_7 .title h3 {
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	line-height: 20px;
+	color: #000;
+	font-weight: bold;
+	padding: 2px 6px 6px 6px;
+}
+
+.box_7 .main {
+	border: 1px solid #cfcfcf;
+	background: #fff;
+}
+
+dl#libCatalog dd {
+	background: #f4f4f4;
+	border: 1px solid #e7e7e7;
+	display: block;
+	margin: 4px 0px;
+	padding: 2px;
+	font-weight: normal;
+	letter-spacing: 0;
+}
+
+#someLinks {
+	padding: 0;
+	text-align: center;
+}
+
+dl#libCatalog dd a {
+	display: block;
+	border: 0px;
+	text-indent: 18px;
+	padding-left: 0;
+}
+
+.rightBox .rightTitle {
+	margin: 0;
+	height: 31px;
+	overflow: auto;
+	zoom: 1;
+	border: 1px solid #cfcfcf;
+	border-bottom: 0;
+}
+
+.rightBox .rightTitle .h3 {
+	float: left;
+	margin: 0;
+	height: 31px;
+	line-height: 31px;
+	padding-left: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.rightBox .rightTitle .h3 span {
+	height: 17px;
+	padding-left: 5px;
+	border-left: 5px solid #c00;
+}
+
+.rightBox .rightTitle .h3 span a {
+	color: #464646;
+}
+
+#someLinks {
+	text-align: center !important;
+}
+
+dl#someLinks dd {
+	padding-left: 0;
+}
+
+dl.indexLeftItem {
+	background: none repeat scroll 0 0 #fff;
+}
+
+/* 渐变 */
+.title_bg {
+	background: #fefefe; /* Old browsers */
+	background: -moz-linear-gradient(top, #fefefe 0%, #e9e9e9 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe),
+		color-stop(100%, #e9e9e9) ); /* Chrome,Safari4+ *
+/
+background: -webkit-linear-gradient(top, #fefefe 0%,#e9e9e9 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #fefefe 0%, #e9e9e9 100%);
+	/* Opera11.10+ */
+	background: -ms-linear-gradient(top, #fefefe 0%, #e9e9e9 100%);
+	/* IE10+ */
+	filter: progid : DXImageTransform.Microsoft.gradient (   startColorstr =
+		'#fefefe', endColorstr = '#e9e9e9', GradientType = 0 ); /* IE6-9 */
+	background: linear-gradient(top, #fefefe 0%, #e9e9e9 100%); /* W3C */
+}
+
+#wrap {
+	background: none;
+	_background: none !important;
+}
+
+.left_class_order {
+	margin-top: 0;
+	*margin-top: 0 !important;
+}
+</style>
+
+<div class="box_7 rightBox">
+<div class="rightTitle title_bg">
+<div class="h3"><span>图书分类</span></div>
+</div>
+<div class="main" style="padding: 0 5px;">
+<dl id="libCatalog">
+	<dd><a href="/sto/book/novels/">&gt; 小说<span class="recordCount">(1697)</span></a></dd>
+	<dd><a href="/sto/book/literature/">&gt; 文学<span class="recordCount">(4670)</span></a></dd>
+	<dd><a href="/sto/book/social/">&gt; 人文社科<span class="recordCount">(7677)</span></a></dd>
+	<dd><a href="/sto/book/eco/">&gt; 经济管理<span class="recordCount">(2719)</span></a></dd>
+	<dd><a href="/sto/book/computer/">&gt; 计算机与网络<span class="recordCount">(3567)</span></a></dd>
+	<dd><a href="/sto/book/life/">&gt; 生活<span class="recordCount">(7129)</span></a></dd>
+	<dd><a href="/sto/book/edu/">&gt; 教育科技<span class="recordCount">(4130)</span></a></dd>
+	<dd><a href="/sto/book/children/">&gt; 少儿<span class="recordCount">(561)</span></a></dd>
+	<dd><a href="/sto/book/others/">&gt; 其它图书<span class="recordCount">(6115)</span></a></dd>
+</dl>
+</div>
+</div>
+<div style="height: 10px; background: #fff;"></div>
+
+<div class="box_7 rightBox">
+
+<div class="rightTitle title_bg">
+<div class="h3"><span>相关链接</span></div>
+</div>
+<div class="main" style="padding: 10px;">
+<dl id="someLinks">
+	<dd><a href="/sto/feed" title="订阅本站资源">订阅本站资源</a></dd>
+	<dd><a href="http://www.emule.org.cn/" id="emuleOld"
+		title="Download eMule">电驴(eMule)经典版下载</a></dd>
+	<dd><a href="http://www.mozilla.com/firefox/" title="get firefox"
+		id="getfirefox" target="_blank">推荐使用 Firefox 浏览器</a></dd>
+	<dd style="clear: both;"></dd>
+</dl>
+</div>
+</div>
+
+<div style="height: 10px; background: #fff;"></div>
+
+
+<!---->
+
+<div class="box_7 rightBox">
+<div class="rightTitle title_bg">
+<div class="h3"><span>今日热门</span></div>
+</div>
+
+<div class="main" style="padding: 10px;"><!---->
+<dl class="indexLeftItem">
+	<dd class="leftMiddle" style="border-bottom: 0px;"><a
+		href="/topics/2960638/" onclick="VeryCD.Track('/stat/indexHot');"
+		style="text-decoration: none;" id="entry_link_2960638"> <img
+		load-src="http://i-7.vcimg.com/crop/ba04aaa4ed4128a75ba290d752fde7e4139947(100x100)/thumb.jpg"
+		width="100" height="100" alt="" class="hot_img" /> </a> <br />
+	<a href="/topics/2960638/" onclick="VeryCD.Track('/stat/indexHot');">《吸引力！创意PPT的设计与展现实用法则（全彩）》扫描版[PDF]</a>
+	</dd>
+</dl>
+
+</div>
+
+</div>
+<div style="height: 10px; background: #fff;"></div>
+<p style="text-align: center;"><a href="http://www.mozilla.com/firefox/"
+	title="Get Firefox!" target="_blank" class="firefoxplus"> <img
+	alt="Get Firefox!"
+	src="http://v4.vcimg.com/images/logo/firefox-125x50.png"
+	style="width: 120; height: 50px;" title="Get Firefox!"> </a></p>
+
+</div>
+<div id="content"><span href="#" style="display: none"> </span>
+<ul class="topic-list" style="*margin-top: -19px">
+
+
+	<li id="searchBar">
+	<form id="advance_search_form" method="get"
+		action="http://www.verycd.com/search/folders" target="_blank">
+	<div class="left_class_order" style="margin-bottom: 10px !important;">
+	<span> 排序: <span class="left_class_new left_class_filter"> <a
+		href="javascript:setType('sort','rpost');onButtonClick();VeryCD.Track('/stat/stoListPostBook/');">发布
+	<img src="http://v4.vcimg.com/images/img_search/new02.gif" /> </a> <img
+		src="http://v4.vcimg.com/images/img_search/newtopic_bg.gif"> 更新 <img
+		src="http://v4.vcimg.com/images/img_search/new02_red.gif" /> </span> </span>
+	<select name="sort" id="sort"
+		onchange="onButtonClick();VeryCD.Track('/stat/stoListSortBook/');"
+		class="selectClass">
+		<option value="default">默认排序</option>
+		<option value="post">发布时间从老到新</option>
+		<option value="rpost">发布时间从新到老</option>
+		<option value="update">更新时间从老到新</option>
+		<option value="rupdate" selected="selected">更新时间从新到老</option>
+		<option value="size">文件大小从小到大</option>
+		<option value="rsize">文件大小从大到小</option>
+	</select> <span class="left_class_filter"><img
+		src="http://v4.vcimg.com/images/img_search/line.gif" /></span> <span
+		class="left_class_filter">筛选:</span> <span id="qs"> <select
+		id="status"
+		onchange="onButtonClick();VeryCD.Track('/stat/stoListStatusBook/');"
+		class="selectClass">
+		<option value="all">全部</option>
+		<option value="" selected="selected">精华</option>
+	</select> <select id="year"
+		onchange="onButtonClick();VeryCD.Track('/stat/stoListDateBook/');"
+		class="selectClass">
+		<option value="" selected="selected">发行年代</option>
+		<option value="2013">2013年</option>
+		<option value="2012">2012年</option>
+		<option value="2011">2011年</option>
+		<option value="2010">2010年</option>
+		<option value="2009">2009年</option>
+		<option value="2008">2008年</option>
+		<option value="2007">2007年</option>
+		<option value="2006">2006年</option>
+		<option value="2005">2005年</option>
+		<option value="-2005">2005年以前</option>
+	</select> </span></div>
+	</form>
+	</li>
+	
+	<li><a href="/topics/2960613/"
+		onclick=" VeryCD.Track('/stat/indexNew2/'+this.href);"> <img
+		load-src="http://i-7.vcimg.com/crop/1395b3b25081b9da486ca4a7150f536a66812(100x100)/thumb.jpg"
+		alt="" class="file_img" /> </a>
+	<h3><span class="left_topics_class_sort"><a href="/sto/book/edu/">[教育科技]</a></span>
+	<a href="/topics/2960613/"
+		onclick=" VeryCD.Track('/stat/indexNew2/'+this.href);">《美国人天天在用的英文-日常口语表现大全》扫描版[PDF]</a>
+	<img alt="精华资源" src="http://v4.vcimg.com/images/group/elite_on.gif"
+		id="requestIcon" title="精华资源" /></h3>
+	<div class="blog_entry">
+	<div class="face"><a href="/i/16650265/"
+		onclick="VeryCD.Track('/stat/indexUserface/');"><img hoverstyle="2"
+		hovertips="type=2&id=16650265"
+		load-src="http://ucimg.vcimg.com/avatar/016/65/02/65_avatar_small.jpg"
+		class="fixsize" /></a>
+	<p
+		style="WORD-WRAP: break-word; TABLE-LAYOUT: fixed; word-break: break-all"><a
+		hoverstyle="2" hovertips="type=2&id=16650265" href="/i/16650265/"
+		onclick="VeryCD.Track('/stat/indexUsername/');">yu20078</a></p>
+	</div>
+	<!--[if IE 6]><span style="text-indent:-24px;margin-left:-12px"></span><![endif]-->
+	地区(语言):&nbsp;大陆(简体中文) 发行时间:&nbsp;2011年 内容简介:
+	《美国人天天在用的英文——日常口语表现大全》中出现的句子，绝对不是以往英语书中出现的那些让你看得厌烦的内容，而是从美国人的日常口语中精心挑选出的最常用表达方式，从简单的问候闲聊到赞美批评的技巧，这里应有尽有。
+	所...(<a href="/topics/2960613/" class="fullarticle"
+		onclick=" VeryCD.Track('/stat/indexNew2/'+this.href);">全文</a>) <br />
+	<span style="color: green;"> <span class="date-time">2013/08/16
+	08:17:15</span> 发布, <span class="date-time">2013/08/17 02:33:46</span>
+	更新 - <strong>1</strong>个文件, <strong>34.67MB</strong>, <strong>20</strong>条评论</span>
+
+	<div class="blog_metadata"></div>
+	</div>
+	</li>
+
+</ul>
+<div class="pnav">
+<div class="pages-nav"
+	style="margin: 10px 7px 0px 0px; padding: 0 0 20px 0px !important; padding-bottom: 0;">
+<span class="next">&#171; 上一页</span> <span class="current">1</span> <a
+	href="/sto/book/page2">2</a> <a href="/sto/book/page3">3</a> <a
+	href="/sto/book/page4">4</a> <a href="/sto/book/page5">5</a> <a
+	href="/sto/book/page6">6</a> <a href="/sto/book/page7">7</a> <span>...</span>
+<a href="/sto/book/page2" class="next">下一页 &#187;</a> <!--<a href="/sto/feed" title="使用RSS订阅本栏更新" onclick="VeryCD.Track('/stat/rss/'+this.href)" style="border:none"><img src="http://v4.vcimg.com/images/feeds.gif" alt="feed" class="feedicon" /> 使用RSS订阅本栏更新</a>
+--> <!--added By Gxg--> <a href="/sto/book/feed" title="使用RSS订阅本栏更新"
+	onclick="VeryCD.Track('/stat/rss/'+this.href)" style="border: none"><img
+	src="http://v4.vcimg.com/images/feeds.gif" alt="feed" class="feedicon" />
+使用RSS订阅本栏更新</a> <!--end--> <span href="#" style="display: none"> </span>
+</div>
+</div>
+</div>
+<!--End of content-->
+<div style="clear: both"></div>
+</div>
+<!-- End of page wrap-->
+
+<template source='TPL:common.footer' load='true' />
+</body>
+</html>

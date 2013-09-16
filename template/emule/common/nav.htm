@@ -1,0 +1,99 @@
+ <style>
+    #nav_div {
+    margin: 10px 0 10px 0;
+    }
+#nav_div a :hover, a:active,a:hover{
+        color: black;
+        text-decoration: underline;
+}
+.slide_con a:hover { text-decoration:none; }
+#nav_div{
+        background: url(http://v4.vcimg.com/global/images/global_bg_1.gif?v=31218) repeat-x 0 -77px;
+        height: 32px;
+        line-height: 30px;
+        line-height: 32px;
+        padding: 0 10px;
+        overflow: hidden;
+}
+#nav_div ul{float: left;margin:0px;padding:0px}
+#nav_div li{float: left;}
+#nav_div .big li a{
+
+        float: left;
+        padding: 0 10px;
+        font-size: 14px;
+        background-image: url(http://v4.vcimg.com/global/images/global_bg_1.gif?v=31218);
+        background-repeat: repeat-x;
+        background-position: 0 100px;
+        height: 32px;
+        font-weight: bold;
+}
+#nav_div .line{
+        float:left;
+        margin:0 5px;
+        border-left: 1px solid #fff;height: 32px;
+}
+#nav_div .big li a:link,#nav_div .big li a:visited{color:#000;text-decoration:none;}
+        #nav_div .big li a:hover,#nav_div .big li a:active {color:#fff;text-decoration:none;background-position: 0 -118px;color: #fff;}
+#nav_div .big li a.hover,#nav_div .big li a.hover:link,#nav_div .big li a.hover:visited{background-position: 0 -37px;color: #fff;}
+#nav_div .big .korean_active a:hover{background:url(http://v4.vcimg.com/base/images/hanju/bar_hover_bg.jpg) repeat-x;}
+
+#nav_div .small{margin:5px 0;font-size:12px;}
+#nav_div .small a{display:block;width:34px;height:22px;line-height:22px;text-align:center;margin:0 2px;}
+#nav_div .small a:link,#nav_div .small a:visited{}
+#nav_div .small a:hover,#nav_div .small a:active{text-decoration:none;}
+#nav_div .small a.on,#nav_div .small a:hover{color:#fff;background:url(http://v4.vcimg.com/global/images/global_img_1.gif) no-repeat -50px 0 #c00;}
+#nav_div li a{line-height: 30px;line-height: 32px\9;}
+.ul, .ul ul {
+list-style-type: none;
+}
+#nav_div .more{float: right;line-height: 30px;line-height: 32px\9;}
+#nav_div .more a{line-height: 30px;line-height: 32px\9;}
+#nav_div .small a.four{ width:62px; }
+#nav_div .small a.four:hover{ width:62px; color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon4.gif) no-repeat;}
+#nav_div .small a.three{width:48px; }
+#nav_div .small a.three:hover,#nav_div .small a.active{width:48px;color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon3.gif) no-repeat;}
+    </style>
+
+<div class="mainDiv" id="index_body_mainDiv">
+	<div id="nav_div" style="">
+	<ul id="header_ul_big" class="ul big">
+		<li><a href="{@url:emule/index/run}" onclick="">首页</a></li>
+<!--# foreach($rootCate as $row){
+#-->
+		<li><a href="{@url:emule/list/run?cid=$row['id']}" onclick="">{$row['name']}</a></li>
+<!--#
+} #-->
+	</ul>
+	<ul class="ul small">
+		<li><a href="http://www.verycd.com/sto/music/" onclick="VeryCD.Track('/stat/baseMusic/');">音乐</a></li>
+		<li><a class="on" href="http://www.verycd.com/sto/book/" onclick="VeryCD.Track('/stat/baseBook/');">图书</a></li>
+		<li><a href="http://www.verycd.com/sto/software/" onclick="VeryCD.Track('/stat/baseSoftware/');">软件</a></li>
+		<li><a href="http://www.verycd.com/sto/datum/" onclick="VeryCD.Track('/stat/baseDatum/');">资料</a></li>
+		<li><a href="http://www.verycd.com/sto/edu/" onclick="VeryCD.Track('/stat/baseEdu/');">教育</a></li>
+		<li><a href="http://www.verycd.com/yule/" onclick="VeryCD.Track('/stat/baseYule/');">娱乐</a></li>
+		<li><a class="four" target="_blank" href="http://www.verycd.com/theater/" onclick="VeryCD.Track('/stat/baseTheater/');">观影指南</a></li>
+		<li><a class="three" href="http://www.verycd.com/base/timetable/" onclick="VeryCD.Track('/stat/baseTimetable/');">排片表</a></li>
+        <li><a href="http://www.verycd.com/top/" onclick="VeryCD.Track('/stat/baseTop/');">驴榜</a></li>
+	</ul>
+
+	<div class="more" style="font-size:12px;">
+        <a href="http://www.verycd.com/archives/" onclick="VeryCD.Track('/stat/baseArchives/')">更新列表»</a>
+    </div>
+	</div>
+</div>
+
+<h2 id="whereru" style="text-align:left;margin:10px 0">
+    您的位置：<a href="{@url:/emule/index/run}">首页</a>
+<!--# foreach($postion as $row){
+#-->
+&gt;&nbsp;<a href="{@url:emule/list/run?cid=$row['id']}" onclick="">{$row['name']}</a>
+<!--#
+}#-->
+                <!-- 管理小组 START-->
+        <p id="manageGroup">
+        </p>
+        <!-- 管理小组 END-->
+
+    
+</h2><br>

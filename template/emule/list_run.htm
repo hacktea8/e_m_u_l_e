@@ -1,0 +1,650 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:common.head' load='true' />
+<link href="{@theme:css}/style.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+<link href="{@theme:css}/topbar_0.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+
+<style>
+.aPre{
+        cursor:url({@theme:site.images}/common/pre.cur),auto;
+}
+.aNext{
+        cursor:url({@theme:site.images}/common/next.cur),auto;right:0;
+}
+</style>
+</head>
+<body>
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.verycd.com/specs/opensearch.xml" title="电驴资源">
+<link type="text/css" href="{@theme:css}/tip-dig.css" rel="stylesheet">
+
+<link type="text/css" href="{@theme:css}/global-broad.css" rel="stylesheet">
+<link type="text/css" href="{@theme:css}/v3-blog.css" rel="stylesheet">
+<style type="text/css">div#favWindow div.bottom-bar{padding-top:24px;height:24px;}
+div#favWindow div.bottom-bar a.closeButton{display:inline-block;margin-bottom:42px;}
+</style>
+
+
+<!--[if IE]>
+<style type="text/css">
+#favIframe{
+	height:166px;
+}
+/* 收藏成功后 */
+div#favBox div.favBottom{
+	/*
+	height:40px;
+	margin-top:0px;
+	*/
+
+}
+
+/* 登录时 */
+div#favWindow div.bottom-bar a.closeButton{
+	margin-top:-24px;
+	display:inline-block;
+	text-decoration:none;
+	margin-left:6px;
+}
+
+
+#wrap #navside{
+		width:252px;
+		margin-left:3px;
+	}
+#wrap #navside #userres table td,#wrap #navside #relativeres table td{
+		word-wrap: break-word;
+		width:170px;
+	}
+#relMore p a.topic-title{
+		word-wrap: break-word;
+		width:240px;
+   }
+#hotres p.itshot{
+	word-wrap: break-word;
+	width:240px;
+}
+.ipctom-multiline .iptcom-info{
+		float:left;
+	}
+.ipctom-multiline {
+    	zoom: 1;     /* trigger hasLayout */
+    }
+div#moreInfo table{
+	margin-top:0;
+}
+#setupform{
+	padding:0;
+	margin:0;
+}
+table#postTable{
+	margin-top:-20px;
+}
+textarea#ed2k_url{
+	margin-top:-10px;
+	height:140px;
+}
+/*
+#listExamples input.inplace{
+	margin-left:-220px;
+
+}
+*/
+
+#content a.transEdit{
+	margin-top:-24px;
+	}
+#res{
+	margin-top:12px;
+	padding-left: 0px;
+}
+.morecom{
+	clear:left
+}
+
+table.restable td a.folder-entry-title{
+	width:130px;
+
+}
+div#folder-table-movie table.restable{
+	padding:0;
+	margin:0;
+
+}
+div#folder-table-movie table.restable td{
+	clear: both;
+	word-break:break-all;
+	display:block;
+}
+#folder-table-movie{
+	padding-right:0;
+	height:auto;
+	display:table;
+	width:100%;
+	padding-left:10px;
+}
+.folder-entry-thumb{
+	margin-top:12px;
+	width: 100px;
+	height: 100px;
+	padding:2px;
+	border:1px solid #CCC;
+}
+table#recTable img{
+	margin-top:8px;
+}
+span#noteDrag{
+	display:block;
+	margin-top:0px;
+	margin-bottom:8px;
+}
+
+dd.imgForGame img.imgForGame{
+	margin-top:5px;
+	padding-top:0;
+}
+input.downall{
+	padding-left:4px;
+	padding-right:4px;
+}
+object.copyflash{
+	margin-left:4px;
+}
+.emulemain table span.subtitle{
+	margin-right:150px;
+	margin-left:250px;
+
+}
+.left_class_order{
+	margin-top:5px;
+	margin-bottom:10px;
+}
+
+ul.topic-list li.non-topic{
+	margin-bottom:5px;
+}
+ul.topic-list li{
+	padding-top:0px!important;
+	/*
+	border:1px solid #B22222;
+	*/
+	padding-bottom:5px;
+	display:inline-block;
+}
+.face{
+	padding-top:0px!important;
+	padding-bottom:0!important;
+
+}
+.file_img{
+	height:100px;
+	margin-top:0!important;
+	margin-bottom:0;
+}
+.blog_title{
+	/*
+	padding-top:14px;
+	*/
+}
+.blog_entry {
+	padding-top:0;
+	text-align:left;
+    margin:0;
+}
+table.favTable{
+	display:inline-block;
+}
+table.favTable tr td{
+   width:100%;
+   margin:0 auto;
+   text-align:center;
+
+   clear:right;
+}
+div#myBox input#playerBtn{
+	padding:0 2px;
+}
+div#myBox div#boxBottom{
+	height:26px;
+}
+div#myBox input#closeBtn{
+	padding:0 2px;
+	/*margin-top:-30px;*/
+}
+
+/* 底部 iframe */
+div#searchIframe{
+		position:absolute;
+	   	width:100%;
+		/*top: expression( ( ignoreMe = document.body.scrollBottom) + 'px' );*/
+	    top:expression( ( -searchIframe.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+	    height:0;
+}
+#similarArtists div ul.artistsMedium{
+	padding:0;
+	margin:0;
+	margin-top:10px;
+}
+</style>
+<![endif]-->
+
+<!--[if IE 6]>
+<style type="text/css">
+.task_notice .icon { margin: 4px 10px 0 8px;}
+td a span.play100{
+	display: block;
+	top:5px;
+	right:8px;
+}
+.morecom{
+	clear:left
+}
+#content a.transEdit{
+	margin-top:-24px;
+	margin-right:20px;
+}
+.commentContent{
+	position:static;
+	float:none;
+	width:640px;
+}
+#topic_to_top_css{
+    float:right;
+    padding-right:0px;
+    padding-top:2px;
+}
+/* 候选区*/
+
+#ie7nav{
+	height:20px;
+	padding-bottom:0px;
+	margin-bottom:0px;
+}
+.post-contents {
+	width:630px;
+}
+
+#listExamples span.filesize{
+	position:relative;
+	width:90px;
+}
+input.downall{
+	padding-top:0px;
+}
+.boxy-content { padding-bottom:15px; }
+
+div.glassbox div.bottom-bar{
+	/*
+	height:34px;
+	margin-top:0px;
+	*/
+}
+div.glassbox div.bottom-bar a.grayButton{
+	margin-top:-12px;
+}
+#favIframe{
+	height:168px;
+}
+div#favWindow{
+	position:relative;
+}
+/* 登录时,底部和关闭按钮 */
+div#favWindow div.bottom-bar{
+	margin-top:-44px;
+	padding-top:24px;
+	height:24px;
+
+}
+div#favWindow div.bottom-bar a.closeButton{
+	background: #F0F0F0;
+	padding:0px 4px;
+	border-top:1px solid #E7E7E7;
+	border-left:1px solid #E7E7E7;
+	border-right:1px solid #666;
+	border-bottom:1px solid #666;
+	color:#333;
+	text-decoration:none;
+
+}
+/* 收藏成功后 */
+div#favBox div.favBottom{
+	/*
+	height:34px;
+	margin-top:0px;
+	*/
+
+}
+div#favBox div.favBottom a.closeButton{
+	background: #F0F0F0;
+	padding:0px 2px;
+	border-top:1px solid #E7E7E7;
+	border-left:1px solid #E7E7E7;
+	border-right:1px solid #666;
+	border-bottom:1px solid #666;
+	color:#333;
+	text-decoration:none;
+	display:inline-block;
+	margin-left:430px;
+	margin-top:3px;
+}
+
+/* last.fm */
+#similarArtists p.powered{
+	margin-right:12px;
+}
+
+</style>
+<![endif]-->
+<!--[if gte IE 7]>
+<style type="text/css">
+/*
+.task_notice .icon { float: none;}
+.task_notice_body p.hometext{width:100%;}
+.task_notice h3 { margin:0;}
+.task_notice_body p.hometext{width:58%;margin-left:78px}
+*/
+div#favWindow{
+	margin-top:0!important;
+}
+div#favWindow div.bottom-bar{
+	margin-top:-34px;
+	height:28px;
+}
+div#favWindow div.bottom-bar a.closeButton{
+	margin-top:9px;
+	padding:0 4px;
+}
+
+
+div#favWindow div.bottom-bar a.grayButton{
+	background: #F0F0F0;
+	padding:2px 4px!important;
+	border-top:1px solid #E7E7E7!important;
+	border-left:1px solid #E7E7E7!important;
+	border-right:1px solid #666!important;
+	border-bottom:1px solid #666!important;
+	color:#333!important;
+}
+div#folder-table-wrapper{
+	display:inline-block;
+	min-height:50px;
+}
+
+span#noteDrag{
+	margin-bottom:0px;
+}
+.ipctom-multiline .iptcom-info{
+	margin-top:0;
+	}
+#content a.transEdit{
+	margin-top:-24px;
+	margin-right:36px;
+}
+.commentContent{
+	position:static!important;
+	float:none!important;
+	width:650px;
+}
+.tab-nav li{
+	padding-bottom:0px;
+}
+#ie7nav{
+	/*
+	margin-top:-4px;
+	*/
+}
+input.downall{
+	padding-top:2px;
+}
+#catalogGroup,#viewall{
+	height:18px;
+	display:block;
+	padding-bottom:0;
+	margin-left:4px;
+	float:left;
+}
+</style>
+<![endif]-->
+<style>
+#where-ru{
+	display:none;
+}
+</style>
+
+<style id="poshytip-css-tip-verycd" type="text/css">
+div.tip-verycd{visibility:hidden;position:absolute;top:0;left:0;}
+div.tip-verycd table, div.tip-verycd td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}
+div.tip-verycd td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}
+div.tip-verycd td.tip-right{background-position:100% 0;}
+div.tip-verycd td.tip-bottom{background-position:100% 100%;}
+div.tip-verycd td.tip-left{background-position:0 100%;}
+div.tip-verycd div.tip-inner{background-position:-10px -10px;}
+div.tip-verycd div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}
+</style>
+</head>
+<body> 
+
+<link type="text/css" href="{@theme:css}/topbar_0.css" rel="stylesheet">
+
+<div id="page-wrapper" class="package">
+<div id="page-body" class="package">   
+    
+
+<!-- Nav -->
+
+<div id="wrap">
+<template source='TPL:common.header' load='true' />
+<template source='TPL:emule.common.nav' load='true' />
+<div id="nav">
+
+<style type="text/css">
+dl#libCatalog dd .on {
+margin-left: 2px;
+text-decoration: none;
+background: #E7E7E7;
+}
+.box_7 {
+border: 4px solid #E6E6E6;
+padding: 0px;
+background: #E6E6E6;
+}
+.box_7 .title {}
+.box_7 .title h3{padding:0;margin:0;font-size: 14px;line-height: 20px;color: #000;font-weight: bold;padding:2px 6px 6px 6px;}
+.box_7 .main{border: 1px solid #cfcfcf;background: #fff;}
+dl#libCatalog dd {
+    background: #f4f4f4;
+    border: 1px solid #e7e7e7;
+    display: block;
+    margin: 4px 0px;
+    padding: 2px;
+    font-weight: normal;
+    letter-spacing: 0;
+}
+#someLinks{padding:0;text-align:center;}
+dl#libCatalog dd a {
+    display: block;
+    border: 0px;
+    text-indent: 18px;
+    padding-left:0;
+}
+
+.rightBox .rightTitle{margin:0;height:31px;overflow:auto;zoom:1;border:1px solid #cfcfcf;border-bottom:0;}
+.rightBox .rightTitle .h3{float:left;margin:0;height:31px;line-height:31px;padding-left:10px;font-size:14px;font-weight:bold;}
+.rightBox .rightTitle .h3 span{height:17px;padding-left:5px;border-left:5px solid #c00;}
+.rightBox .rightTitle .h3 span a{color:#464646;}
+#someLinks {
+    text-align: center !important;
+}
+dl#someLinks dd {
+    padding-left: 0;
+}
+dl.indexLeftItem {
+    background: none repeat scroll 0 0 #fff;
+}
+
+/* 渐变 */
+.title_bg{
+background: #fefefe; /* Old browsers */
+background: -moz-linear-gradient(top, #fefefe 0%, #e9e9e9 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#e9e9e9)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #fefefe 0%,#e9e9e9 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #fefefe 0%,#e9e9e9 100%); /* Opera11.10+ */
+background: -ms-linear-gradient(top, #fefefe 0%,#e9e9e9 100%); /* IE10+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e9e9e9',GradientType=0 ); /* IE6-9 */
+background: linear-gradient(top, #fefefe 0%,#e9e9e9 100%); /* W3C */
+}
+#wrap {
+    background: none;
+    _background: none !important;
+}
+
+.left_class_order{margin-top:0;*margin-top:0 !important;}
+</style>
+
+
+<div class="box_7 rightBox">
+<div class="rightTitle title_bg">
+<div class="h3"><span>图书分类</span></div>
+</div>
+<div class="main" style="padding:0 5px;">
+<dl id="libCatalog">
+<!--#               	                	                	                	    
+foreach($subcatelist as $row){
+#-->       	                	                	                         
+          	    <dd><a href="{@url:emule/list/run?cid=$row['id']}">&gt;{$row['name']}<span class="recordCount">({$row['atotal']})</span></a></dd>
+<!--# 
+}
+#-->
+</dl>
+</div>
+</div>
+<div style="height:10px;background:#fff;"></div>
+
+<div class="box_7 rightBox">
+
+<div class="rightTitle title_bg">
+<div class="h3"><span>相关链接</span></div>
+</div>
+<div class="main" style="padding:10px;">
+<dl id="someLinks">
+<dd><a href="http://www.verycd.com/sto/feed" title="订阅本站资源">订阅本站资源</a></dd>
+<dd><a href="http://www.emule.org.cn/" id="emuleOld" title="Download eMule">电驴(eMule)经典版下载</a></dd>
+<dd><a href="http://www.mozilla.com/firefox/" title="get firefox" id="getfirefox" target="_blank">推荐使用 Firefox 浏览器</a></dd>
+<dd style=" clear:both;"></dd>
+</dl>
+</div>
+</div>
+
+<div style="height:10px;background:#fff;"></div>
+
+
+<!---->
+
+<div class="box_7 rightBox">
+<div class="rightTitle title_bg">
+<div class="h3"><span>今日热门</span></div>
+</div>
+
+<div class="main" style="padding:10px;">
+<!---->
+<dl class="indexLeftItem">
+<!--#
+foreach($hotTopic as $row){
+#-->
+<dd class="leftMiddle">
+   <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="" style="text-decoration:none;" id="entry_link_2961048">
+<img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="hot_img" height="100" width="100">
+</a><br>
+<a href="{@url:emule/topic/run?aid=$row['id']}" onClick="">{$row['name']}</a>            
+            </dd>
+<!--#
+}
+#-->
+            
+</dl>
+
+</div>
+
+</div>
+<div style="height:10px;background:#fff;"></div>
+<p style="text-align: center;">
+
+</p>
+
+</div>
+<div id="content">
+
+    <ul class="topic-list" style="*margin-top:-19px">
+ <li id="searchBar">
+<form id="advance_search_form" method="get" action="http://www.verycd.com/search/folders" target="_blank">
+    <div class="left_class_order" style="margin-bottom:10px!important;">
+        <span>
+        排序:
+        <span class="left_class_new left_class_filter">
+        <a href="javascript:setType('sort','rpost');onButtonClick();VeryCD.Track('/stat/stoListPostBook/');">发布
+                    <img src="{@theme:site.images}/emule/new02.gif">
+        </a>
+                <img src="{@theme:site.images}/emule/newtopic_bg.gif">
+        更新
+                    <img src="{@theme:site.images}/emule/new02_red.gif">
+                </span>
+    </span>
+    <select name="sort" id="sort" onChange="onButtonClick();VeryCD.Track('/stat/stoListSortBook/');" class="selectClass">
+        <option value="default">默认排序</option>
+        <option value="post">发布时间从老到新</option>
+        <option value="rpost">发布时间从新到老</option>
+        <option value="update">更新时间从老到新</option>
+        <option value="rupdate" selected="selected">更新时间从新到老</option>
+        <option value="size">文件大小从小到大</option>
+        <option value="rsize">文件大小从大到小</option>
+    </select>
+    <span class="left_class_filter"><img src="{@theme:site.images}/emule/line.gif"></span>
+        </div>
+</form></li>
+<!--#
+foreach($infolist as $row){
+#-->
+                        <li>
+                <a href="{@url:emule/list/run?aid=$row['id']}" onClick="">
+        <img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="file_img">
+        </a>
+ <h3>
+<span class="left_topics_class_sort"><a href="{@url:emule/list/run?cid=$row['cid']}">{$row['cname']}</a></span>                <a href="{@url:emule/list/run?aid=$row['id']}" onClick="">{$row['name']}</a>
+ </h3>
+        <div class="blog_entry">
+<!--# if(0){
+#-->
+     <div class="face">
+        <a href="http://www.verycd.com/i/4489064/" onClick="VeryCD.Track('/stat/indexUserface/');"><img src="{@theme:css}/64_avatar_small.jpg" hoverstyle="2" hovertips="type=2&amp;id=4489064" class="fixsize"></a><p style="WORD-WRAP: break-word;TABLE-LAYOUT: fixed;word-break:break-all"><a hoverstyle="2" hovertips="type=2&amp;id=4489064" href="http://www.verycd.com/i/4489064/" onClick="VeryCD.Track('/stat/indexUsername/');">cctv098998</a></p></div>
+<!--# } #-->
+<!--[if IE 6]><span style="text-indent:-24px;margin-left:-12px"></span><![endif]-->
+{$row['description']}
+(<a href="{@url:emule/topic/run?aid=$row['id']}" class="fullarticle" onClick="">全文</a>)
+                    <br>
+    	<span style="color:green;">
+    	<span class="date-time">{$row['ptime']}</span> 发布, <!--# if(0){ #--><span class="date-time"></span> 更新 - <strong>128</strong>个文件, <strong>4.05GB</strong>, <strong>1630</strong>条评论</span>
+<!--# } #-->
+        <div class="blog_metadata">        </div>
+        </div>
+        </li>
+<!--#                                                                             
+
+} 
+#-->	
+        </ul>
+<div class="pnav">
+<div class="pages-nav" style="margin: 10px 7px 0px 0px;padding:0 0 20px 0px!important;padding-bottom:0;">
+<page tpl="TPL:common.page" page="$page" per="$perpage" count="$listcount"  url="emule/list/run?cid=$cid"/>
+
+<span href="#" style="display:none">  </span>
+</div>
+</div>
+</div><!--End of content-->
+<div style="clear:both"></div>
+</div><!-- End of page wrap-->
+
+</div><!-- End of #page-body -->
+
+
+</body>
+</html>

@@ -1,0 +1,803 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:common.head' load='true' />
+<link href="{@theme:css}/style.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+<style>
+.aPre{
+   cursor:url({@theme:site.images}/common/pre.cur),auto;
+}
+.aNext{
+   cursor:url({@theme:site.images}/common/next.cur),auto;right:0;
+}
+</style>
+                </head>
+<link type="text/css" href="{@theme:css}/tip-dig.css" rel="stylesheet">
+
+<link type="text/css" href="{@theme:css}/global-broad.css" rel="stylesheet">
+<link type="text/css" href="{@theme:css}/topic.css" rel="stylesheet">
+<style type="text/css">
+div#favWindow div.bottom-bar{padding-top:24px;height:24px;}
+div#favWindow div.bottom-bar a.closeButton{display:inline-block;margin-bottom:42px;}
+</style>
+
+
+<!--[if IE]>
+<style type="text/css">
+#favIframe{
+	height:166px;
+}
+/* 收藏成功后 */
+div#favBox div.favBottom{
+	/*
+	height:40px;
+	margin-top:0px;
+	*/
+
+}
+
+/* 登录时 */
+div#favWindow div.bottom-bar a.closeButton{
+	margin-top:-24px;
+	display:inline-block;
+	text-decoration:none;
+	margin-left:6px;
+}
+
+
+#wrap #navside{
+		width:252px;
+		margin-left:3px;
+	}
+#wrap #navside #userres table td,#wrap #navside #relativeres table td{
+		word-wrap: break-word;
+		width:170px;
+	}
+#relMore p a.topic-title{
+		word-wrap: break-word;
+		width:240px;
+   }
+#hotres p.itshot{
+	word-wrap: break-word;
+	width:240px;
+}
+.ipctom-multiline .iptcom-info{
+		float:left;
+	}
+.ipctom-multiline {
+    	zoom: 1;     /* trigger hasLayout */
+    }
+div#moreInfo table{
+	margin-top:0;
+}
+#setupform{
+	padding:0;
+	margin:0;
+}
+table#postTable{
+	margin-top:-20px;
+}
+textarea#ed2k_url{
+	margin-top:-10px;
+	height:140px;
+}
+/*
+#listExamples input.inplace{
+	margin-left:-220px;
+
+}
+*/
+
+#content a.transEdit{
+	margin-top:-24px;
+	}
+#res{
+	margin-top:12px;
+	padding-left: 0px;
+}
+.morecom{
+	clear:left
+}
+
+table.restable td a.folder-entry-title{
+	width:130px;
+
+}
+div#folder-table-movie table.restable{
+	padding:0;
+	margin:0;
+
+}
+div#folder-table-movie table.restable td{
+	clear: both;
+	word-break:break-all;
+	display:block;
+}
+#folder-table-movie{
+	padding-right:0;
+	height:auto;
+	display:table;
+	width:100%;
+	padding-left:10px;
+}
+.folder-entry-thumb{
+	margin-top:12px;
+	width: 100px;
+	height: 100px;
+	padding:2px;
+	border:1px solid #CCC;
+}
+table#recTable img{
+	margin-top:8px;
+}
+span#noteDrag{
+	display:block;
+	margin-top:0px;
+	margin-bottom:8px;
+}
+
+dd.imgForGame img.imgForGame{
+	margin-top:5px;
+	padding-top:0;
+}
+input.downall{
+	padding-left:4px;
+	padding-right:4px;
+}
+object.copyflash{
+	margin-left:4px;
+}
+.emulemain table span.subtitle{
+	margin-right:150px;
+	margin-left:250px;
+
+}
+.left_class_order{
+	margin-top:5px;
+	margin-bottom:10px;
+}
+
+ul.topic-list li.non-topic{
+	margin-bottom:5px;
+}
+ul.topic-list li{
+	padding-top:0px!important;
+	/*
+	border:1px solid #B22222;
+	*/
+	padding-bottom:5px;
+	display:inline-block;
+}
+.face{
+	padding-top:0px!important;
+	padding-bottom:0!important;
+
+}
+.file_img{
+	height:100px;
+	margin-top:0!important;
+	margin-bottom:0;
+}
+.blog_title{
+	/*
+	padding-top:14px;
+	*/
+}
+.blog_entry {
+	padding-top:0;
+	text-align:left;
+    margin:0;
+}
+table.favTable{
+	display:inline-block;
+}
+table.favTable tr td{
+   width:100%;
+   margin:0 auto;
+   text-align:center;
+
+   clear:right;
+}
+div#myBox input#playerBtn{
+	padding:0 2px;
+}
+div#myBox div#boxBottom{
+	height:26px;
+}
+div#myBox input#closeBtn{
+	padding:0 2px;
+	/*margin-top:-30px;*/
+}
+
+/* 底部 iframe */
+div#searchIframe{
+		position:absolute;
+	   	width:100%;
+		/*top: expression( ( ignoreMe = document.body.scrollBottom) + 'px' );*/
+	    top:expression( ( -searchIframe.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+	    height:0;
+}
+#similarArtists div ul.artistsMedium{
+	padding:0;
+	margin:0;
+	margin-top:10px;
+}
+</style>
+<![endif]-->
+
+<!--[if IE 6]>
+<style type="text/css">
+.task_notice .icon { margin: 4px 10px 0 8px;}
+td a span.play100{
+	display: block;
+	top:5px;
+	right:8px;
+}
+.morecom{
+	clear:left
+}
+#content a.transEdit{
+	margin-top:-24px;
+	margin-right:20px;
+}
+.commentContent{
+	position:static;
+	float:none;
+	width:640px;
+}
+#topic_to_top_css{
+    float:right;
+    padding-right:0px;
+    padding-top:2px;
+}
+/* 候选区*/
+
+#ie7nav{
+	height:20px;
+	padding-bottom:0px;
+	margin-bottom:0px;
+}
+.post-contents {
+	width:630px;
+}
+
+#listExamples span.filesize{
+	position:relative;
+	width:90px;
+}
+input.downall{
+	padding-top:0px;
+}
+.boxy-content { padding-bottom:15px; }
+
+div.glassbox div.bottom-bar{
+	/*
+	height:34px;
+	margin-top:0px;
+	*/
+}
+div.glassbox div.bottom-bar a.grayButton{
+	margin-top:-12px;
+}
+#favIframe{
+	height:168px;
+}
+div#favWindow{
+	position:relative;
+}
+/* 登录时,底部和关闭按钮 */
+div#favWindow div.bottom-bar{
+	margin-top:-44px;
+	padding-top:24px;
+	height:24px;
+
+}
+div#favWindow div.bottom-bar a.closeButton{
+	background: #F0F0F0;
+	padding:0px 4px;
+	border-top:1px solid #E7E7E7;
+	border-left:1px solid #E7E7E7;
+	border-right:1px solid #666;
+	border-bottom:1px solid #666;
+	color:#333;
+	text-decoration:none;
+
+}
+/* 收藏成功后 */
+div#favBox div.favBottom{
+	/*
+	height:34px;
+	margin-top:0px;
+	*/
+
+}
+div#favBox div.favBottom a.closeButton{
+	background: #F0F0F0;
+	padding:0px 2px;
+	border-top:1px solid #E7E7E7;
+	border-left:1px solid #E7E7E7;
+	border-right:1px solid #666;
+	border-bottom:1px solid #666;
+	color:#333;
+	text-decoration:none;
+	display:inline-block;
+	margin-left:430px;
+	margin-top:3px;
+}
+
+/* last.fm */
+#similarArtists p.powered{
+	margin-right:12px;
+}
+
+</style>
+<![endif]-->
+<!--[if gte IE 7]>
+<style type="text/css">
+/*
+.task_notice .icon { float: none;}
+.task_notice_body p.hometext{width:100%;}
+.task_notice h3 { margin:0;}
+.task_notice_body p.hometext{width:58%;margin-left:78px}
+*/
+div#favWindow{
+	margin-top:0!important;
+}
+div#favWindow div.bottom-bar{
+	margin-top:-34px;
+	height:28px;
+}
+div#favWindow div.bottom-bar a.closeButton{
+	margin-top:9px;
+	padding:0 4px;
+}
+
+
+div#favWindow div.bottom-bar a.grayButton{
+	background: #F0F0F0;
+	padding:2px 4px!important;
+	border-top:1px solid #E7E7E7!important;
+	border-left:1px solid #E7E7E7!important;
+	border-right:1px solid #666!important;
+	border-bottom:1px solid #666!important;
+	color:#333!important;
+}
+div#folder-table-wrapper{
+	display:inline-block;
+	min-height:50px;
+}
+
+span#noteDrag{
+	margin-bottom:0px;
+}
+.ipctom-multiline .iptcom-info{
+	margin-top:0;
+	}
+#content a.transEdit{
+	margin-top:-24px;
+	margin-right:36px;
+}
+.commentContent{
+	position:static!important;
+	float:none!important;
+	width:650px;
+}
+.tab-nav li{
+	padding-bottom:0px;
+}
+#ie7nav{
+	/*
+	margin-top:-4px;
+	*/
+}
+input.downall{
+	padding-top:2px;
+}
+#catalogGroup,#viewall{
+	height:18px;
+	display:block;
+	padding-bottom:0;
+	margin-left:4px;
+	float:left;
+}
+</style>
+<![endif]-->
+<style>
+#where-ru{
+	display:none;
+}
+</style>
+
+<style id="poshytip-css-tip-verycd" type="text/css">
+div.tip-verycd{visibility:hidden;position:absolute;top:0;left:0;}
+div.tip-verycd table, div.tip-verycd td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}
+div.tip-verycd td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}
+div.tip-verycd td.tip-right{background-position:100% 0;}
+div.tip-verycd td.tip-bottom{background-position:100% 100%;}
+div.tip-verycd td.tip-left{background-position:0 100%;}
+div.tip-verycd div.tip-inner{background-position:-10px -10px;}
+div.tip-verycd div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}
+</style>
+</head>
+<body>
+
+<link type="text/css" href="{@theme:css}/topbar_0.css" rel="stylesheet">
+
+<div id="page-wrapper" class="package">
+    
+    <style>
+    #nav_div {
+    margin: 10px 0 10px 0;
+    }
+    </style>
+    
+        
+<style>
+#nav_div a :hover, a:active,a:hover{
+	color: black;
+	text-decoration: underline;
+}
+.slide_con a:hover { text-decoration:none; }
+#nav_div{
+	background: url(http://v4.vcimg.com/global/images/global_bg_1.gif?v=31218) repeat-x 0 -77px;
+	height: 32px;
+	line-height: 30px;
+	line-height: 32px\9;
+	padding: 0 10px;
+	overflow: hidden;
+}
+#nav_div ul{float: left;margin:0px;padding:0px}
+#nav_div li{float: left;}
+#nav_div .big li a{
+	float: left;
+	padding: 0 10px;
+	font-size: 14px;
+	background-image: url(http://v4.vcimg.com/global/images/global_bg_1.gif?v=31218);
+	background-repeat: repeat-x;
+	background-position: 0 100px;
+	height: 32px;
+	font-weight: bold;
+}
+#nav_div .line{
+	float:left;
+	margin:0 5px;
+	border-left: 1px solid #fff;height: 32px;
+}
+#nav_div .big li a:link,#nav_div .big li a:visited{color:#000;text-decoration:none;}
+	#nav_div .big li a:hover,#nav_div .big li a:active {color:#fff;text-decoration:none;background-position: 0 -118px;color: #fff;}
+#nav_div .big li a.hover,#nav_div .big li a.hover:link,#nav_div .big li a.hover:visited{background-position: 0 -37px;color: #fff;}
+#nav_div .big .korean_active a:hover{background:url(http://v4.vcimg.com/base/images/hanju/bar_hover_bg.jpg) repeat-x;}
+
+#nav_div .small{margin:5px 0;font-size:12px;}
+#nav_div .small a{display:block;width:34px;height:22px;line-height:22px;text-align:center;margin:0 2px;}
+#nav_div .small a:link,#nav_div .small a:visited{}
+#nav_div .small a:hover,#nav_div .small a:active{text-decoration:none;}
+#nav_div .small a.on,#nav_div .small a:hover{color:#fff;background:url(http://v4.vcimg.com/global/images/global_img_1.gif) no-repeat -50px 0 #c00;}
+#nav_div li a{line-height: 30px;line-height: 32px\9;}
+.ul, .ul ul {
+list-style-type: none;
+}
+#nav_div .more{float: right;line-height: 30px;line-height: 32px\9;}
+#nav_div .more a{line-height: 30px;line-height: 32px\9;}
+#nav_div .small a.four{ width:62px; }
+#nav_div .small a.four:hover{ width:62px; color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon4.gif) no-repeat;}
+#nav_div .small a.three{width:48px; }
+#nav_div .small a.three:hover,#nav_div .small a.active{width:48px;color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon3.gif) no-repeat;}
+</style>
+
+
+<style type="text/css">
+@-moz-document url-prefix()
+{
+.current_browser_class { color:#ffffff; }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{
+.current_browser_class { padding: 10px 0 0 0; }
+}
+</style>
+
+
+
+<link rel="alternate" href="http://www.verycd.com/topics/2959853/feed" type="application/rss+xml" title="Syndicate this page with RSS">
+
+
+<div id="wrap">
+<template source='TPL:common.header' load='true' />
+<template source='TPL:emule.common.nav' load='true' />
+    <div id="content" style="width:730px">
+        <div id="favBox" class="glassbox" style="display:none">
+    <div class="title-bar"><span class="title">收藏了该资源的用户还收藏了:</span></div>
+    <div class="boxContent">
+    <div id="favBoxContent">
+        </div>
+    <div class="favBottom">
+    <a href="javascript://" class="closeButton" id="closeFavButton" onClick="VeryCD.Track('/stat/topicFavResClose/');closeFavBox()">关闭</a>
+    </div>
+    </div>
+    </div>
+     <div id="contentInfo">
+        <h1 id="topicstitle">{$info['name']}</h1>
+                                 <input value="" name="entryid" id="entryid" type="hidden">
+                 <div class="topicImg">
+     		            <a id="topicImgUrl" href="{@url:emule/topic/run?aid=$info['id']}" title="{$info['name']}">
+                                    <img class="cover" src="{$thumhost}{$info['thum']}">
+                        </a>
+                <div>
+                    <div id="visitTimes" style="margin-top:5px; display:none">
+                                                    <strong id="visitTimes-title" style="display:inline-block;vertical-align:top;"></strong>
+                            <span id="current-page-views" style="display: inline-block; vertical-align: top;">6052次 浏览</span><br>
+                            <span id="favoriteNumber" favorites="274" style="display:inline-block;vertical-align:top;">274次 收藏</span>
+                                            </div>
+               </div>
+        </div>
+        <div style="float:left;width:580px;overflow:hidden;">
+        <div class="block1">
+            <div class="block11" id="block11">
+                <ul>
+                    <li><strong style="display:inline-block;vertical-align:top;">发布：</strong>
+                        <span style="display:inline-block;vertical-align:top;">{$info['ptime']}
+                        </span>
+                    </li>
+                    <li>
+                    <strong style="display:inline-block;vertical-align:top;">更新：</strong>
+                    <span class="date-time" style="display:inline-block;vertical-align:top;">{$info['utime']}</span>
+                    </li>
+                </ul>
+
+                    
+            </div>
+
+            
+						<div class="resInfoBox" id="membertable">
+				<div hoverstyle="3" hovertips="type=2&amp;id=4416523" class="header">
+					<a class="imgs" href="http://www.verycd.com/i/4416523/" onClick="" style="text-decoration:none;"><img src="">
+	                	<span class="follow">关注 <em>2</em></span>
+	                	<span class="fans">粉丝 <em>340</em></span>
+                	</a>
+				</div>
+				<div class="context">
+					<p class="text">
+						<strong><a hoverstyle="3" hovertips="type=2&amp;id=4416523" href="http://www.verycd.com/i/4416523/" onClick="VeryCD.TrackEvent('topic','发布者','用户名');">达漫V</a></strong>
+						<span><img src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/15.gif" class="honorimage" title="金光盘(Exp:17641)" align="absmiddle" height="20" width="25"></span>
+											</p>
+					<p class="num">精华资源: <a onClick="" href="http://www.verycd.com/i/4416523/create/folders/?stat=elite">169</a></p>
+					<p class="num">全部资源: <a onClick="" href="http://www.verycd.com/i/4416523/create/folders/?stat=total">172</a></p>
+										<div class="btn">
+						<div class="haddle_btn">
+					        <div data-follow-type="0" data-follow-id="4416523" data-follow="0" style="" class="haddle_btn" onClick="">
+					        	<a data-follow="0" style="" class="light_addbtn" href="#"><span class="addicon"></span>加关注</a>
+								<span data-follow="1" style="display:none;" class="addbtn_even"><span class="addbtn_dgray"></span>已关注<em>|</em><a class="red" style="cursor:pointer;">取消</a></span>
+								<a data-follow="2" style="display:none;" class="light_addbtn" href="#"><span class="addicon_a"></span><em>|</em><span class="addicon"></span>加关注</a>
+						    	<span data-follow="3" style="display:none;" class="addbtn_even"><span class="addicon_c"></span>相互关注<em>|</em><a class="red" style="cursor:pointer;">取消</a></span>
+					        </div>
+						</div>
+					</div>
+									</div>
+			</div>
+			        </div><!-- .block1 -->
+        <div id="showFolderBaseDoDiv" style="float: left;"></div>
+        <div class="block2" style="float:left;">
+            <div style="float:left;">
+                                <div id="addFavModule" style="float:left;position:relative;width:125px;margin-left:5px">
+                    <a class="addFav addFavModule_a" title="收藏该资源" id="addFav"></a>
+                    <div style="position: absolute; left: 133px; top: -17px; margin: 0px; border: 1px solid rgb(205, 180, 126); width: 310px; background: none repeat scroll 0% 0% rgb(255, 255, 205); height: 55px;" id="folderfavoritatips">
+                        <div style="position: absolute; height: 30px; width: 12px; top: 18px;left:-12px; background: url(http://v4.vcimg.com/images/folder/tipsleft.gif) no-repeat scroll 0% 0% transparent;">
+                        </div>
+                        <div style="padding: 4px; color: rgb(104, 100, 89);">
+                            <span style="margin-left: 3px; padding-top: 4px; float: left;"><img src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/light.gif"></span>
+                            <div style="padding: 4px; color: rgb(104, 100, 89);">
+                                <div style="padding: 0px; margin: 0px 0px 0px 17px;text-align:left;">
+                                    <span style="float: left;">收藏资源后，一旦有新更新（字幕、文件）我们</span>
+                                    <a onClick="return hidden_favorite_tips();" style="float:right;display:block;padding:3px 7px 0pt 3px;width: 5px;height: 30px;" href="#"><img src="{@theme:site.images}/emule/canceltips.gif"></a>
+                                    <div>将会用站内消息和电子邮件通知你。</div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- #addFavModule -->
+            </div>
+            <div style="float:right;padding:5px 0px 5px 0px;">
+                <span>
+                    <strong>相关：</strong>
+                    <div id="shte_mainbox"></div>
+
+                        <div id="folderfavoritatips" style="position:absolute;margin:-35px 0 0 -38px;*margin:-15px 0 0 -239px;border:1px solid #cdb47e;width:310px;background:#ffffcd;display:none;height:55px;">
+                        <div style="position:absolute;height:12px;width:23px;margin:-12px 0 0 18px;background:url(http://v4.vcimg.com/images/folder/tipstop.gif) no-repeat;"></div>
+                        <div style="padding:4px;color:#686459;">
+                            <span style="margin-left:3px;padding-top:4px;float:left;"><img src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/light.gif"></span>
+                            <div style="padding:4px;color:#686459;">
+                                <div style="padding:0px;margin:0px;margin-left:17px;">
+                                <span style="float:left">收藏资源后，一旦有新更新（字幕、文件）我们</span>
+                                <a href="#" style="float:right;display:block;padding:3px 7px 0 3px;padding:3px 3px 0 0\9;width:5px;height:30px;" onClick="VeryCD.Track('/stat/topicfavtipsclose/');return hidden_favorite_tips();"><img src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/canceltips.gif"></a>
+                                <div>将会用站内消息和电子邮件通知你。</div>
+                                <div style="clear:both"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </span>
+            </div>
+            <div id="feedbackspan" style="float:left;width:100%;text-align:right;"></div>
+        </div>
+     </div>
+
+</div>
+        <div id="favWindow" class="glassbox" style="display:none">
+        <div class="loginNote"><span style="margin-left:6px;margin-top:2px;display:inline-block;">请登录</span></div><iframe id="favIframe" src="" marginwidth="0" marginheight="0" border="0" allowtransparency="true" frameborder="0" scrolling="no"></iframe><div class="bottom-bar">
+        <a href="javascript://" class="closeButton" onClick="closeLoginBox()">关闭</a>
+                </div>
+                </div>
+               
+
+        <div style="clear:both"></div>
+        <!-- ads start -->
+               
+                <!-- ads over -->
+                <div class="tab-nav group-mods" id="theCon">
+			<ul>
+				<li class="current"><a href="#theCon">详细内容</a></li>
+				<li><a href="#theRel">相关资源</a></li>
+				<li><a href="#theRes">补充资源</a></li>
+				<li><a href="#theCom">用户评论</a></li>
+			</ul>
+        </div>
+        <div class="blog_entry">
+            <div class="iptcom" id="iptcomED2K">
+                 <div>
+{$info['downurl']|html}
+</div>
+                 <div style="border:1px solid #faccaa; background:#ffffce; text-align:center; clear:both; padding: 5px 10px; margin:5px 10px 5px 0; font-size:1.2em">
+VIP通道:{$info['vipdwurl']|html}
+</div>
+            </div>
+            <div class="iptcom" id="iptcomCname">
+{$info['intro']|html}
+        <!--Wrap-tail end--></div>
+                </div>
+
+          
+                                <div class="tab-nav group-mods" id="theRel">
+			<ul>
+				<li><a href="#theCon">详细内容</a></li>
+				<li class="current"><a href="#theRel">相关资源</a></li>
+				<li><a href="#theRes">补充资源</a></li>
+				<li><a href="#theCom">用户评论</a></li>
+			</ul>
+        </div>
+        			<div id="res">
+                <div id="folder-table-movie">
+
+    		<table class="restable topic_class_restable">
+		<tbody>
+<!--# foreach($info['relatdata'] as $key=>$row){
+if($key%5==0){
+   echo '<tr>';
+}
+#-->	   	            			<td>
+<a title="{$row['name']}" class="folder-entry-title" href="{@url:emule/topic/run?aid=$row['id']}" onClick="" target="_blank">
+<img class="folder-entry-thumb" src="{$thumhost}{$row['thum']}"></a>
+<a title="{$row['name']}" class="folder-entry-title" href="{@url:emule/topic/run?aid=$row['id']}" onClick="" target="_blank">{$row['name']}</a>
+			</td>
+<!--#
+  if($key%5==0){
+     echo '</tr>';
+  }
+}
+#-->
+    		</tbody>
+    		</table>
+</div>
+</div>
+            <h3 class="morecom" id="morecom" style="padding-left: 560px;"><a href="http://www.verycd.com/search/folders?kw=%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E+&amp;more=1" target="_blank"><img src="{@theme:site.images}/emule/moremovie.jpg" alt="More ...">更多相关资源 &gt;&gt;</a></h3>
+<div class="tab-nav group-mods" id="theRes">
+			<ul>
+				<li><a href="#theCon">详细内容</a></li>
+				<li><a href="#theRel">相关资源</a></li>
+				<li class="current"><a href="#theRes">补充资源</a></li>
+				<li><a href="#theCom">用户评论</a></li>
+			</ul>
+		</div>
+
+            <h3>这里是其它用户补充的资源(<a href="#commentFolder" id="extred2k">我也要补充</a>):</h3>
+                			<div class="emuletop-no">
+    				暂无补充资源
+    			</div>
+													
+								
+        <div class="tab-nav group-mods" id="theCom">
+			<ul>
+				<li><a href="#theCon">详细内容</a></li>
+				<li><a href="#theRel">相关资源</a></li>
+				<li><a href="#theRes">补充资源</a></li>
+				<li class="current"><a href="#theCom">用户评论</a></li>
+			</ul>
+			<span id="comments_id_m2_div"><p class="topic_admin_class_edit"></p></span>
+
+        </div>
+
+
+ <div id="userCommentDiv">
+
+</div>
+
+            <a id="commentFolder"></a>
+						            			<div class="clearBoth"></div><br>
+
+</div>          
+		 <div id="navside">
+		                            
+
+						<div id="userres">
+	            <h3>该用户的其它精华资源</h3> <img id="closeUser" class="closebtn" alt="" src="/res/images/emule/toggle.gif">
+	            <div id="userMore">
+	        		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	                    <tbody><tr>
+	                    <td style="width:48px">
+	                        <a class="relatelink" href="http://www.verycd.com/topics/2960998/" onClick="VeryCD.Track('/stat/topicsOther/'+this.href);" target="_blank">
+	                        <img title="PDF[2013/08/23 23:43:47]资源更新 共1个文件 28.53MB" src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/thumb_025.jpg" class="resimg" height="48" width="48">
+	                        </a>
+	                    </td>
+	                    <td valign="middle">
+	                    <a title="PDF[2013/08/23 23:43:47]资源更新 共1个文件 28.53MB" class="topic-title" href="http://www.verycd.com/topics/2960998/" onClick="VeryCD.Track('/stat/topicsOther/'+this.href);" target="_blank">
+	                    《荷塘月色：钢琴弹奏流行歌曲集2  简易版》扫描版[PDF]
+	                    </a>
+	                    <img class="png" title="这是一个精华资源" src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/elite_on.gif">	                    </td>
+	                    </tr>
+	                    </tbody></table>
+	        		<p class="checkall"><a href="http://www.verycd.com/i/4416523/create/folders/?stat=elite" target="_blank">更多 &gt;&gt;</a></p>
+				</div> <!-- end of userMore -->
+			</div> <!-- end of userres -->
+								   		   <div id="favriteuser">
+				<h3>刚收藏了本资源的用户</h3><img id="closeRell" class="closebtn" alt="" src="/res/images/emule/toggle.gif">
+				<div id="closeRellmore">
+									<div style="width:252px;height:65px;margin-left:5px;">
+						<a style="margin-right:5px;" target="_blank" title="" href="http://www.verycd.com/i/1681550/" onClick="VeryCD.Track('/stat/topicFavUser/');"><img hoverstyle="3" hovertips="type=2&amp;id=1681550" alt="apocn" class="resimg" src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/50_avatar_small.jpg" height="48px" width="48px"></a>
+						<a hoverstyle="3" hovertips="type=2&amp;id=1681550" target="_blank" style="height22px;line-height:22px;text-align:center;white-space:nowrap;" title="" onClick="VeryCD.Track('/stat/topicFavUser/');" href="http://www.verycd.com/i/1681550/">apocn</a>
+						<br><p style="margin:6px 0px 0px 65px;color:#999999"><span title="2013/08/24 09:37:20" class="date-time">7小时前</span>&nbsp;收藏了</p>
+					</div>
+									
+								</div>
+			</div>
+									<div id="relativeres">
+	            <h3>相关资源</h3> <img id="closeRel" class="closebtn" alt="" src="/res/images/emule/toggle.gif">
+				<div id="relMore">
+<!--#
+foreach($info['relatdata'] as $row){
+#-->
+                       	<p class="itshot">
+			<a class="relatelink" href="{@url:emule/topic/run?aid=$row['id']}" onClick="" target="_blank">
+           <img title="{$row['name']}" src="{$thumhost}{$row['thum']}" class="hot_img" height="100" width="100"></a>
+			 <a title="{$row['name']}" class="topic-title" href="{@url:emule/topic/run?aid=$row['id']}" onClick="" target="_blank">{$row['name']}</a>
+</p>
+<!--#
+} #-->
+			 <dl id="hotres">
+    	            <dt>今日热门</dt>
+    				                                               
+<!--#
+foreach($hotTopic as $row){
+#-->
+<dd class="itshot">
+<a id="entry_link_2960900" title="{$row['name']}" href="{@url:emule/topic/run?aid$row['id']}" onClick="" target="_blank" style="text-decoration:none;"><img src="{$thumhost}{$row['thum']}" alt="img" class="hot_img" style="display:inline;" height="100" width="100">
+                        <div id="entry_2960900" style="display:none;" class="entry_score_small"></div>
+                        </a>
+                        <br>
+<a title="{$row['name']}" href="{@url:emule/topic/run?aid$row['id']}" onClick="" target="_blank">{$row['name']}</a>
+</dd>
+<!--#
+} #-->	        
+                    				                            				                
+             </dl>  <!-- end of hotres -->
+</div>
+</div>
+	    </div><!-- end of navside -->
+</div><!-- end of page wrap-->
+
+
+<template source='TPL:common.footer' load='true' />
+</div>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!doctype html>
+<html>
+<head>
+<template source='TPL:common.head' load='true' />
+<link href="{@theme:css}/style.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+<link href="{@theme:css}/topbar_0.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+<script type="text/javascript" src="{@theme:js}/jquery-2.0.2.min.js" ></script>
+<style>
+.aPre{
+        cursor:url({@theme:site.images}/common/pre.cur),auto;
+}
+.aNext{
+        cursor:url({@theme:site.images}/common/next.cur),auto;right:0;
+}
+#index_body #index_body_mainDiv{margin:80px 0 10px}
+</style>
+</head>
+<body>
+<link type="text/css" href="{@theme:css}/tip-dig.css" rel="stylesheet">
+
+<link type="text/css" href="{@theme:css}/topbar_0.css" rel="stylesheet">
+<div id="index_body">
+<template source='TPL:common.header' load='true' />
+<template source='TPL:emule.common.nav' load='true' />
+
+<div id="top_ad" style="margin: 0 0 10px 0"></div>
+<!-- head -->
+<div class="mainDiv">
+<link type="text/css" href="{@theme:css}/index.css" rel="stylesheet">
+
+<div class="line_space"></div>
+<style type="text/css">
+.block:after {
+    clear: both;
+    content: " ";
+    display: block;
+}
+</style>
+<div class="folder_div box_7">
+<div style="margin: 4px 0 0;" id="folderlist">
+<div class="tab-nav-1 tab-nav-1_index block">
+<ul style="float: left;" id="hotnavs" class="ul block">
+	<li class="on"
+		onmouseover=""
+		onmouseout=""
+		id="foldertagg_0"><a href="javascript:void(0);"
+		target="_blank">最新</a></li>
+	<li
+		onmouseover=""
+		onmouseout=""
+		id="foldertagg_1" class=""><a
+		href="" target="_blank">随机</a></li>
+	<li
+		onmouseover=""
+		onmouseout=""
+		id="foldertagg_2" class=""><a
+		href="javascript:void(0);" target="_blank">最热</a></li>
+</ul>
+</div>
+<div id="index" class="clearfix">
+<div class="id_left">
+<div class="vc_old main vc_old_index" id="folderdiv_index_0" style="">
+<ul  class="clearfix ul">
+<!--#
+foreach($emuleIndex['new'] as $row){
+#-->
+	<li class="list">
+	<div class="cover_3"><a
+		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""> <img src="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" name="lazyload"
+		alt="{$row['name']}"> </a></div>
+	<div class="cv_title">
+	<ul>
+		<li class="strong"><a
+			href="{@url:emule/topic/run?aid=$row['id']}" onclick="" target="_blank">{$row['name']}</a></li>
+		<li></li>
+	</ul>
+	</div>
+	</li>
+<!--#
+}
+#-->
+</ul>
+</div>
+<div class="vc_old main vc_old_index" id="folderdiv_index_1" style="display: none">
+<ul class="clearfix ul">
+<!--#
+foreach($emuleIndex['rand'] as $row){
+#-->
+	<li class="list">
+	<div class="cover_3"><a
+		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""> <img style="width: 100px; height: 100px" src="{$thumhost}{$row['thum']}"
+		alt="{$row['name']}"> </a></div>
+	<div class="cv_title">
+	<ul>
+		<li class="strong"><a href="{@url:emule/topic/run?aid=$row['id']}" onclick=""
+			target="_blank">{$row['name']}</a></li>
+	</ul>
+	</div>
+	</li>
+<!--#
+}
+#-->
+</ul>
+</div>
+<div class="vc_old main vc_old_index" id="folderdiv_index_2" style="display: none">
+<ul class="clearfix ul">
+<!--#
+foreach($emuleIndex['hot'] as $row){
+#-->
+	<li class="list">
+	<div class="cover_3"><a
+		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""> <img style="width: 100px; height: 100px" src="{$thumhost}{$row['thum']}"
+		alt="{$row['name']}"> </a></div>
+	<div class="cv_title">
+	<ul>
+		<li class="strong"><a href="{@url:emule/topic/run?aid=$row['id']}" onclick=""
+			target="_blank">{$row['name']}</a></li>
+	</ul>
+	</div>
+	</li>
+<!--#
+}
+#-->
+</ul>
+</div>
+</div>
+<div class="id_right">
+<div class="box_7">
+<div class="sidebar_hot main clearfix">
+<div class="side_hot_nav side_hot_nav_index clearfix">
+<ul id="hotnavs" class="ul clearfix">
+<!--#
+foreach($emuleIndex['catehot'] as $key=>$row){
+#-->
+	<li
+		onmouseout=""
+		onmouseover=""
+		id="hotnav_{$key}" class=""><a onclick="void(0);return false;"
+		target="_blank" name="for_pad" href="{@url:emule/list/run?cid=$row['id']}">{$row['name']}</a></li>
+<!--#
+}
+#-->
+</ul>
+</div>
+<div class="side_hot_list side_hot_list_index">
+<!--#
+foreach($emuleIndex['catehot'] as $key=>$list){
+#-->
+<ul id="hottab_index_{$key}" class="clearfix" style="<!--# if($key){#-->display:none<!--#}#-->">
+<!--#
+foreach($list['list'] as $k=>$row){
+#-->
+	<li class="<!--# if(!$k){#-->on<!--#}#-->" onmouseout=""
+		onmouseover=""
+		id="hot1tag_{$k}"><a title="{$row['name']}"
+		onclick=""
+		href="{@url:emule/topic/run?aid=$row['id']}" class="clearfix">
+	<div class="list_ins">
+	<div class="list_top clearfix">
+	<div class="li_view_num">{$row['hits']}</div>
+	<div class="li_title"><span class="compositor red_compositor">{$k+1}</span><span>[{$row['cname']}]</span>&nbsp;<strong>{$row['name']}</strong></div>
+	</div>
+	<div class="list_main clearfix">
+	<div class="li_img">
+	<div class="entry_cover  show_play"><!--[if IE 6]><span class="spacer" style="width:54px;height:74px;"></span><![endif]--><img
+		width="" height="" alt="{$row['name']}"
+		src="{$thumhost}{$row['thum']}"
+		class="cover_img">
+	<div class="play_ico_small"></div>
+	</div>
+	</div>
+	<div class="li_info"></div>
+	</div>
+	</div>
+	</a></li>
+<!--#
+}
+#-->
+</ul>
+<!--#
+}
+#-->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="mainDiv" id="advertisement_bottom">
+<div class="line_space"></div>
+<div
+	style="width: 960px; height: 90px; border: 1px solid #ccc; padding: 10px 14px;">
+<!--960X90_AD--></div>
+<div class="clear"></div>
+
+<div class="mainDiv">
+
+<div class="line_space"></div>
+
+<!--#
+foreach($emuleIndex['topiclist'] as $key=>$value){
+#-->
+<div class="folder_div folder_div_{$key} box_7">
+<div style="margin: 4px 0 0;" id="folderlist">
+<div class="tab-nav-1 tab_nav_{$key} block">
+<ul style="float: left;" id="hotnavs" class="ul block cate_list">
+<!--#
+foreach($value['subcate']['cate'] as $kk=>$val){
+#-->
+	<li relcla="cate_class_{$key}" relid="cate_{$key}" class="<!--# if(!$kk){ #-->on<!--# } #-->"
+		onmouseover=""
+		onmouseout=""
+		id="foldertagg_{$kk}"><a href="{@url:emule/list/run?cid=$val['id']}"
+		target="_blank">{$val['name']}</a></li>
+<!--# } #-->
+</ul>
+</div>
+<div class="clearfix">
+<div class="id_left id_moreleft">
+<!--#
+foreach($value['subcate']['list'] as $ky=>$v){
+#-->
+<div class="vc_old main moremain cate_class_{$key}" id="cate_{$key}_{$ky}" style="<!--# if($ky){ #-->display:none;<!--# } #-->">
+<ul class="clearfix ul">
+<!--#
+foreach($v as $k=>$row){
+#-->
+	<li class="list">
+	<div class="cover_3"><a
+		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank"
+		onclick=""> <img
+		src="{$thumhost}{$row['thum']}"
+		style="width: 100px; height: 100px" name="lazyload"
+		alt="{$row['name']}"> </a></div>
+	<div class="cv_title">
+	<ul>
+		<li class="strong"><a
+			href="{@url:emule/topic/run?aid=$row['id']}"
+			onclick=""
+			target="_blank">{$row['name']}</a></li>
+		<li></li>
+	</ul>
+	</div>
+	</li>
+<!--# } #-->
+</ul>
+<div style="" class="more_t"><a
+	onclick="" target="_blank"
+	href="{@url:emule/list/run?cid=$val['id']}">更多{$row['cname']}&gt;&gt;</a></div>
+</div>
+<!--# } #-->
+</div>
+<div class="id_right">
+<div class="idr_out">
+<div class="idr_in">
+<div class="red_title">
+<h3><span>随机精选</span></h3>
+</div>
+<div class="side_list_2">                
+   <ul class="ul">                                   
+<!--#
+foreach($value['rand'] as $key=>$row){
+#-->
+ <li>                        
+  <span class="left">                            
+<span class="compositor red_compositor">{$key+1}</span>                            
+<a href="{@url:emule/topic/run?aid=$row['id']}" title="{$row['name']}" onclick="">{$row['name']}</a>
+</span>
+<span class="right"></span>
+</li>
+<!--# } #-->
+   </ul>        
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--#
+} #-->
+</div>
+
+<div class="mainDiv" id="advertisement_bottom">
+<div class="line_space"></div>
+<div
+	style="width: 960px; height: 90px; border: 1px solid #ccc; padding: 10px 14px;">
+<!--960X90_AD--></div>
+<div class="clear"></div>
+<template source='TPL:common.footer' load='true' />
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+var index=0;
+  $('.side_hot_nav_index #hotnavs li').mouseover(function(){
+     index=$(this).index();
+     $('.side_hot_list_index ul').hide();
+     $('#hottab_index_'+index).show();
+  });
+  $('.side_hot_list_index ul li').mouseover(function(){
+     $('.side_hot_list_index ul li').removeClass('on');
+     $(this).addClass('on');
+  });
+  $('.tab-nav-1_index #hotnavs li').mouseover(function(){
+     index=$(this).index();
+     $('.tab-nav-1_index #hotnavs li').removeClass('on');
+     $(this).addClass('on');
+     $('#index .id_left div.vc_old_index').hide();
+     $('.id_left #folderdiv_index_'+index).show();
+  });
+  $('.cate_list li').mouseover(function(){
+     index=$(this).index();
+     $('.cate_list li').removeClass('on');
+     $(this).addClass('on');
+     var id=$(this).attr('relid');
+     var cla=$(this).attr('relcla');
+     $('.'+cla).hide();
+     $('#'+id+'_'+index).show();
+  });
+});
+</script>
+</body>
+</html>
