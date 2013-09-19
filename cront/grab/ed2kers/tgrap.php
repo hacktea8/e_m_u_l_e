@@ -14,20 +14,21 @@ getinfodetail($ainfo);
 */
 
 /*=========== Update Cate Article Total =========*/
-updateCateatotal();//exit;
+//updateCateatotal();//exit;
 /*=========== Get All Cate Info =================*/
 
 //getAllcate();
 
 /*============ Get Cate article =================*/
 
+$res='excres.txt';
 $lastgrab=basename(__FILE__);
 $path=$APPPATH.'config/';
 
 //$rootcate=$model->getCateInfoBypid(0);
 getsubcatelist($subcate);
 $i=0;
-$num=11;
+$num=14;
 foreach($subcate as $_cate){
 $i++;
 //30
@@ -41,7 +42,7 @@ continue;
    $lastgrab=$path.$_cate['id'].'_'.$lastgrab;
 //   getCatearticle($_cate['id']);
    getSubCatearticle($_cate);
-echo "cate id $_cate[id] 已抓取完毕!\r\n";
+file_put_contents($res,"cate id $_cate[id] 已抓取完毕!\r\n",FILE_APPEND);
 sleep(10);
 }
 

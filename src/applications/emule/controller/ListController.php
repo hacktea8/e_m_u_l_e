@@ -13,36 +13,51 @@ Wind::import('APPS:emule.controller.EmuleBaseController');
 class ListController extends EmuleBaseController {
 
 	
-	/**
-	 * (non-PHPdoc)
-	 * @see wekit/wind/web/WindController::run()
-	 */
-	public function run() {
-		$page = (int)$this->getInput('page','get');
-		if ($page < 1) $page = 1;
-		$this->setOutput(25, 'perpage');
-		$this->setOutput($page, 'page');
-                $order='';
-                $cid=intval($this->getInput('cid','get')); 
-                $this->emule->getArticleListByCid($cid,$order,$page);
-		$this->setOutput($this->emule->emulelist, 'infolist');
-		$this->setOutput($this->emule->atotal, 'listcount');
-		$this->setOutput($this->emule->subcatelist, 'subcatelist');
-		$this->setOutput($cid, 'cid');
+  /**
+   * (non-PHPdoc)
+   * @see wekit/wind/web/WindController::run()
+   */
+  public function run() {
+    $page = (int)$this->getInput('page','get');
+    if ($page < 1) $page = 1;
+    $this->setOutput(25, 'perpage');
+    $this->setOutput($page, 'page');
+    $order='';
+    $cid=intval($this->getInput('cid','get')); 
+    if($page>0 &&$page<11){           
+       $this->emule->emulelist=$this->mem->get('emu-emulelist'.$cid.'-'.$page.$order);
+       $this->emule->atotal=$this->mem->get('emu-listatotal'.$cid);
+       $this->emule->subcatelist=$this->mem->get('emu-listsubcatelist'.$cid);
+       $this->emule->postion=$this->mem->get('emu-listpostion'.$cid);
+       if(empty($this->emule->emulelist)){
+//die($this->expirettl['12h'].'empty');
+         $this->emule->getArticleListByCid($cid,$order,$page);
+//echo '<pre>';var_dump($this->emule->hotTopic);exit;
+         $this->mem->set('emu-emulelist'.$cid.'-'.$page.$order,$this->emule->emulelist,$this->expirettl['12h']);
+         $this->mem->set('emu-listatotal'.$cid,$this->emule->atotal,$this->expirettl['12h']);
+         $this->mem->set('emu-listsubcatelist'.$cid,$this->emule->subcatelist,$this->expirettl['12h']);
+         $this->mem->set('emu-listpostion'.$cid,$this->emule->postion,$this->expirettl['12h']);
+       }
+    }else{
+       $this->emule->getArticleListByCid($cid,$order,$page);
+    }
+    $this->setOutput($this->emule->emulelist, 'infolist');
+    $this->setOutput($this->emule->atotal, 'listcount');
+    $this->setOutput($this->emule->subcatelist, 'subcatelist');
+    $this->setOutput($cid, 'cid');
                
-		// seo设置
-
-		Wind::import('SRV:seo.bo.PwSeoBo');
-		$seoBo = PwSeoBo::getInstance();
-		$lang = Wind::getComponent('i18n');
-		$des = Pw::substrs($this->emule->emulelist['intro'], 100, 0, false);
-		if ($page == 1) {
-			$seoBo->setCustomSeo($lang->getMessage('SEO:emule.list.run.title', array($this->emule->emulelist['name'])), '', $des);
-		} else {
-			$seoBo->setCustomSeo($lang->getMessage('SEO:emule.list.run.page.title', array($page, $this->emule->emulelist['name'])), '', $des);
-		}
-		Wekit::setV('seo', $seoBo);
-	}
+    // seo设置
+    Wind::import('SRV:seo.bo.PwSeoBo');
+    $seoBo = PwSeoBo::getInstance();
+    $lang = Wind::getComponent('i18n');
+    $des = Pw::substrs($this->emule->emulelist['intro'], 100, 0, false);
+    if ($page == 1) {
+      $seoBo->setCustomSeo($lang->getMessage('SEO:emule.list.run.title', array($this->emule->emulelist['name'])), '', $des);
+    } else {
+      $seoBo->setCustomSeo($lang->getMessage('SEO:emule.list.run.page.title', array($page, $this->emule->emulelist['name'])), '', $des);
+    }
+    Wekit::setV('seo', $seoBo);
+}
 	
 	/**
 	 * 风格预览

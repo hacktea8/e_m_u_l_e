@@ -11,32 +11,38 @@ Wind::import('APPS:emule.controller.EmuleBaseController');
  */
 
 class IndexController extends EmuleBaseController {
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see wekit/wind/web/WindController::run()
-	 */
-	public function run() {
-		$page = (int)$this->getInput('page','get');
-		if ($page < 1) $page = 1;
-		$this->setOutput('index', 'src');
-		$this->setOutput($page, 'page');
-                $this->emule->getIndexData();
-		$this->setOutput($this->emule->emuleIndex,'emuleIndex');
+  /**
+   * (non-PHPdoc)
+   * @see wekit/wind/web/WindController::run()
+   */
+  public function run() {
+    $page = (int)$this->getInput('page','get');
+    if ($page < 1) $page = 1;
+    $this->setOutput('index', 'src');
+    $this->setOutput($page, 'page');
+    $this->emule->emuleIndex=$this->mem->get('emu-emuleIndexinfo');
+    $this->setOutput($this->emule->emuleIndex,'emuleIndex');
 //echo '<pre>';var_dump($this->emule->emuleIndex);exit;
-		// seo设置
+// seo设置
 
-		Wind::import('SRV:seo.bo.PwSeoBo');
-		$seoBo = PwSeoBo::getInstance();
-		$lang = Wind::getComponent('i18n');
-		$des = Pw::substrs($this->emule->emule['intro'], 100, 0, false);
-		if ($page == 1) {
-			$seoBo->setCustomSeo($lang->getMessage('SEO:emule.index.run.title', array($this->emule->emule['name'])), '', $des);
-		} else {
-			$seoBo->setCustomSeo($lang->getMessage('SEO:emule.index.run.page.title', array($page, $this->emule->emule['name'])), '', $des);
-		}
-		Wekit::setV('seo', $seoBo);
-	}
+    Wind::import('SRV:seo.bo.PwSeoBo');
+    $seoBo = PwSeoBo::getInstance();
+    $lang = Wind::getComponent('i18n');
+    $des = Pw::substrs($this->emule->emule['intro'], 100, 0, false);
+    if ($page == 1) {
+      $seoBo->setCustomSeo($lang->getMessage('SEO:emule.index.run.title', array($this->emule->emule['name'])), '', $des);
+    } else {
+      $seoBo->setCustomSeo($lang->getMessage('SEO:emule.index.run.page.title', array($page, $this->emule->emule['name'])), '', $des);
+    }
+    Wekit::setV('seo', $seoBo);
+  }
+
+  /*
+   *
+   */
+  function htmlAction(){
+     
+  }
 	
 	/**
 	 * 风格预览

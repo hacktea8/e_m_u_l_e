@@ -17,11 +17,12 @@
         public $subcatelist=array();
         public $atotal     =0;
 	
- 	public function __construct() {
- 		//$this->_getSpace();
-                $this->rootCate=$this->_getEmuleDs()->getCateByCid(0);
-                $this->hotTopic=$this->_getEmuleDs()->getHotTopic(1,15);
-	}
+        public function getrootCateinfo(){
+          $this->rootCate=$this->_getEmuleDs()->getCateByCid(0);
+        }
+        public function gethotTopicinfo(){
+          $this->hotTopic=$this->_getEmuleDs()->getHotTopic(1,15);
+        }
         /**
          *
          *

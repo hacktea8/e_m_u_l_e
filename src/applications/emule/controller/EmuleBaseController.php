@@ -1,5 +1,7 @@
 <?php
 Wind::import('LIB:base.PwBaseController');
+Wind::import('LIB:base.PwBaseRediscache');
+Wind::import('LIB:base.PwBaseMemcache');
 Wind::import('SRV:emule.bo.PwEmuleModel');
 
 /**
@@ -13,7 +15,11 @@ Wind::import('SRV:emule.bo.PwEmuleModel');
 class EmuleBaseController extends PwBaseController {
 	public $postion=array();
 	public $emule='';
-	
+        protected $mem='';
+        protected $redis='';
+
+
+	public $expirettl=array('5m'=>300,'15m'=>900,'30m'=>1800,'1h'=>3600,'3h'=>10800,'6h'=>21600,'9h'=>32400,'12h'=>43200,'1d'=>86400,'3d'=>253200,'5d'=>432000,'7d'=>604800);
 	/**
 	 * (non-PHPdoc)
 	 * @see src/library/base/PwBaseController::beforeAction()
@@ -44,20 +50,33 @@ class EmuleBaseController extends PwBaseController {
 			}
 		}
 *///创建空间Model	
-		$this->emule = new PwEmuleModel();
-
-	}
+    $this->emule = new PwEmuleModel();
+    $this->mem=new PwBaseMemcache();
+    $this->redis=new PwBaseRediscache();      
+  }
 
 	
 	/**
 	 * (non-PHPdoc)
 	 * @see src/library/base/PwBaseController::afterAction()
 	 */
-	public function afterAction($handlerAdapter) {
-                $this->setOutput($this->emule->hotTopic, 'hotTopic');
-                $this->setOutput($this->emule->rootCate, 'rootCate');
-                $this->setOutput('http://www.ed2kers.com/', 'thumhost');
-                $this->setOutput($this->emule->postion, 'postion');
+  public function afterAction($handlerAdapter) {
+    $this->emule->hotTopic=$this->mem->get('emu-hotTopic');
+    if(empty($this->emule->hotTopic)){
+//die($this->expirettl['12h'].'empty');
+      $this->emule->gethotTopicinfo();
+//echo '<pre>';var_dump($this->emule->hotTopic);exit;
+      $this->mem->set('emu-hotTopic',$this->emule->hotTopic,$this->expirettl['12h']);
+    }
+    $this->emule->rootCate=$this->mem->get('emu-rootCate');
+    if(empty($this->emule->rootCate)){
+       $this->emule->getrootCateinfo();
+       $this->mem->set('emu-rootCate',$this->emule->rootCate,$this->expirettl['1d']);
+    }
+    $this->setOutput($this->emule->hotTopic, 'hotTopic');
+    $this->setOutput($this->emule->rootCate, 'rootCate');
+    $this->setOutput('http://www.ed2kers.com/', 'thumhost');
+    $this->setOutput($this->emule->postion, 'postion');
 
 
 //更新资源点击量
