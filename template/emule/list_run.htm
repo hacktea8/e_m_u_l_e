@@ -605,11 +605,11 @@ foreach($hotTopic as $row){
 foreach($infolist as $row){
 #-->
                         <li>
-                <a href="{@url:emule/list/run?aid=$row['id']}" onClick="">
+                <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="">
         <img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="file_img">
         </a>
  <h3>
-<span class="left_topics_class_sort"><a href="{@url:emule/list/run?cid=$row['cid']}">{$row['cname']}</a></span>                <a href="{@url:emule/list/run?aid=$row['id']}" onClick="">{$row['name']}</a>
+<span class="left_topics_class_sort"><a href="{@url:emule/list/run?cid=$row['cid']}">{$row['cname']}</a></span>                <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="">{$row['name']}</a>
  </h3>
         <div class="blog_entry">
 <!--# if(0){

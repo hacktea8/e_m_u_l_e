@@ -19,7 +19,7 @@ class ListController extends EmuleBaseController {
    */
   public function run() {
     $page = (int)$this->getInput('page','get');
-    if ($page < 1) $page = 1;
+    if ($page < 1||$page>10) $page = 1;
     $this->setOutput(25, 'perpage');
     $this->setOutput($page, 'page');
     $order='';
