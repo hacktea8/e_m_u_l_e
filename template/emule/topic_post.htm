@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+	<template source='TPL:common.head' load='true' />
+	<link href="{@theme:css}/post.css?v={@NEXT_RELEASE}" rel="stylesheet" />
+</head>
+<body>
+<div class="wrap">
+<template source='TPL:common.header' load='true' />
+	<div class="main_wrap">
+		<div class="bread_crumb">
+			{@$headguide|html}
+		</div>
+		<form method="post" id="mainForm" name="FORM" action="{@WindUrlHelper::createUrl('emule/topic/' . $do . '/?fid=' . $fid)|url}" enctype="multipart/form-data">
+		<div class="box_wrap post_page">
+			<nav>
+				<div class="content_nav">
+					<ul id="tabTypeHead">
+					<!--# if ($action == 'reply') { #-->
+					<!--# } #-->
+					</ul>
+				</div>
+			<nav>
+			<!--# $draftCount = Wekit::load('draft.PwDraft')->countByUid($loginUser->uid); #-->
+			<div class="post_content">
+<!--# if(0){ #-->
+				<a id="J_draft_lis_btn" href="{@url:bbs/draft/myDrafts}" class="my_drafts">草稿箱<span class="red" style="<!--# if (!$draftCount) { #-->display:none;<!--# } #-->">(<em id="J_draft_count">{$draftCount}</em>)</span></a>
+
+				<div id="J_draft_list" class="fr dn">
+					<div class="pop_draft" id="J_draft_wrap">
+						<div class="pop_loading"></div>
+						<!--span class="not_content_mini">暂无草稿</span-->
+					</div>
+				</div>
+<!--# } #-->
+				<hgroup class="title">
+					<!--# if ($topictypes['topic_types']) {//主题分类 #-->
+					<input type="hidden" name="topic_type_id" value="" id="J_topic_type_id" />
+					<select id="J_sort_1" class="mr10" name="topictype">
+						<option value="0">请选择分类</option>
+						<!--# foreach($topictypes['topic_types'] as $v) { #-->
+						<option value="{$v['id']}">{@strip_tags($v['name'])}</option>
+						<!--# } #-->
+					</select>
+					<select id="J_sort_2" class="mr10" style="display:none;" name="sub_topictype">
+						<option value="0">请选择分类</option>
+					</select>
+					<!--# }//主题分类结束 #-->
+标题:<br />
+					<input name="name" id="J_atc_title" value="{$info[name]}" class="input length_6 mr15"{@!empty($isTopic) ? ' required' : ''} aria-required="true" placeholder="{@!empty($default_title) ? $default_title : '请输入标题'}" title="请输入标题" data-max="{@Wekit::C('bbs', 'title.length.max')}"/><span id="J_title_tip"></span>
+				</hgroup>
+				<hook class='$pwpost' name="createHtmlBeforeContent"/>
+				<div class="c"></div>
+				<div class="cc mb10">
+					<div class="cm">
+						<div class="cw">
+<div><img src="{$info[thum]}" id="showthum" /></div>
+<br />封面: <br />
+<input name="thum" id="J_atc_thum" value="{$info[thum]}" class="input length_6 mr15"{@!empty($isTopic) ? ' required' : ''} aria-required="true" placeholder="{@!empty($info[thum]) ? $info[thum] : '请输入封面地址'}" title="请输入封面地址" data-max="{@Wekit::C('bbs', 'title.length.max')}"/><span id="J_thum_tip"></span>
+							<!--# //$pwpost->displayHtmlFromBeforeContent(); #-->
+<br />描述:<br />
+<!--# $editor_name='intro';#-->
+							<template source='TPL:emule.wind_editor' load='true' />
+<br />普通下载地址:<br />
+<!--# $editor_name='downurl';#-->
+							<template source='TPL:emule.wind_editor' load='true' />
+<br />VIP下载地址:<br />
+<!--# $editor_name='vipdwurl';#-->
+							<template source='TPL:emule.wind_editor' load='true' />
+						</div>
+					</div>
+					<div class="sd">
+						<div class="sidebar">
+							<!--# if ($action == 'post' || $action == 'edit') { #-->
+							<template source='TPL:emule.post_tag' load='true' />
+							<!--# } #-->
+							<hook class='$pwpost' name='createHtmlRightContent' />
+						</div>
+					</div>
+				</div>
+				<input type="hidden" value="{$pid}" name="pid" />
+				<input type="hidden" value="{$tid}" name="tid" />
+				<input type="hidden" value="{$special}" name="special" />
+				<div class="ft cc">
+					<button type="submit" name="Submit" class="btn btn_submit btn_big fl mr10" id="J_post_sub">发布</button>
+<!--# if(0){ #-->
+					<a href="{@url:bbs/draft/doAdd}" class="btn btn_big mr10" id="J_draftBtn">存为草稿</a>
+					<label for="reply_notice_label"><input name="reply_notice" id="reply_notice_label" type="checkbox" value="1" {$reply_notice} />有回复提醒我</label>
+<!--# } #-->
+				</div>
+			</div>
+		</div>
+		</form>
+	</div>
+<template source='TPL:common.footer' load='true' />
+</div>
+
+<!--结束-->
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#J_atc_thum').change(function(){
+    var img=$(this).val();
+    if(!img){
+      return 0;
+    }
+    $('#showthum').attr('src',img);
+  });
+});
+</script>
+</body>
+</html>

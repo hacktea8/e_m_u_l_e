@@ -17,6 +17,8 @@
 <link type="text/css" href="{@theme:css}/global-broad.css" rel="stylesheet">
 <link type="text/css" href="{@theme:css}/topic.css" rel="stylesheet">
 <style type="text/css">
+.tab_con_tab{display:none;}
+#theRel,#con_theRel{display:block;}
 div#favWindow div.bottom-bar{padding-top:24px;height:24px;}
 div#favWindow div.bottom-bar a.closeButton{display:inline-block;margin-bottom:42px;}
 </style>
@@ -513,7 +515,7 @@ list-style-type: none;
     <div id="favBoxContent">
         </div>
     <div class="favBottom">
-    <a href="javascript://" class="closeButton" id="closeFavButton" onClick="VeryCD.Track('/stat/topicFavResClose/');closeFavBox()">关闭</a>
+    <a href="javascript://" class="closeButton" id="closeFavButton" onClick="closeFavBox()">关闭</a>
     </div>
     </div>
     </div>
@@ -549,7 +551,7 @@ list-style-type: none;
                     
             </div>
 
-            
+<!--# if (0){ #-->            
 						<div class="resInfoBox" id="membertable">
 				<div hoverstyle="3" hovertips="type=2&amp;id=4416523" class="header">
 					<a class="imgs" href="http://www.verycd.com/i/4416523/" onClick="" style="text-decoration:none;"><img src="">
@@ -560,7 +562,7 @@ list-style-type: none;
 				<div class="context">
 					<p class="text">
 						<strong><a hoverstyle="3" hovertips="type=2&amp;id=4416523" href="http://www.verycd.com/i/4416523/" onClick="VeryCD.TrackEvent('topic','发布者','用户名');">达漫V</a></strong>
-						<span><img src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/15.gif" class="honorimage" title="金光盘(Exp:17641)" align="absmiddle" height="20" width="25"></span>
+						<span><img src="/15.gif" class="honorimage" title="金光盘(Exp:17641)" align="absmiddle" height="20" width="25"></span>
 											</p>
 					<p class="num">精华资源: <a onClick="" href="http://www.verycd.com/i/4416523/create/folders/?stat=elite">169</a></p>
 					<p class="num">全部资源: <a onClick="" href="http://www.verycd.com/i/4416523/create/folders/?stat=total">172</a></p>
@@ -576,7 +578,9 @@ list-style-type: none;
 					</div>
 									</div>
 			</div>
-			        </div><!-- .block1 -->
+<!--# } #-->
+			        </div>
+<!-- .block1 -->
         <div id="showFolderBaseDoDiv" style="float: left;"></div>
         <div class="block2" style="float:left;">
             <div style="float:left;">
@@ -586,11 +590,11 @@ list-style-type: none;
                         <div style="position: absolute; height: 30px; width: 12px; top: 18px;left:-12px; background: url(http://v4.vcimg.com/images/folder/tipsleft.gif) no-repeat scroll 0% 0% transparent;">
                         </div>
                         <div style="padding: 4px; color: rgb(104, 100, 89);">
-                            <span style="margin-left: 3px; padding-top: 4px; float: left;"><img src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/light.gif"></span>
+                            <span style="margin-left: 3px; padding-top: 4px; float: left;"><img src="{@theme:images}/emule/light.gif"></span>
                             <div style="padding: 4px; color: rgb(104, 100, 89);">
                                 <div style="padding: 0px; margin: 0px 0px 0px 17px;text-align:left;">
                                     <span style="float: left;">收藏资源后，一旦有新更新（字幕、文件）我们</span>
-                                    <a onClick="return hidden_favorite_tips();" style="float:right;display:block;padding:3px 7px 0pt 3px;width: 5px;height: 30px;" href="#"><img src="{@theme:site.images}/emule/canceltips.gif"></a>
+                                    <a onClick="$('#folderfavoritatips').hide();return false;" style="float:right;display:block;padding:3px 7px 0pt 3px;width: 5px;height: 30px;" href="#"><img src="{@theme:site.images}/emule/canceltips.gif"></a>
                                     <div>将会用站内消息和电子邮件通知你。</div>
                                     <div style="clear: both;"></div>
                                 </div>
@@ -607,11 +611,11 @@ list-style-type: none;
                         <div id="folderfavoritatips" style="position:absolute;margin:-35px 0 0 -38px;*margin:-15px 0 0 -239px;border:1px solid #cdb47e;width:310px;background:#ffffcd;display:none;height:55px;">
                         <div style="position:absolute;height:12px;width:23px;margin:-12px 0 0 18px;background:url(http://v4.vcimg.com/images/folder/tipstop.gif) no-repeat;"></div>
                         <div style="padding:4px;color:#686459;">
-                            <span style="margin-left:3px;padding-top:4px;float:left;"><img src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/light.gif"></span>
+                            <span style="margin-left:3px;padding-top:4px;float:left;"><img src="{@theme:images}/emule/light.gif"></span>
                             <div style="padding:4px;color:#686459;">
                                 <div style="padding:0px;margin:0px;margin-left:17px;">
                                 <span style="float:left">收藏资源后，一旦有新更新（字幕、文件）我们</span>
-                                <a href="#" style="float:right;display:block;padding:3px 7px 0 3px;padding:3px 3px 0 0\9;width:5px;height:30px;" onClick="VeryCD.Track('/stat/topicfavtipsclose/');return hidden_favorite_tips();"><img src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/canceltips.gif"></a>
+                                <a href="#" style="float:right;display:block;padding:3px 7px 0 3px;padding:3px 3px 0 0\9;width:5px;height:30px;" onClick="VeryCD.Track('/stat/topicfavtipsclose/');return hidden_favorite_tips();"><img src="{@theme:site.images}/emule/canceltips.gif"></a>
                                 <div>将会用站内消息和电子邮件通知你。</div>
                                 <div style="clear:both"></div>
                                 </div>
@@ -657,19 +661,15 @@ VIP通道:{$info['vipdwurl']|html}
 {$info['intro']|html}
         <!--Wrap-tail end--></div>
                 </div>
-
-          
-                                <div class="tab-nav group-mods" id="theRel">
+  <div class="tab-nav group-mods">
 			<ul>
 				<li><a href="#theCon">详细内容</a></li>
-				<li class="current"><a href="#theRel">相关资源</a></li>
-				<li><a href="#theRes">补充资源</a></li>
-				<li><a href="#theCom">用户评论</a></li>
+				<li class="current" ><a id="theRel" href="#theRel" index='1' onclick="show_hide_tab('theRel','tab_con_tab')">相关资源</a></li>
+				<li><a id="theRes" href="#theRes" index='2' onclick="show_hide_tab('theRes','tab_con_tab')">补充资源</a></li>
+				<li><a id="theCom" href="#theCom" index='3' onclick="show_hide_tab('theCom','tab_con_tab')">用户评论</a></li>
 			</ul>
         </div>
-        			<div id="res">
-                <div id="folder-table-movie">
-
+        			<div id="con_theRel" class="tab_con_tab">
     		<table class="restable topic_class_restable">
 		<tbody>
 <!--# foreach($info['relatdata'] as $key=>$row){
@@ -690,75 +690,57 @@ if($key%5==0){
     		</tbody>
     		</table>
 </div>
-</div>
-            <h3 class="morecom" id="morecom" style="padding-left: 560px;"><a href="http://www.verycd.com/search/folders?kw=%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E+&amp;more=1" target="_blank"><img src="{@theme:site.images}/emule/moremovie.jpg" alt="More ...">更多相关资源 &gt;&gt;</a></h3>
-<div class="tab-nav group-mods" id="theRes">
-			<ul>
-				<li><a href="#theCon">详细内容</a></li>
-				<li><a href="#theRel">相关资源</a></li>
-				<li class="current"><a href="#theRes">补充资源</a></li>
-				<li><a href="#theCom">用户评论</a></li>
-			</ul>
-		</div>
-
+<div class="tab_con_tab" id="con_theRes">
             <h3>这里是其它用户补充的资源(<a href="#commentFolder" id="extred2k">我也要补充</a>):</h3>
                 			<div class="emuletop-no">
     				暂无补充资源
     			</div>
-													
-								
-        <div class="tab-nav group-mods" id="theCom">
-			<ul>
-				<li><a href="#theCon">详细内容</a></li>
-				<li><a href="#theRel">相关资源</a></li>
-				<li><a href="#theRes">补充资源</a></li>
-				<li class="current"><a href="#theCom">用户评论</a></li>
-			</ul>
-			<span id="comments_id_m2_div"><p class="topic_admin_class_edit"></p></span>
-
-        </div>
-
-
- <div id="userCommentDiv">
-
+</div>									
+<div id="con_theCom" class="tab_con_tab">
+<!-- Comment BEGIN -->	
+<div class="ds-thread topic_admin_class_edit"></div>
+<script type="text/javascript">var duoshuoQuery = {short_name:"emu"};	(function() {		var ds = document.createElement('script');		ds.type = 'text/javascript';ds.async = true;		ds.src = 'http://static.duoshuo.com/embed.js';		ds.charset = 'UTF-8';		(document.getElementsByTagName('head')[0] 		|| document.getElementsByTagName('body')[0]).appendChild(ds);	})();	
+</script><!-- Comment END -->
 </div>
 
+</div>
             <a id="commentFolder"></a>
 						            			<div class="clearBoth"></div><br>
 
-</div>          
 		 <div id="navside">
 		                            
 
 						<div id="userres">
 	            <h3>该用户的其它精华资源</h3> <img id="closeUser" class="closebtn" alt="" src="/res/images/emule/toggle.gif">
 	            <div id="userMore">
+<!--# if(0){ #-->
 	        		<table border="0" cellpadding="0" cellspacing="0" width="100%">
 	                    <tbody><tr>
 	                    <td style="width:48px">
 	                        <a class="relatelink" href="http://www.verycd.com/topics/2960998/" onClick="VeryCD.Track('/stat/topicsOther/'+this.href);" target="_blank">
-	                        <img title="PDF[2013/08/23 23:43:47]资源更新 共1个文件 28.53MB" src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/thumb_025.jpg" class="resimg" height="48" width="48">
+	                        <img title="PDF[2013/08/23 23:43:47]资源更新 共1个文件 28.53MB" src="/thumb_025.jpg" class="resimg" height="48" width="48">
 	                        </a>
 	                    </td>
 	                    <td valign="middle">
 	                    <a title="PDF[2013/08/23 23:43:47]资源更新 共1个文件 28.53MB" class="topic-title" href="http://www.verycd.com/topics/2960998/" onClick="VeryCD.Track('/stat/topicsOther/'+this.href);" target="_blank">
 	                    《荷塘月色：钢琴弹奏流行歌曲集2  简易版》扫描版[PDF]
 	                    </a>
-	                    <img class="png" title="这是一个精华资源" src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/elite_on.gif">	                    </td>
+	                    <img class="png" title="这是一个精华资源" src="/elite_on.gif">	                    </td>
 	                    </tr>
 	                    </tbody></table>
-	        		<p class="checkall"><a href="http://www.verycd.com/i/4416523/create/folders/?stat=elite" target="_blank">更多 &gt;&gt;</a></p>
+	        		<p class="checkall"><a href="" target="_blank">更多 &gt;&gt;</a></p>
+<!--# } #-->
 				</div> <!-- end of userMore -->
 			</div> <!-- end of userres -->
 								   		   <div id="favriteuser">
 				<h3>刚收藏了本资源的用户</h3><img id="closeRell" class="closebtn" alt="" src="/res/images/emule/toggle.gif">
 				<div id="closeRellmore">
-									<div style="width:252px;height:65px;margin-left:5px;">
-						<a style="margin-right:5px;" target="_blank" title="" href="http://www.verycd.com/i/1681550/" onClick="VeryCD.Track('/stat/topicFavUser/');"><img hoverstyle="3" hovertips="type=2&amp;id=1681550" alt="apocn" class="resimg" src="%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%B0%91%E4%BF%97%E7%94%BB%EF%BC%88%E5%85%A8%EF%BC%89%E4%B8%8B%E5%8D%B7%E7%94%BB%E9%9D%A2%E6%9B%B4%E7%B2%BE%E7%BE%8E%E3%80%8B%E5%8F%A4%E7%B1%8D%E5%BD%A9%E5%9B%BE%E7%89%88%5BPDF%5D%20-%20VeryCD%E7%94%B5%E9%A9%B4%E5%A4%A7%E5%85%A8_files/50_avatar_small.jpg" height="48px" width="48px"></a>
-						<a hoverstyle="3" hovertips="type=2&amp;id=1681550" target="_blank" style="height22px;line-height:22px;text-align:center;white-space:nowrap;" title="" onClick="VeryCD.Track('/stat/topicFavUser/');" href="http://www.verycd.com/i/1681550/">apocn</a>
+<!--# if(0){ #-->									<div style="width:252px;height:65px;margin-left:5px;">
+						<a style="margin-right:5px;" target="_blank" title="" href="" onClick=""><img hoverstyle="3" hovertips="type=2&amp;id=1681550" alt="apocn" class="resimg" src="/50_avatar_small.jpg" height="48px" width="48px"></a>
+						<a hoverstyle="3" hovertips="type=2&amp;id=1681550" target="_blank" style="height22px;line-height:22px;text-align:center;white-space:nowrap;" title="" onClick="" href="">apocn</a>
 						<br><p style="margin:6px 0px 0px 65px;color:#999999"><span title="2013/08/24 09:37:20" class="date-time">7小时前</span>&nbsp;收藏了</p>
 					</div>
-									
+<!--# } #-->
 								</div>
 			</div>
 									<div id="relativeres">
@@ -799,5 +781,13 @@ foreach($hotTopic as $row){
 
 <template source='TPL:common.footer' load='true' />
 </div>
+<script type="text/javascript">
+function show_hide_tab(show,hide){
+  $('.'+hide).hide();
+  $('.group-mods ul li').removeClass('current');
+  $('#'+show).parent().addClass('current');
+  $('#con_'+show).show();
+}
+</script>
 </body>
 </html>

@@ -15,11 +15,29 @@ class PwEmule {
 	 * 
 	 * @param int $uid
 	 */
-	public function getArticle($aid) {
+	public function getArticle($aid,$uid=0,$isadmin=false) {
 		$aid = intval($aid);
 		if ($aid < 1) return array();
-		return $this->_getDao()->getEmule($aid);
+		return $this->_getDao()->getEmule($aid,$uid,$isadmin);
 	}
+        /**
+         *
+         */
+        public function setEmuleTopicByAid($uid=0,$data=array(),$isadmin=false){
+           if(!$uid || !isset($data['name'])){
+              return false;
+           }
+           return $this->_getDao()->updateInfo($uid, $data,$isadmin);
+        }
+        /**
+         *
+         */
+        public function addEmuleTopicByInfo($data=array()){
+           if(!isset($data['name'])){
+              return false;
+           }
+           return $this->_getDao()->addInfo($data);
+        }
         /**
          *
          */

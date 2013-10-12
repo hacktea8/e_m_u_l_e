@@ -19,14 +19,28 @@ class TopicController extends EmuleBaseController {
          */
         public function beforeAction($handlerAdapter) {
                 parent::beforeAction($handlerAdapter);
-                $aid = intval($this->getInput('aid','get'));
-                if($aid<1){
+                $aid = intval($this->getInput('aid','GET'));
+                if(in_array($handlerAdapter->action,array('run','edit')) &&$aid<1){
                     $this->showError('EMULE:emule.not.exist');
                 }
-                $this->emule->getEmuleTopicByAid($aid);
-                
-                if(!isset($this->emule->emule['id'])){
-                    $this->showError('EMULE:emule.not.exist');
+//var_dump($this->loginUser->isadmin);exit;
+                if($handlerAdapter->action !== 'run'){
+                   if($this->loginUser->uid < 1){
+                      $this->showError('SPACE:user.not.login');
+                   }
+                }
+                //修改帖子
+                if($handlerAdapter->action == 'edit'){
+                   $this->emule->getEmuleTopicByAid($aid,$this->loginUser->uid,$this->loginUser->isadmin);
+                }
+                //查看帖子
+                if($handlerAdapter->action == 'run'){
+                   $this->emule->getEmuleTopicByAid($aid);
+                }
+                if(in_array($handlerAdapter->action,array('run','edit'))){
+                   if(!isset($this->emule->emule['id'])){
+                       $this->showError('EMULE:emule.not.exist');
+                   }
                 }
         }
 	
@@ -53,44 +67,55 @@ class TopicController extends EmuleBaseController {
 	}
 	
 	/**
-	 * 风格预览
+	 * 发帖
 	 * Enter description here ...
 	 */
-	public function demoAction() {
+	public function postAction() {
 		if ($this->loginUser->uid < 1)  $this->showError('SPACE:user.not.login');
-		$styleid = $this->getInput('id');
-		$style = Wekit::load('APPCENTER:service.PwStyle')->getStyle($styleid);
-		if (!$style) $this->showError('SPACE:fail');
-		$this->space->space['space_style'] = $style['alias'];
+		$styleid = $this->getInput('fid');
 		$this->setOutput(1, 'page');
+		$this->setOutput('发表主题', 'headguide');
+		$this->setOutput('post', 'action');
+		$this->setOutput('setpost', 'do');
 		$this->setOutput($this->space, 'space');
-		$this->setTemplate('index_run');
+		$this->setTemplate('topic_post');
 	}
 	
 	
 	/**
-	 * 回复
+	 * 编辑
 	 * 
 	 */
-	public function replyAction() {
-		$id = (int)$this->getInput('id');
-		Wind::import('LIB:ubb.PwSimpleUbbCode');
-		Wind::import('LIB:ubb.config.PwUbbCodeConvertThread');
-		Wind::import('SRV:attention.srv.PwFreshReplyList');
-		$reply = new PwFreshReplyList($id);
-		$fresh = $reply->getData();
-		$replies = $reply->getReplies(7);
-		$replies = Wekit::load('forum.srv.PwThreadService')->displayReplylist($replies);
-		
-		$count = count($replies);
-		if ($count > 6) {
-			$replies = array_slice($replies, 0, 6, true);
-		}
-		$this->setOutput($count, 'count');
-		$this->setOutPut($replies, 'replies');
-		$this->setOutPut($fresh, 'fresh');
+	public function editAction() {
+                 
+		$this->setOutPut($this->emule->emule, 'info');
+		$this->setOutput('编辑主题', 'headguide');
+		$this->setOutput('post', 'action');
+		$this->setOutput('setpost', 'do');
+		$this->setTemplate('topic_post');
 	}
-	
+        /**
+         *
+         *
+         */
+        public function setpostAction(){
+                $aid = (int)$this->getInput('aid','POST');
+                $name = $this->getInput('name','POST');
+                $intro = $this->getInput('intro','POST');
+                $thum = $this->getInput('thum','POST');
+                $downurl = $this->getInput('downurl','POST');
+                $vipdwurl = $this->getInput('vipdwurl','POST');
+                $keyword = $this->getInput('keyword','POST');
+                $info = compact('name','thum','downurl','vipdwurl','intro','keyword');
+echo '<pre>',$thum,$_POST['name'];var_dump($info);exit;
+                if($aid){
+                   $info['aid'] = $aid;
+                   $this->emule->setEmuleTopicByAid($this->loginUser->uid,$info,$this->loginUser->isadmin); 
+                }else{
+                   $aid = $this->emule->addEmuleTopicByInfo($info);
+                }
+                header('Location: /index.php?m=emule&c=topic&a=run&aid='.$aid);
+        }	
 	/**
 	 * 阅读更多
 	 * 

@@ -14,15 +14,27 @@ class PwEmuleModel extends PwEmuleBo {
         /**
          *
          */
-        public function getEmuleTopicByAid($aid){
-          $this->emule=$this->_getEmuleDs()->getArticle($aid);
+        public function getEmuleTopicByAid($aid,$uid=0,$isadmin=false){
+          $this->emule=$this->_getEmuleDs()->getArticle($aid,$uid,$isadmin);
           $this->getsubparentCate($this->emule['cid']);
         }
         /**
          *
          */
-        public function getArticleListByCids($cid){
-           
+        public function setEmuleTopicByAid($aid=0,$data=array()){
+           if(!$aid || !isset($data['name'])){
+              return false;
+           }
+           $this->_getEmuleDs()->setEmuleTopicByAid($aid,$data);
+        }
+        /**
+         *
+         */
+        public function addaddEmuleTopicByInfo($data=array()){
+           if(!isset($data['name'])){
+              return false;
+           }
+           return $this->_getEmuleDs()->addaddEmuleTopicByInfo($data);
         }
         /**
          *

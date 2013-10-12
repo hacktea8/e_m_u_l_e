@@ -13,11 +13,11 @@ Wind::import('SRV:emule.bo.PwEmuleModel');
  * @package 
  */
 class EmuleBaseController extends PwBaseController {
-	public $postion=array();
-	public $emule='';
-        protected $mem='';
-        protected $redis='';
-
+	public $postion = array();
+	public $emule = '';
+        protected $mem = '';
+        protected $redis = '';
+        protected $admingroup = array(3);
 
 	public $expirettl=array('5m'=>300,'15m'=>900,'30m'=>1800,'1h'=>3600,'3h'=>10800,'6h'=>21600,'9h'=>32400,'12h'=>43200,'1d'=>86400,'3d'=>253200,'5d'=>432000,'7d'=>604800);
 	/**
@@ -52,7 +52,8 @@ class EmuleBaseController extends PwBaseController {
 *///创建空间Model	
     $this->emule = new PwEmuleModel();
     $this->mem=new PwBaseMemcache();
-    $this->redis=new PwBaseRediscache();      
+    $this->redis=new PwBaseRediscache();
+    $this->checkadmin();
   }
 
 	
@@ -109,6 +110,17 @@ class EmuleBaseController extends PwBaseController {
 		$service->signVisitor($this->space->spaceUid, $this->loginUser->uid);
 		$service->signToVisitor($this->space->spaceUid, $this->loginUser->uid);	
 	}
-	
+       protected function checkadmin(){
+                foreach($this->admingroup as $admin){
+                   foreach($this->loginUser->groups as $adm){
+                      if($admin == $adm){
+                         $this->loginUser->isadmin = true;
+                         return true;
+                      }
+                   }
+                }
+                $this->loginUser->isadmin = false;
+                return false;
+       }	
 }
 ?>

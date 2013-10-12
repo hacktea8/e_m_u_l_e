@@ -1,0 +1,24 @@
+<!--# if (!$pid && $loginUser->getPermission('tag_allow_add')) {
+$hotTags = Wekit::load('tag.srv.PwTagService')->getHotTags(0,20);
+$hotTags = array_slice($hotTags,0,10);
+#-->
+<dl class="current post_tags_add">
+	<dt class="J_sidebar_forum_toggle">添加话题</dt>
+	<dd>
+		<div class="user_select_input cc J_user_tag_wrap">
+			<textarea class="J_user_tag_input" name="keyword" style="height:372px;" cols="30" row="60">{@$info['keyword']}</textarea>
+		</div>
+		<div class="gray mb10">（话题之间空格隔开，限5个）</div>
+		<div class="post_tags_hot">
+			<em>热门话题</em>
+			<ul class="cc" id="J_hot_tag">
+			<!--# foreach ($hotTags as $v) {
+				$v['tag_name'] = Pw::substrs($v['tag_name'],10);
+			#-->
+				<li title="{$v['tag_name']}"><a href="javascript:;" rel="tag" role="button"><span>{$v['tag_name']}</span></a></li>
+			<!--# } #-->
+			</ul>
+		</div>
+	</dd>
+</dl>
+<!--# } #-->

@@ -18,6 +18,7 @@ class PwUserBo {
 	public $groups = array();
 	public $ip;
 	public $info = array();
+        public $isadmin = false;
 
 	private $_groupInfo = array();
 	private $_permission = array();

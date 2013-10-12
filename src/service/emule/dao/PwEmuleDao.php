@@ -13,13 +13,17 @@ class PwEmuleDao extends PwBaseDao {
 	protected $_dataStruct = '`id`, `cid`, `uid`, `name`, `relatdata`, `collectcount`, `keyword`, `downurl`, `vipdwurl`, `ptime`, `utime`, `intro`, `thum`, `hits`';
 	
 	
-	public function getEmule($aid) {
-		$sql = $this->_bindTable('SELECT '.$this->_dataStruct.' FROM %s WHERE id = ? ');
+	public function getEmule($aid,$uid=0,$isadmin=false) {
+                $where = '';
+                if($uid &&!$isadmin)
+                   $where = sprintf(' AND `uid`=%d LIMIT 1',$uid);
+
+		$sql = $this->_bindSql('SELECT '.$this->_dataStruct.' FROM %s WHERE id = ? %s',$this->getTable($this->_table),$where);
 		$smt = $this->getConnection()->createStatement($sql);
 		return $smt->getOne(array($aid));
 	}
 
-
+            
         public function getHotTopic($order=0,$limit=15){
                 $order=$order?' `ptime` DESC ':' `hits` DESC ';
                 $sql='SELECT `id`, `name`, `thum` FROM '.$this->getTable('emule_article').' WHERE `flag`=1 ORDER BY '.$order.' LIMIT '.$limit;            
