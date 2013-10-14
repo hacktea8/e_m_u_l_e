@@ -1,0 +1,7 @@
+data/*
+cront/*
+conf/*
+themes/*/default/css/build/*
+*.swp
+*.swo
+*.bak
