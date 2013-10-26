@@ -57,7 +57,9 @@
 <div><img src="{$info[thum]}" id="showthum" /></div>
 <br />封面: <br />
 <input name="thum" id="J_atc_thum" value="{$info[thum]}" class="input length_6 mr15"{@!empty($isTopic) ? ' required' : ''} aria-required="true" placeholder="{@!empty($info[thum]) ? $info[thum] : '请输入封面地址'}" title="请输入封面地址" data-max="{@Wekit::C('bbs', 'title.length.max')}"/><span id="J_thum_tip"></span>
-							<!--# //$pwpost->displayHtmlFromBeforeContent(); #-->
+<button id="uploadbtn">点我上传  </button>
+<template source='TPL:emule.upload_post' load='false' />
+<!--# //$pwpost->displayHtmlFromBeforeContent(); #-->
 <br />描述:<br />
 <!--# $editor_name='intro';#-->
 							<template source='TPL:emule.wind_editor' load='true' />

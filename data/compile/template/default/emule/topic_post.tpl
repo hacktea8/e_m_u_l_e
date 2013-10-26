@@ -295,7 +295,9 @@ PwHook::display(array($pwpost, "runDo"), array('createHtmlBeforeContent'), "", $
 <div><img src="<?php echo htmlspecialchars($info[thum], ENT_QUOTES, 'UTF-8');?>" id="showthum" /></div>
 <br />封面: <br />
 <input name="thum" id="J_atc_thum" value="<?php echo htmlspecialchars($info[thum], ENT_QUOTES, 'UTF-8');?>" class="input length_6 mr15"<?php echo htmlspecialchars(!empty($isTopic) ? ' required' : '', ENT_QUOTES, 'UTF-8');?> aria-required="true" placeholder="<?php echo htmlspecialchars(!empty($info[thum]) ? $info[thum] : '请输入封面地址', ENT_QUOTES, 'UTF-8');?>" title="请输入封面地址" data-max="<?php echo htmlspecialchars(Wekit::C('bbs', 'title.length.max'), ENT_QUOTES, 'UTF-8');?>"/><span id="J_thum_tip"></span>
-							<?php  //$pwpost->displayHtmlFromBeforeContent(); ?>
+<button id="uploadbtn">点我上传  </button>
+<?php include("/usr/local/nginx/html/emules/data/compile/template/default/emule/upload_post.tpl"); 
+  //$pwpost->displayHtmlFromBeforeContent(); ?>
 <br />描述:<br />
 <?php  $editor_name='intro';?>
 							<textarea name="<?php echo htmlspecialchars($editor_name, ENT_QUOTES, 'UTF-8');?>" id="J_wind_editor_<?php echo htmlspecialchars($editor_name, ENT_QUOTES, 'UTF-8');?>" style="height:300px;width:100%;padding:0;margin:0;"><?php echo htmlspecialchars($info[$editor_name], ENT_QUOTES, 'UTF-8');?></textarea>
@@ -351,7 +353,7 @@ $hotTags = array_slice($hotTags,0,10);
 	<dt class="J_sidebar_forum_toggle">添加话题</dt>
 	<dd>
 		<div class="user_select_input cc J_user_tag_wrap">
-			<textarea class="J_user_tag_input" name="keyword" style="height:372px;" cols="30" row="60"><?php echo htmlspecialchars($info['keyword'], ENT_QUOTES, 'UTF-8');?>" </textarea>
+			<textarea class="J_user_tag_input" name="keyword" style="height:372px;" cols="30" row="60"><?php echo htmlspecialchars($info['keyword'], ENT_QUOTES, 'UTF-8');?></textarea>
 		</div>
 		<div class="gray mb10">（话题之间空格隔开，限5个）</div>
 		<div class="post_tags_hot">

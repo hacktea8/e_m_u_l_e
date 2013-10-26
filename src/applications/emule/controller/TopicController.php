@@ -13,6 +13,8 @@ Wind::import('APPS:emule.controller.EmuleBaseController');
  */
 
 class TopicController extends EmuleBaseController {
+        public $showimgapi = 'http://img.hacktea8.com/showpic.php?key=';
+        public $imguploadapiurl = 'http://img.hacktea8.com/imgapi/upload/?seq=';
         /**
          *
          *
@@ -42,6 +44,7 @@ class TopicController extends EmuleBaseController {
                        $this->showError('EMULE:emule.not.exist');
                    }
                 }
+		$this->setOutput($this->showimgapi, 'showimgapi');
         }
 	
 	/**
@@ -55,7 +58,7 @@ class TopicController extends EmuleBaseController {
 		Wind::import('SRV:seo.bo.PwSeoBo');
 		$seoBo = PwSeoBo::getInstance();
 		//加载语言包 $lang = Wind::getComponent('i18n');
-		$des = Pw::substrs($this->emule->emule['intro'], 100, 0, false);
+		$des = Pw::substrs(trim(strip_tags($this->emule->emule['intro'])), 100, 0, false);
 		$seoBo->setCustomSeo($this->emule->emule['name'], $this->emule->emule['keyword'], $des);
 		Wekit::setV('seo', $seoBo);
                 $this->emule->emule['ptime']=date('Y:m:d',$this->emule->emule['ptime']);
@@ -77,6 +80,7 @@ class TopicController extends EmuleBaseController {
 		$this->setOutput('发表主题', 'headguide');
 		$this->setOutput('post', 'action');
 		$this->setOutput('setpost', 'do');
+		$this->setOutput($this->imguploadapiurl, 'imguploadapiurl');
 		$this->setOutput($this->space, 'space');
 		$this->setTemplate('topic_post');
 	}
@@ -92,6 +96,7 @@ class TopicController extends EmuleBaseController {
 		$this->setOutput('编辑主题', 'headguide');
 		$this->setOutput('post', 'action');
 		$this->setOutput('setpost', 'do');
+		$this->setOutput($this->imguploadapiurl, 'imguploadapiurl');
 		$this->setTemplate('topic_post');
 	}
         /**

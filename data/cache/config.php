@@ -10,7 +10,7 @@
 			'cookie.domain' => '',
 			'cookie.path' => '',
 			'debug' => '0',
-			'info.name' => 'phpwind 9.0',
+			'info.name' => '电驴BT资源分享网站',
 			'managereasons' => '问题已收集，谢谢反馈！
 建议已收集，谢谢反馈！
 已关注，谢谢反馈！
@@ -43,10 +43,10 @@
 			'info.notice' => '',
 			'task.isOpen' => '1',
 			'medal.isopen' => '1',
-			'homeUrl' => 'index.php?m=bbs',
+			'homeUrl' => 'index.php?m=emule&c=index&a=run',
 			'windid' => 'local',
 			'homeRouter' => array(
-				'm' => 'bbs',
+				'm' => 'emule',
 				'c' => 'index',
 				'a' => 'run',
 			),
@@ -55,6 +55,7 @@
 			'cookie.pre' => 'hVA',
 			'info.mail' => 'emule@hacktea8.com',
 			'info.url' => 'http://emu.hacktea8.com',
+			'visit.group' => '',
 			'theme.site.pack' => 'site',
 			'theme.site.default' => 'default',
 			'theme.space.pack' => 'space',
@@ -63,6 +64,13 @@
 			'theme.forum.default' => 'default',
 			'theme.portal.pack' => 'portal/appcenter',
 			'css.compress' => '1',
+			'info.icp' => '',
+			'info.logo' => '',
+			'statisticscode' => '',
+			'visit.state' => '0',
+			'visit.gid' => '',
+			'visit.ip' => '',
+			'visit.member' => '',
 		),
 		'credit' => array(
 			'credits' => array(
@@ -332,28 +340,8 @@
 		'nav' => array(
 			'main' => array(
 				'0' => array(
-					'name' => '<a href="index.php?m=bbs">论坛</a>',
-					'sign' => 'bbs|index|run|',
-				),
-				'1' => array(
-					'name' => '<a href="index.php?m=bbs&c=forumlist">版块</a>',
-					'sign' => 'bbs|forumlist|run|',
-				),
-				'2' => array(
-					'name' => '<a href="index.php?m=like&c=like">喜欢</a>',
-					'sign' => 'like|like|run|',
-				),
-				'4' => array(
-					'name' => '<a href="index.php?m=tag">话题</a>',
-					'sign' => 'tag|index|run|',
-				),
-				'5' => array(
-					'name' => '<a href="index.php?m=appcenter">应用</a>',
-					'sign' => 'appcenter|index|run|',
-				),
-				'3' => array(
-					'name' => '<a href="http://open.phpwind.com" target="_blank">云平台</a>',
-					'sign' => '',
+					'name' => '<a href="http://emu.hacktea8.com/index.php?m=emule&c=index&a=run" target="_blank">电驴BT资源分享</a>',
+					'sign' => 'emule|index|run|',
 				),
 			),
 			'bottom' => array(
@@ -376,31 +364,31 @@
 			),
 			'my' => array(
 				'0' => array(
-					'name' => '<a href="index.php?m=space"><em class="icon_space"></em>我的空间</a>',
+					'name' => '<a href="http://emu.hacktea8.com/index.php?m=space"><em class="icon_space"></em>我的空间</a>',
 					'sign' => 'space',
 				),
 				'1' => array(
-					'name' => '<a href="index.php?m=my&c=fresh"><em class="icon_fresh"></em>我的关注</a>',
+					'name' => '<a href="http://emu.hacktea8.com/index.php?m=my&c=fresh"><em class="icon_fresh"></em>我的关注</a>',
 					'sign' => 'fresh',
 				),
 				'2' => array(
-					'name' => '<a href="index.php?m=bbs&c=forum&a=my"><em class="icon_forum"></em>我的版块</a>',
+					'name' => '<a href="http://emu.hacktea8.com/index.php?m=bbs&c=forum&a=my"><em class="icon_forum"></em>我的版块</a>',
 					'sign' => 'forum',
 				),
 				'3' => array(
-					'name' => '<a href="index.php?m=my&c=article"><em class="icon_article"></em>我的帖子</a>',
+					'name' => '<a href="http://emu.hacktea8.com/index.php?m=my&c=article"><em class="icon_article"></em>我的帖子</a>',
 					'sign' => 'article',
 				),
 				'4' => array(
-					'name' => '<a href="index.php?m=vote&c=my"><em class="icon_vote"></em>我的投票</a>',
+					'name' => '<a href="http://emu.hacktea8.com/index.php?m=vote&c=my"><em class="icon_vote"></em>我的投票</a>',
 					'sign' => 'vote',
 				),
 				'5' => array(
-					'name' => '<a href="index.php?m=task"><em class="icon_task"></em>我的任务</a>',
+					'name' => '<a href="http://emu.hacktea8.com/index.php?m=task"><em class="icon_task"></em>我的任务</a>',
 					'sign' => 'task',
 				),
 				'6' => array(
-					'name' => '<a href="index.php?m=medal"><em class="icon_medal"></em>我的勋章</a>',
+					'name' => '<a href="http://emu.hacktea8.com/index.php?m=medal"><em class="icon_medal"></em>我的勋章</a>',
 					'sign' => 'medal',
 				),
 			),

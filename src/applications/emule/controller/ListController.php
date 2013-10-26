@@ -45,17 +45,22 @@ class ListController extends EmuleBaseController {
     $this->setOutput($this->emule->atotal, 'listcount');
     $this->setOutput($this->emule->subcatelist, 'subcatelist');
     $this->setOutput($cid, 'cid');
-               
+    //echo '<pre>',var_dump($this->emule->rootCate);exit;
     // seo设置
     Wind::import('SRV:seo.bo.PwSeoBo');
     $seoBo = PwSeoBo::getInstance();
     $lang = Wind::getComponent('i18n');
-    $des = Pw::substrs($this->emule->emulelist['intro'], 100, 0, false);
-    if ($page == 1) {
-      $seoBo->setCustomSeo($lang->getMessage('SEO:emule.list.run.title', array($this->emule->emulelist['name'])), '', $des);
-    } else {
-      $seoBo->setCustomSeo($lang->getMessage('SEO:emule.list.run.page.title', array($page, $this->emule->emulelist['name'])), '', $des);
+    $title = '';
+    $kw = '';
+    foreach($this->emule->postion as $row){
+       $title .= $title ? '_' : '';
+       $title .= $row['name'];
+       $kw .= $row['name'].',';
     }
+    $config = Wekit::C('site');
+    $keywords = $kw.'电驴资源,电驴资源网,电驴资源网站,电驴资源下载,电驴资源搜索,电驴资源分享,电驴下载,电骡资源,电驴 资源,电骡下载,emule 资源,电驴资源库,电驴网站,电驴搜索,ed2k';
+    $des = $title.'_'.$config['info.name'].'是一个综合的电驴资源网站，提供包含电影、电视剧、音乐、游戏、动漫、综艺、软件、资料、图书、教育等栏目电驴资源搜索、电驴下载服务。';
+    $seoBo->setCustomSeo($title, $keywords, $des);
     Wekit::setV('seo', $seoBo);
 }
 	

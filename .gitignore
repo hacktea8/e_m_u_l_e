@@ -1,6 +1,7 @@
 data/*
 cront/*
 conf/*
+cront/grab/ed2kers/*
 themes/*/default/css/build/*
 *.swp
 *.swo

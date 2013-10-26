@@ -480,6 +480,8 @@ div.tip-verycd td.tip-left{background-position:0 100%;}
 div.tip-verycd div.tip-inner{background-position:-10px -10px;}
 div.tip-verycd div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}
 </style>
+<script type="text/javascript" src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/js'; ?>/ZeroClipboard.js" ></script>
+<script type="text/javascript" src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/js'; ?>/item.js" ></script>
 </head>
 <body>
 
@@ -1101,12 +1103,12 @@ foreach($info['relatdata'] as $row){
 foreach($hotTopic as $row){
 ?>
 <dd class="itshot">
-<a id="entry_link_2960900" title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid', rawurlencode($row['id']); ?>" onClick="" target="_blank" style="text-decoration:none;"><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+<a id="entry_link_2960900" title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic'; ?>&aid=<?php echo htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8');?>" onClick="" target="_blank" style="text-decoration:none;"><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
  echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="img" class="hot_img" style="display:inline;" height="100" width="100">
                         <div id="entry_2960900" style="display:none;" class="entry_score_small"></div>
                         </a>
                         <br>
-<a title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid', rawurlencode($row['id']); ?>" onClick="" target="_blank"><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?></a>
+<a title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic'; ?>&aid=<?php echo htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8');?>" onClick="" target="_blank"><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?></a>
 </dd>
 <?php 
 } ?>	        
