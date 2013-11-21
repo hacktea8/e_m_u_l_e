@@ -89,7 +89,7 @@ function getCatearticle($pid=0){
     return false;
   }
   global $model,$_root,$cid;
-  $flag=getlastgrabinfo();
+  //$flag=getlastgrabinfo();
   
   $cateList=$model->getCateInfoBypid($pid);
   foreach($cateList as $cate){
@@ -101,7 +101,10 @@ function getCatearticle($pid=0){
     }
     $cateurl=$_root.$cate['url'];
     $cid=$cate['id'];
-    getinfolist($cateurl);
+    $status = getinfolist($cateurl);
+    if(6 == $status){
+       break;
+    }
 sleep(30);
   }
 }
@@ -167,15 +170,17 @@ function getAllSubcateicili(){
 }
 function getinfolist(&$cateurl){
   global $model,$psize,$pageno,$action,$_root,$listPattern,$listPatterntwo,$pagesizePattern,$cid;
-  $psize=isset($psize)?$psize:1;
-  $flag=getlastgrabinfo();
-  $getpsize=true;
+//  $psize=isset($psize)?$psize:30;
+ // $flag=getlastgrabinfo();
+ // $getpsize=true;
 
-  for($i=1;$i<=$psize;$i++){
+  for($i=1;$i<=60;$i++){
+/*
     if($flag){
        $i=$psize=$pageno;
        $flag=false;
     }
+*/
 //通过 atotal计算i的值
     $html=getHtml($cateurl."/第{$i}页");
 
@@ -186,7 +191,8 @@ function getinfolist(&$cateurl){
       // echo '<pre>';var_dump($matchs);exit;
     }
     if(empty($matchs)){
-      die('Cate list Failed '.$cateurl."/第{$i}页\r\n");
+      echo ('Cate list Failed '.$cateurl."/第{$i}页\r\n");
+      return 6;
     }
 
     foreach($matchs as $list){
@@ -200,30 +206,34 @@ function getinfolist(&$cateurl){
       $aid=$model->checkArticleByOname($oname);
       if($aid){
          echo "{$aid}已存在未更新!\r\n";
-         continue;
+ //        continue;
+        return 6;
       }
       $purl=$_root.$list[1].'.html';
 //      $ptime=strtotime(trim($list[3]));
       $ainfo=array('ourl'=>$purl,'name'=>$oname,'oid'=>$oid,'cid'=>$cid);
       getinfodetail($ainfo);
-sleep(10);
+sleep(1);
     }
 
 
 //test data
-//if($i>3)
-//break;
-    $config=array('cateid'=>$cid,'pageno'=>$i);
-    getlastgrabinfo(0,$config);
+if($i>30)
+  break;
 
+   // $config=array('cateid'=>$cid,'pageno'=>$i);
+   // getlastgrabinfo(0,$config);
+/*
     if($getpsize){
        preg_match($pagesizePattern,$html,$matches);
        $psize=isset($matches[1])?$matches[1]:1;
        $getpsize=false;
 //echo $cateurl,"\n",$psize,"\n",var_dump($matches);exit;
     }
-sleep(30);
+*/
+sleep(1);
   }
+return 0;
 }
 
 function getinfodetail(&$data){
@@ -280,7 +290,7 @@ function getinfodetail(&$data){
      return false;
   }
  // $data['intro']=mysql_real_escape_string($data['intro']);
- // echo '<pre>';var_dump($data);exit;
+//  echo '<pre>';var_dump($data);exit;
 foreach($data as $key=>$val){
    $data[$key]=mysql_real_escape_string($val);
 }

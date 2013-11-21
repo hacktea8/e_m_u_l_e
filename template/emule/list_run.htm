@@ -9,13 +9,11 @@
 .aPre{
         cursor:url({@theme:site.images}/common/pre.cur),auto;
 }
-.aNext{
-        cursor:url({@theme:site.images}/common/next.cur),auto;right:0;
-}
+.aNext{cursor:url({@theme:site.images}/common/next.cur),auto;right:0;}
 </style>
 </head>
 <body>
-<link rel="search" type="application/opensearchdescription+xml" href="http://www.verycd.com/specs/opensearch.xml" title="电驴资源">
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="电驴资源">
 <link type="text/css" href="{@theme:css}/tip-dig.css" rel="stylesheet">
 
 <link type="text/css" href="{@theme:css}/global-broad.css" rel="stylesheet">
@@ -428,7 +426,6 @@ div.tip-verycd div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden
 
 <div id="page-wrapper" class="package">
 <div id="page-body" class="package">   
-    
 
 <!-- Nav -->
 
@@ -527,9 +524,9 @@ foreach($subcatelist as $row){
 </div>
 <div class="main" style="padding:10px;">
 <dl id="someLinks">
-<dd><a href="http://www.verycd.com/sto/feed" title="订阅本站资源">订阅本站资源</a></dd>
-<dd><a href="http://www.emule.org.cn/" id="emuleOld" title="Download eMule">电驴(eMule)经典版下载</a></dd>
-<dd><a href="http://www.mozilla.com/firefox/" title="get firefox" id="getfirefox" target="_blank">推荐使用 Firefox 浏览器</a></dd>
+<dd><a href="#" title="订阅本站资源">订阅本站资源</a></dd>
+<dd><a href="#" id="emuleOld" title="Download eMule">电驴(eMule)经典版下载</a></dd>
+<dd><a href="#" title="get firefox" id="getfirefox" target="_blank">推荐使用 Firefox 浏览器</a></dd>
 <dd style=" clear:both;"></dd>
 </dl>
 </div>
@@ -552,9 +549,7 @@ foreach($subcatelist as $row){
 foreach($hotTopic as $row){
 #-->
 <dd class="leftMiddle">
-   <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="" style="text-decoration:none;" id="entry_link_2961048">
-<img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="hot_img" height="100" width="100">
-</a><br>
+   <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="" style="text-decoration:none;" id="entry_link_2961048"><img class="lazy hot_img" data-original="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="hot_img" /></noscript></a><br>
 <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="">{$row['name']}</a>            
             </dd>
 <!--#
@@ -605,9 +600,7 @@ foreach($hotTopic as $row){
 foreach($infolist as $row){
 #-->
                         <li>
-                <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="">
-        <img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="file_img">
-        </a>
+                <a href="{@url:emule/topic/run?aid=$row['id']}" onClick=""><img class="lazy file_img" data-original="{$thumhost}{$row['thum']}" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="file_img" /></noscript></a>
  <h3>
 <span class="left_topics_class_sort"><a href="{@url:emule/list/run?cid=$row['cid']}">{$row['cname']}</a></span>                <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="">{$row['name']}</a>
  </h3>
@@ -644,7 +637,6 @@ foreach($infolist as $row){
 </div><!-- End of page wrap-->
 
 </div><!-- End of #page-body -->
-
-
+<template source='TPL:common.footer' load='true' />
 </body>
 </html>

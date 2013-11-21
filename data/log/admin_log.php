@@ -93,3 +93,17 @@
 |admin|nav/nav/run|125.119.206.225|1382616449|/admin.php?m=nav&c=nav||
 |admin|nav/nav/dorun|125.119.206.225|1382616458|/admin.php?m=nav&c=nav&a=dorun|data=array(1=array(navid=1, orderid=1, name=首页, link=index.php)2=array(navid=2, orderid=2, name=论坛, link=index.php?m=bbs)3=array(navid=3, orderid=3, name=版块, link=index.php?m=bbs&c=forumlist)4=array(navid=4, orderid=4, name=喜欢, link=index.php?m=like&c=like)6=array(navid=6, orderid=5, name=话题, link=index.php?m=tag)7=array(navid=7, orderid=6, name=应用, link=index.php?m=appcenter)5=array(navid=5, orderid=7, name=电驴BT资源分享, link=index.php?m=emule&c=index&a=run, isshow=1))home=5, navtype=main, csrf_token=89905ac96017ee0d|
 |admin|nav/nav/run|125.119.206.225|1382616460|/admin.php?m=nav&c=nav||
+|admin|Login Successful|115.197.137.189|1383745618|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=c7601e8473942b1c|
+|admin|nav/nav/run|115.197.137.189|1383745633|/admin.php?m=nav&c=nav||
+|admin|nav/nav/run|115.197.137.189|1383745638|/admin.php?type=bottom&m=nav&c=nav||
+|admin|nav/nav/dorun|115.197.137.189|1383745655|/admin.php?m=nav&c=nav&a=dorun|data=array(15=array(navid=15, orderid=1, name=关于phpwind, link=http://www.phpwind.com/index.php?m=aboutus&a=index&menuid=16)16=array(navid=16, orderid=2, name=联系我们, link=http://www.phpwind.com/index.php?m=aboutus&a=index&menuid=20)17=array(navid=17, orderid=3, name=程序建议, link=http://www.phpwind.net/thread-htm-fid-39.html)18=array(navid=18, orderid=4, name=问题反馈, link=http://www.phpwind.net/thread-htm-fid-54.html))navtype=bottom, csrf_token=c7601e8473942b1c|
+|admin|nav/nav/run|115.197.137.189|1383745657|/admin.php?type=bottom&m=nav&c=nav||
+|admin|nav/nav/run|115.197.137.189|1383745659|/admin.php?type=my&m=nav&c=nav||
+|admin|Login Successful|218.74.29.78|1385039600|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=6e132197c2600875|
+|admin|default/auth/run|218.74.29.78|1385039616|/admin.php?c=auth||
+|admin|default/safe/run|218.74.29.78|1385039618|/admin.php?c=safe||
+|admin|config/config/run|218.74.29.78|1385039623|/admin.php?m=config&c=config||
+|admin|config/config/site|218.74.29.78|1385039626|/admin.php?m=config&c=config&a=site||
+|admin|config/config/run|218.74.29.78|1385039642|/admin.php?m=config&c=config||
+|admin|bbs/cache/run|218.74.29.78|1385039664|/admin.php?m=bbs&c=cache||
+|admin|bbs/cache/doCss|218.74.29.78|1385039681|/admin.php?m=bbs&c=cache&a=doCss||

@@ -14,7 +14,7 @@ getinfodetail($ainfo);
 */
 
 /*=========== Update Cate Article Total =========*/
-//updateCateatotal();//exit;
+updateCateatotal();exit;
 /*=========== Get All Cate Info =================*/
 
 //getAllcate();

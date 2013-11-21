@@ -58,8 +58,8 @@ class TopicController extends EmuleBaseController {
 		Wind::import('SRV:seo.bo.PwSeoBo');
 		$seoBo = PwSeoBo::getInstance();
 		//加载语言包 $lang = Wind::getComponent('i18n');
-		$des = Pw::substrs(trim(strip_tags($this->emule->emule['intro'])), 100, 0, false);
-		$seoBo->setCustomSeo($this->emule->emule['name'], $this->emule->emule['keyword'], $des);
+		$des = Pw::substrs(trim(preg_replace('#\s+#',' ',strip_tags($this->emule->emule['intro']))), 100, 0, false);
+		$seoBo->setCustomSeo($this->emule->emule['name'], $this->emule->emule['name'].','.$this->siteinfo['info.name'].','.$this->keywords, $des);
 		Wekit::setV('seo', $seoBo);
                 $this->emule->emule['ptime']=date('Y:m:d',$this->emule->emule['ptime']);
                 $this->emule->emule['utime']=date('Y/m/d',$this->emule->emule['utime']);

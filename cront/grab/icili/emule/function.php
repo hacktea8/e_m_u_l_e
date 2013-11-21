@@ -37,26 +37,7 @@ function getTagpair(&$str,&$string,$head,$end,$same){
     $count_tail=substr_count($str, $end);	
   }
 }
-/*
-function getTagpair(&$str,&$string,$head,$end,$same){
-  $str='';	
-  $start=stripos($string, $same);
-  $length=stripos($string, $end)+strlen($end)-$start;
-  $str=substr($string, $start,$length);
-  $others=substr($string, $length+$start);
-  $count_head=substr_count($str,$same);
-  $count_tail=substr_count($str, $end);
-  while($count_head!=$count_tail){
-    //$start=stripos($others, $same);
-    $length=stripos($others, $end)+strlen($end);
-    $str.=substr($others, 0,$length);
-    $others=substr($others, $length);
-    $count_head=substr_count($str,$same);
-    $count_tail=substr_count($str, $end);	
-  }
-		
-}
-*/
+
 function updateCateatotal(){
  global $model;
   return $model->updateCateatotal();
@@ -196,21 +177,29 @@ function getinfolist(&$cateurl){
     foreach($matchs as $ky=>$list){
       $oid=preg_replace('#[^\d]+#','',$list[1]);
       $oname=trim($list[3]);
-//先判断是否存在
+
+//先判断名字是否按月份更新 《《Sweet》日本时尚杂志甜美性感系列》(Sweet)更新至2013年11月号
+      if(false != $pos = strpos($oname,'更新至')){
+         $title = substr($oname,$pos);
+         preg_match('#《《.+》.+》#Uis',$oname,$match);
+         $oname = isset($match[0]) ? $match[0] : substr($oname,0,$pos);
+      }
 
 //在判断是否更新
-/*      $aid=$model->checkArticleByOname($oname);
+      $aid=$model->checkArticleByOname($oname);
       if($aid){
          echo "{$aid}已存在未更新!\r\n";
          continue;
       }
-*/
-      $thum=trim($list[2]);
+
+      //$thum=trim($list[2]);
+      $thum=$oid;
       $purl=$_root.$list[1];
  
       $utime=strtotime(trim($match[$ky][2]));
       $ptime=strtotime(trim($match[$ky][1]));
-      $ainfo=array('ourl'=>$purl,'name'=>$oname,'utime'=>$utime,'ptime'=>$ptime,'thum'=>$thum,'oid'=>$oid,'cid'=>$cid);
+      $ainfo=array('ourl'=>$oid,'name'=>$oname,'utime'=>$utime,'ptime'=>$ptime,'thum'=>$thum,'oid'=>$oid,'cid'=>$cid);
+//var_dump($ainfo);exit;
       getinfodetail($ainfo);
 sleep(10);
     }
@@ -240,11 +229,11 @@ function getinfodetail(&$data){
     echo "获取html失败";exit;
   }
   //kw
-  preg_match('#<meta name="keywords" content="(.+)" />#U',$html,$match);
-  $data['keyword']=mysql_real_escape_string(trim($match[1]));
+ // preg_match('#<meta name="keywords" content="(.+)" />#U',$html,$match);
+  $data['keyword']='';//mysql_real_escape_string(trim($match[1]));
   //description
-  preg_match('#<meta name="description" content="(.+)" />#U',$html,$match);
-  $data['description']=mysql_real_escape_string(trim($match[1]));
+ // preg_match('#<meta name="description" content="(.+)" />#U',$html,$match);
+  $data['description']= '';//mysql_real_escape_string(trim($match[1]));
   //
 //  preg_match($bookimg,$html,$match);
   $data['thum']=mysql_real_escape_string($data['thum']);

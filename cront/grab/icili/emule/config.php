@@ -31,6 +31,8 @@ array('from'=>'http://hi.baidu.com/ed2kers/item/4b66a3c6b8b679f796445257','to'=>
 $pregreplace=array(
 array('from'=>'#<br>引用.+</td>#Us','to'=>'</td>')
 ,array('from'=>'#<script [^>]+>.+</script>#','to'=>'')
+,array('from'=>'#<input type="checkbox" id="checkall_d\d+" onclick="checkAll(\'d\d+\',this.checked)"\s+ value="" />#is','to'=>'')
+,array('from'=>'#，iCiLi推荐使用<a href="[^"]+" \s+target="_blank" style="display: inline">原版电驴</a>\s+#is','to'=>'')
 ,array('from'=>'#<div style="float:left;clear:right;margin:15px;width:325px;height:280px">.*</div>#U','to'=>'')
 );
 

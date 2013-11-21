@@ -4,14 +4,11 @@
 <template source='TPL:common.head' load='true' />
 <link href="{@theme:css}/style.css?v={@NEXT_RELEASE}" rel="stylesheet" />
 <link href="{@theme:css}/topbar_0.css?v={@NEXT_RELEASE}" rel="stylesheet" />
-<script type="text/javascript" src="{@theme:js}/jquery-2.0.2.min.js" ></script>
 <style>
 .aPre{
         cursor:url({@theme:site.images}/common/pre.cur),auto;
 }
-.aNext{
-        cursor:url({@theme:site.images}/common/next.cur),auto;right:0;
-}
+.aNext{cursor:url({@theme:site.images}/common/next.cur),auto;right:0;}
 #index_body #index_body_mainDiv{margin:80px 0 10px}
 </style>
 </head>
@@ -66,8 +63,7 @@ foreach($emuleIndex['new'] as $row){
 #-->
 	<li class="list">
 	<div class="cover_3"><a
-		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""> <img src="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" name="lazyload"
-		alt="{$row['name']}"> </a></div>
+		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""><img class="lazy"  data-original="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" /></noscript></a></div>
 	<div class="cv_title">
 	<ul>
 		<li class="strong"><a
@@ -88,8 +84,7 @@ foreach($emuleIndex['rand'] as $row){
 #-->
 	<li class="list">
 	<div class="cover_3"><a
-		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""> <img style="width: 100px; height: 100px" src="{$thumhost}{$row['thum']}"
-		alt="{$row['name']}"> </a></div>
+		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""><img class="lazy"  data-original="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" /></noscript></a></div>
 	<div class="cv_title">
 	<ul>
 		<li class="strong"><a href="{@url:emule/topic/run?aid=$row['id']}" onclick=""
@@ -109,8 +104,7 @@ foreach($emuleIndex['hot'] as $row){
 #-->
 	<li class="list">
 	<div class="cover_3"><a
-		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""> <img style="width: 100px; height: 100px" src="{$thumhost}{$row['thum']}"
-		alt="{$row['name']}"> </a></div>
+		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank" onclick=""><img class="lazy"  data-original="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" /></noscript></a></div>
 	<div class="cv_title">
 	<ul>
 		<li class="strong"><a href="{@url:emule/topic/run?aid=$row['id']}" onclick=""
@@ -162,10 +156,7 @@ foreach($list['list'] as $k=>$row){
 	</div>
 	<div class="list_main clearfix">
 	<div class="li_img">
-	<div class="entry_cover  show_play"><!--[if IE 6]><span class="spacer" style="width:54px;height:74px;"></span><![endif]--><img
-		width="" height="" alt="{$row['name']}"
-		src="{$thumhost}{$row['thum']}"
-		class="cover_img">
+	<div class="entry_cover  show_play"><!--[if IE 6]><span class="spacer" style="width:54px;height:74px;"></span><![endif]--><img class="lazy cover_img"  data-original="{$thumhost}{$row['thum']}" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="cover_img" /></noscript>
 	<div class="play_ico_small"></div>
 	</div>
 	</div>
@@ -232,10 +223,7 @@ foreach($v as $k=>$row){
 	<li class="list">
 	<div class="cover_3"><a
 		href="{@url:emule/topic/run?aid=$row['id']}" target="_blank"
-		onclick=""> <img
-		src="{$thumhost}{$row['thum']}"
-		style="width: 100px; height: 100px" name="lazyload"
-		alt="{$row['name']}"> </a></div>
+		onclick=""><img class="lazy"  data-original="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" /></noscript></a></div>
 	<div class="cv_title">
 	<ul>
 		<li class="strong"><a

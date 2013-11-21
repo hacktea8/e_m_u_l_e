@@ -193,6 +193,16 @@ abstract class WindSimpleController extends WindModule implements IWindControlle
 		$this->getForward()->getWindView()->templateName = $template;
 	}
 
+        /**/
+        protected function render($display = false){
+                @ob_start();
+                $this->getForward()->getWindView()->render($display);
+                $html = @ob_get_contents();
+                ob_end_clean();
+                return $html;
+  }
+
+
 	/**
 	 * 设置模板路径,模板目录地址,支持命名空间方式
 	 * 

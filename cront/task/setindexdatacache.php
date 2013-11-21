@@ -38,9 +38,9 @@ class model{
    if($cid){
       $cids=$this->getAllCateidsByCid($cid);
       $cids=implode(',',$cids);
-      $where=' AND `cid` in ('.$cids.')  ';
+      $where=' a.`cid` in ('.$cids.') AND ';
    }
-   $sql=sprintf("SELECT a.`id`, `cid`, `uid`,c.`name` as cname,c.atotal, a.`name`, `keyword`, `description`, `ptime`, `utime`, `thum`, `hits` FROM ".$this->db->getTable('emule_article')." as a INNER JOIN ".$this->db->getTable('emule_cate')." as c WHERE a.cid=c.id %s AND a.`flag`=1 AND c.flag=1 %s LIMIT %d,$limit",$where,$order,$page);
+   $sql=sprintf("SELECT a.`id`, a.`cid`, a.`uid`,c.`name` as cname,c.atotal, a.`name`, a.`ptime`, a.`utime`, a.`thum`, a.`hits` FROM ".$this->db->getTable('emule_article')." as a LEFT JOIN ".$this->db->getTable('emule_cate')." as c ON(a.cid=c.id) WHERE %s a.`flag`=1 AND c.flag=1 %s LIMIT %d,$limit",$where,$order,$page);
    return $this->db->result_array($sql);
   }
   function getAllCateidsByCid($cid){
@@ -97,7 +97,7 @@ sleep(2);
 
     }
 
-$this->mem->set('emu-emuleIndexinfo',$this->emuleIndex,259200);
+$this->mem->set('emu-emuleIndexinfo',$this->emuleIndex,691200);
 
   }
   

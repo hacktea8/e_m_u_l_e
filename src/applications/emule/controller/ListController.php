@@ -12,14 +12,20 @@ Wind::import('APPS:emule.controller.EmuleBaseController');
 
 class ListController extends EmuleBaseController {
 
-	
+  /**
+   *
+   *
+   */
+  public  function beforeAction($handlerAdapter) {
+          parent::beforeAction($handlerAdapter);
+  }	
   /**
    * (non-PHPdoc)
    * @see wekit/wind/web/WindController::run()
    */
   public function run() {
     $page = (int)$this->getInput('page','get');
-    if ($page < 1||$page>10) $page = 1;
+    //if ($page < 1||$page>10) $page = 1;
     $this->setOutput(25, 'perpage');
     $this->setOutput($page, 'page');
     $order='';
@@ -33,10 +39,10 @@ class ListController extends EmuleBaseController {
 //die($this->expirettl['12h'].'empty');
          $this->emule->getArticleListByCid($cid,$order,$page);
 //echo '<pre>';var_dump($this->emule->hotTopic);exit;
-         $this->mem->set('emu-emulelist'.$cid.'-'.$page.$order,$this->emule->emulelist,$this->expirettl['12h']);
-         $this->mem->set('emu-listatotal'.$cid,$this->emule->atotal,$this->expirettl['12h']);
-         $this->mem->set('emu-listsubcatelist'.$cid,$this->emule->subcatelist,$this->expirettl['12h']);
-         $this->mem->set('emu-listpostion'.$cid,$this->emule->postion,$this->expirettl['12h']);
+         $this->mem->set('emu-emulelist'.$cid.'-'.$page.$order,$this->emule->emulelist,$this->expirettl['7d']);
+         $this->mem->set('emu-listatotal'.$cid,$this->emule->atotal,$this->expirettl['7d']);
+         $this->mem->set('emu-listsubcatelist'.$cid,$this->emule->subcatelist,$this->expirettl['7d']);
+         $this->mem->set('emu-listpostion'.$cid,$this->emule->postion,$this->expirettl['7d']);
        }
     }else{
        $this->emule->getArticleListByCid($cid,$order,$page);
@@ -51,32 +57,59 @@ class ListController extends EmuleBaseController {
     $seoBo = PwSeoBo::getInstance();
     $lang = Wind::getComponent('i18n');
     $title = '';
-    $kw = '';
+    $kw = $this->siteinfo['info.name'].',';
     foreach($this->emule->postion as $row){
        $title .= $title ? '_' : '';
        $title .= $row['name'];
        $kw .= $row['name'].',';
     }
-    $config = Wekit::C('site');
-    $keywords = $kw.'电驴资源,电驴资源网,电驴资源网站,电驴资源下载,电驴资源搜索,电驴资源分享,电驴下载,电骡资源,电驴 资源,电骡下载,emule 资源,电驴资源库,电驴网站,电驴搜索,ed2k';
-    $des = $title.'_'.$config['info.name'].'是一个综合的电驴资源网站，提供包含电影、电视剧、音乐、游戏、动漫、综艺、软件、资料、图书、教育等栏目电驴资源搜索、电驴下载服务。';
+    $keywords = $kw.$this->keywords;
+    $des = $title.'_'.$this->siteinfo['info.name'].$this->description;
     $seoBo->setCustomSeo($title, $keywords, $des);
     Wekit::setV('seo', $seoBo);
 }
 	
 	/**
-	 * 风格预览
+	 * 搜索页面
 	 * Enter description here ...
 	 */
-	public function demoAction() {
-		if ($this->loginUser->uid < 1)  $this->showError('SPACE:user.not.login');
-		$styleid = $this->getInput('id');
-		$style = Wekit::load('APPCENTER:service.PwStyle')->getStyle($styleid);
-		if (!$style) $this->showError('SPACE:fail');
-		$this->space->space['space_style'] = $style['alias'];
-		$this->setOutput(1, 'page');
-		$this->setOutput($this->space, 'space');
-		$this->setTemplate('index_run');
+	public function searchAction() {
+		$q = $this->getInput('q');
+                $type = $this->getInput('type');
+                $page = intval($this->getInput('page'));
+                $page = $page < 1 ? 1: $page;
+                $list = array();
+                if($q){
+                  $param = array('kw' => URLENCODE($q), 'page' => $page, 'page_size' => 20);
+                  if(1 == $type){
+                    $param[] = '';
+                  }elseif(2 == $type){
+                    $param[] = '';
+                  }
+                  Wind::import('LIB:base.AliyunSearchApi.php');
+                  $search = new AliyunSearchApi();
+                  $search->getsearch($list, $type, $param); 
+                }
+                $hot_search = array();
+                $recommen_topic = array();
+                $recommen_topic[1] = array();
+                $recommen_topic[2] = array();
+                $hot_topic = array();
+                $hot_topic['hit'] = array();
+                $hot_topic['focus'] = array();
+//var_dump($list);exit; 
+/*
+["searchtime"]=> float(0.043) ["total"]=> int(98) ["num"]=> int(20) ["viewtotal"]=> int(98) } ["status"]=> string(2) "OK" }
+*/
+		$this->setOutput($list['result'], 'searchlist');
+		$this->setOutput(URLENCODE($q), 'q');
+		$this->setOutput(20, 'perpage');
+		$this->setOutput($page, 'page');
+		$this->setOutput($list['result']['viewtotal'], 'listcount');
+		$this->setOutput($hot_search, 'hot_search');
+		$this->setOutput($recommen_topic, 'recommen_topic');
+		$this->setOutput($hot_topic, 'hot_topic');
+		$this->setTemplate('list_search');
 	}
 	
 	

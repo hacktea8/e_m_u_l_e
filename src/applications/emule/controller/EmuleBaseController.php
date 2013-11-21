@@ -18,6 +18,9 @@ class EmuleBaseController extends PwBaseController {
         protected $mem = '';
         protected $redis = '';
         protected $admingroup = array(3);
+        public $keywords = '电驴资源,电驴资源网站,电驴资源下载,电驴资源搜索,电驴资源网,电驴资源网站,电驴下载,电骡资源,ed2k,eMule,电骡下载,emule 资源,电驴资源库,电驴共享';
+        public $description = '是一个综合的电驴资源网站，提供包含电影、电视剧、音乐、游戏、动漫、综艺、软件、资料、图书、教育等栏目电驴资源搜索、电驴下载服务。';
+        public $siteinfo = '';
 
 	public $expirettl=array('5m'=>300,'15m'=>900,'30m'=>1800,'1h'=>3600,'3h'=>10800,'6h'=>21600,'9h'=>32400,'12h'=>43200,'1d'=>86400,'3d'=>253200,'5d'=>432000,'7d'=>604800);
 	/**
@@ -54,6 +57,7 @@ class EmuleBaseController extends PwBaseController {
     $this->mem=new PwBaseMemcache();
     $this->redis=new PwBaseRediscache();
     $this->checkadmin();
+    $this->siteinfo = Wekit::C('site');
   }
 
 	
@@ -78,7 +82,6 @@ class EmuleBaseController extends PwBaseController {
     $this->setOutput($this->emule->rootCate, 'rootCate');
     $this->setOutput('http://www.ed2kers.com/', 'thumhost');
     $this->setOutput($this->emule->postion, 'postion');
-
 
 //更新资源点击量
 /*

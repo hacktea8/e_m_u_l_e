@@ -345,22 +345,6 @@
 				),
 			),
 			'bottom' => array(
-				'0' => array(
-					'name' => '<a href="http://www.phpwind.com/index.php?m=aboutus&a=index&menuid=16">关于phpwind</a>',
-					'sign' => '',
-				),
-				'1' => array(
-					'name' => '<a href="http://www.phpwind.com/index.php?m=aboutus&a=index&menuid=20">联系我们</a>',
-					'sign' => '',
-				),
-				'2' => array(
-					'name' => '<a href="http://www.phpwind.net/thread-htm-fid-39.html">程序建议</a>',
-					'sign' => '',
-				),
-				'3' => array(
-					'name' => '<a href="http://www.phpwind.net/thread-htm-fid-54.html">问题反馈</a>',
-					'sign' => '',
-				),
 			),
 			'my' => array(
 				'0' => array(

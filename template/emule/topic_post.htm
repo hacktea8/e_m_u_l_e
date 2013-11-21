@@ -52,8 +52,8 @@
 				<hook class='$pwpost' name="createHtmlBeforeContent"/>
 				<div class="c"></div>
 				<div class="cc mb10">
-					<div class="cm">
-						<div class="cw">
+				<div class="cm">
+				<div class="cw">
 <div><img src="{$info[thum]}" id="showthum" /></div>
 <br />封面: <br />
 <input name="thum" id="J_atc_thum" value="{$info[thum]}" class="input length_6 mr15"{@!empty($isTopic) ? ' required' : ''} aria-required="true" placeholder="{@!empty($info[thum]) ? $info[thum] : '请输入封面地址'}" title="请输入封面地址" data-max="{@Wekit::C('bbs', 'title.length.max')}"/><span id="J_thum_tip"></span>

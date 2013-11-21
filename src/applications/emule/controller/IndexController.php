@@ -16,7 +16,6 @@ class IndexController extends EmuleBaseController {
    * @see wekit/wind/web/WindController::run()
    */
   public function run() {
-    $config = Wekit::C('site');
     //echo '<pre>';var_dump($config);exit;
     $this->setOutput('index', 'src');
     $this->emule->emuleIndex=$this->mem->get('emu-emuleIndexinfo');
@@ -27,9 +26,9 @@ class IndexController extends EmuleBaseController {
     Wind::import('SRV:seo.bo.PwSeoBo');
     $seoBo = PwSeoBo::getInstance();
     $lang = Wind::getComponent('i18n');
-    $title = $config["info.name"].'_让分享继续';
-    $keywords = $config["info.name"].'电驴资源,电驴资源网,电驴资源网站,电驴资源下载,电驴资源搜索,电驴资源分享,电驴下载,电骡资源,电驴 资源,电骡下载,emule 资源,电驴资源库,电驴网站,电驴搜索,ed2k';
-    $des = $config["info.name"].'是一个综合的电驴资源网站，提供包含电影、电视剧、音乐、游戏、动漫、综艺、软件、资料、图书、教育等栏目电驴资源搜索、电驴下载服务。';
+    $title = $this->siteinfo["info.name"].'_让分享继续';
+    $keywords = $this->siteinfo["info.name"].','.$this->keywords;
+    $des = $this->siteinfo["info.name"].$this->description;
     $seoBo->setCustomSeo($title, $keywords, $des);
     Wekit::setV('seo', $seoBo);
   }

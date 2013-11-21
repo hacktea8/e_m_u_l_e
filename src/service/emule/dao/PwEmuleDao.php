@@ -10,7 +10,8 @@ Wind::import('SRC:library.base.PwBaseDao');
  */
 class PwEmuleDao extends PwBaseDao {
 	protected $_table = 'emule_article';
-	protected $_dataStruct = '`id`, `cid`, `uid`, `name`, `relatdata`, `collectcount`, `keyword`, `downurl`, `vipdwurl`, `ptime`, `utime`, `intro`, `thum`, `hits`';
+	protected $_dataStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, a.`collectcount`, a.`ptime`, a.`utime`, a.`thum`, a.`hits`';
+	protected $_datatopicStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, ac.`relatdata`, a.`collectcount`, ac.`keyword`, ac.`downurl`, ac.`vipdwurl`, a.`ptime`, a.`utime`, ac.`intro`, a.`thum`, a.`hits`';
 	
 	
 	public function getEmule($aid,$uid=0,$isadmin=false) {
@@ -18,7 +19,7 @@ class PwEmuleDao extends PwBaseDao {
                 if($uid &&!$isadmin)
                    $where = sprintf(' AND `uid`=%d LIMIT 1',$uid);
 
-		$sql = $this->_bindSql('SELECT '.$this->_dataStruct.' FROM %s WHERE id = ? %s',$this->getTable($this->_table),$where);
+		$sql = $this->_bindSql('SELECT '.$this->_datatopicStruct.' FROM %s as a LEFT JOIN %s as ac ON (a.id=ac.id) WHERE a.id = ? %s',$this->getTable($this->_table),$this->getTable('emule_article_content'),$where);
 		$smt = $this->getConnection()->createStatement($sql);
 		return $smt->getOne(array($aid));
 	}
@@ -72,9 +73,9 @@ class PwEmuleDao extends PwBaseDao {
                 if($cid){
                   $cids=$this->getAllCateidsByCid($cid);
                   $cids=implode(',',$cids);
-                  $where=' AND `cid` in ('.$cids.')  ';
+                  $where=' a.`cid` in ('.$cids.')  ';
                 }
-                $sql=$this->_bindSql("SELECT a.`id`, `cid`, `uid`,c.`name` as cname,c.atotal, a.`name`, `keyword`, `description`, `ptime`, `utime`, `thum`, `hits` FROM ".$this->getTable('emule_article')." as a INNER JOIN ".$this->getTable('emule_cate')." as c WHERE a.cid=c.id %s AND a.`flag`=1 AND c.flag=1 %s LIMIT %d,$limit",$where,$order,$page);
+                $sql=$this->_bindSql("SELECT %s,c.`name` as cname,c.atotal FROM ".$this->getTable('emule_article')." as a LEFT JOIN ".$this->getTable('emule_cate')." as c ON (a.cid=c.id) WHERE %s AND a.`flag`=1 AND c.flag=1 %s LIMIT %d,$limit",$this->_dataStruct,$where,$order,$page);
                 $smt = $this->getConnection()->createStatement($sql);
                 return $smt->queryAll();
         }

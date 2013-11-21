@@ -6,6 +6,7 @@ require_once($currentpath.'/HelperError.php');
 define('APIROOT','http://css.aliyun.com/v1/api');
 define('CLIENT_ID','6100084360938795');
 define('CLIENT_SECRET','2abc67908c9c062d6da13ca10fa8ccef');
+define('INDEXNAME','emu_hacktea8');
 
 class AliyunSearchApi{
   public $api;
@@ -28,7 +29,7 @@ class AliyunSearchApi{
     }
     return true;
   }
-  public function deleteindex(){
+  public function deleteindex($indexName){
     $this->api->deleteIndex($indexName);
     return true;
   }
@@ -53,13 +54,13 @@ class AliyunSearchApi{
                    "integer_1":"100",
                    "hit_num":"88888"
 */
-  public function adddocument(&$itemsArr, $indexName = 'emu_hacktea8'){
+  public function adddocument(&$itemsArr){
     $_itemsArr=array();
     foreach($itemsArr as $val){
       array_push($_itemsArr,array("cmd"=>"add","fields" =>$val));
     }
 //var_dump($_itemsArr);exit;
-    $index = $this->api->getIndex($indexName);
+    $index = $this->api->getIndex(INDEXNAME);
     $index->addDocuments($_itemsArr);
     return "添加成功，系统需要几分钟来处理数据，请耐心等待！";
   }
@@ -68,12 +69,12 @@ class AliyunSearchApi{
     $index->deleteDocument($docId);
     return true;
   }
-  public function getdocnum($indexName){
-    $index = $api->getIndex($indexName);
+  public function getdocnum(){
+    $index = $api->getIndex(INDEXNAME);
     return $index->getTotalDocCount();
   }
-  public function geterrlog($indexName){
-    $index = $this->api->getIndex($indexName);
+  public function geterrlog(){
+    $index = $this->api->getIndex(INDEXNAME);
     return  $rs = $index->getErrorMessage(1, 20);
     $list = $rs["result"];
 
@@ -82,38 +83,33 @@ class AliyunSearchApi{
   public function getlistindexs(){
     return $rs = $this->api->listIndexes();
   }
-  public function getsearch($type=0,&$result,$param){
-    $index = $api->getIndex($indexName);
+  public function getsearch(&$result, $type = '', $param = array()){
+    $index = $this->api->getIndex(INDEXNAME);
     switch($type){
-       case 0:$result=$index->search('q='.$param['kw']);
-       break;
 /*
-$index->search(
-                     'cq=title:战',
-                     1,
-                     6,
-                     array("-create_timestamp"),
-                    "cat_id=3 AND hit_num>8000",
-                    array("facet_key"=>"type_id",
-               "facet_fun"=>"sum(hit_num)#max(hit_num)#min(hit_num)#count()"),
-                    "title;body");
+$query,$indexArr=array(),$page = NULL, $pageSize = NULL, $sort = NULL,
+        $filter = NULL, $fetchFields = NULL,$raw_query=NULL
 */
        case 1:$result=$index->search(
                      'cq='.$param['kw'],
-                     1,
-                     6,
+                     $param['page'],
+                     $param['page_size'],
                      $param['sort'],
                      $param['filter'],
                      $param['facet_key'],
                      $param['facet_fun'],
                      $param['fetch_fields']);
        break;
-       case 2:$result=$api->search('q='.$param['kw'],$param['indexArr'],
+//多索引合并搜索
+       case 2:$result=$this->api->search('q='.$param['kw'],$param['indexArr'],
               '2',10,null,"","");
        break;
        default:
+       $kw = sprintf('q=%s',$param['kw']);
+       $result=$index->search($kw,$param['page'],$param['page_size']);
        
     }
+    return true;
   }
   public function printmsg(){
     return $this->msg;

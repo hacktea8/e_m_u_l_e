@@ -53,8 +53,10 @@ list-style-type: none;
 #nav_div .small a.four:hover{ width:62px; color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon4.gif) no-repeat;}
 #nav_div .small a.three{width:48px; }
 #nav_div .small a.three:hover,#nav_div .small a.active{width:48px;color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon3.gif) no-repeat;}
-    </style>
-
+.lazy {display: none;}
+</style>
+<script type="text/javascript" src="{@theme:js}/jquery-2.0.2.min.js" ></script>
+<script type="text/javascript" src="{@theme:js}/jquery.lazyload.min.js" ></script>
 <div class="mainDiv" id="index_body_mainDiv">
 	<div id="nav_div" style="">
 	<ul id="header_ul_big" class="ul big">
@@ -66,19 +68,19 @@ list-style-type: none;
 } #-->
 	</ul>
 	<ul class="ul small">
-		<li><a href="http://www.verycd.com/sto/music/" onclick="VeryCD.Track('/stat/baseMusic/');">音乐</a></li>
-		<li><a class="on" href="http://www.verycd.com/sto/book/" onclick="VeryCD.Track('/stat/baseBook/');">图书</a></li>
-		<li><a href="http://www.verycd.com/sto/software/" onclick="VeryCD.Track('/stat/baseSoftware/');">软件</a></li>
-		<li><a href="http://www.verycd.com/sto/datum/" onclick="VeryCD.Track('/stat/baseDatum/');">资料</a></li>
-		<li><a href="http://www.verycd.com/sto/edu/" onclick="VeryCD.Track('/stat/baseEdu/');">教育</a></li>
-		<li><a href="http://www.verycd.com/yule/" onclick="VeryCD.Track('/stat/baseYule/');">娱乐</a></li>
-		<li><a class="four" target="_blank" href="http://www.verycd.com/theater/" onclick="VeryCD.Track('/stat/baseTheater/');">观影指南</a></li>
-		<li><a class="three" href="http://www.verycd.com/base/timetable/" onclick="VeryCD.Track('/stat/baseTimetable/');">排片表</a></li>
-        <li><a href="http://www.verycd.com/top/" onclick="VeryCD.Track('/stat/baseTop/');">驴榜</a></li>
+		<li><a href="/sto/music/" onclick="VeryCD.Track('/stat/baseMusic/');">音乐</a></li>
+		<li><a class="on" href="/sto/book/" onclick="VeryCD.Track('/stat/baseBook/');">图书</a></li>
+		<li><a href="/sto/software/" onclick="VeryCD.Track('/stat/baseSoftware/');">软件</a></li>
+		<li><a href="/sto/datum/" onclick="VeryCD.Track('/stat/baseDatum/');">资料</a></li>
+		<li><a href="/sto/edu/" onclick="VeryCD.Track('/stat/baseEdu/');">教育</a></li>
+		<li><a href="/yule/" onclick="VeryCD.Track('/stat/baseYule/');">娱乐</a></li>
+		<li><a class="four" target="_blank" href="/theater/" onclick="VeryCD.Track('/stat/baseTheater/');">观影指南</a></li>
+		<li><a class="three" href="/base/timetable/" onclick="VeryCD.Track('/stat/baseTimetable/');">排片表</a></li>
+        <li><a href="/top/" onclick="VeryCD.Track('/stat/baseTop/');">驴榜</a></li>
 	</ul>
 
 	<div class="more" style="font-size:12px;">
-        <a href="http://www.verycd.com/archives/" onclick="VeryCD.Track('/stat/baseArchives/')">更新列表»</a>
+        <a href="/archives/" onclick="VeryCD.Track('/stat/baseArchives/')">更新列表»</a>
     </div>
 	</div>
 </div>
@@ -97,3 +99,12 @@ list-style-type: none;
 
     
 </h2><br>
+<script type="text/javascript">
+$(document).ready(function(){
+$("img.lazy").show().lazyload({ 
+    effect : "fadeIn",
+   // placeholder : "img/grey.gif",
+    threshold : 60
+});
+});
+</script>

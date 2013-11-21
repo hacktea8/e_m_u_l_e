@@ -57,20 +57,18 @@ if ($loginUser->isExists()) {
 };
 </script>
 <script src="<?php echo htmlspecialchars(Wind::getComponent('response')->getData('G','url','js'), ENT_QUOTES, 'UTF-8');?>/wind.js?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>"></script>
+<script src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/js'; ?>/jquery-2.0.2.min.js?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>"></script>
 <?php
 PwHook::display(array(PwSimpleHook::getInstance("head"), "runDo"), array(), "", $__viewer);
 ?>
 
 <link href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/css'.Wekit::getGlobal('theme','debug'); ?>/style.css?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>" rel="stylesheet" />
 <link href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/css'.Wekit::getGlobal('theme','debug'); ?>/topbar_0.css?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>" rel="stylesheet" />
-<script type="text/javascript" src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/js'; ?>/jquery-2.0.2.min.js" ></script>
 <style>
 .aPre{
         cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/pre.cur),auto;
 }
-.aNext{
-        cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/next.cur),auto;right:0;
-}
+.aNext{cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/next.cur),auto;right:0;}
 #index_body #index_body_mainDiv{margin:80px 0 10px}
 </style>
 </head>
@@ -311,8 +309,10 @@ list-style-type: none;
 #nav_div .small a.four:hover{ width:62px; color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon4.gif) no-repeat;}
 #nav_div .small a.three{width:48px; }
 #nav_div .small a.three:hover,#nav_div .small a.active{width:48px;color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon3.gif) no-repeat;}
-    </style>
-
+.lazy {display: none;}
+</style>
+<script type="text/javascript" src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/js'; ?>/jquery-2.0.2.min.js" ></script>
+<script type="text/javascript" src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/js'; ?>/jquery.lazyload.min.js" ></script>
 <div class="mainDiv" id="index_body_mainDiv">
 	<div id="nav_div" style="">
 	<ul id="header_ul_big" class="ul big">
@@ -324,19 +324,19 @@ list-style-type: none;
 } ?>
 	</ul>
 	<ul class="ul small">
-		<li><a href="http://www.verycd.com/sto/music/" onclick="VeryCD.Track('/stat/baseMusic/');">音乐</a></li>
-		<li><a class="on" href="http://www.verycd.com/sto/book/" onclick="VeryCD.Track('/stat/baseBook/');">图书</a></li>
-		<li><a href="http://www.verycd.com/sto/software/" onclick="VeryCD.Track('/stat/baseSoftware/');">软件</a></li>
-		<li><a href="http://www.verycd.com/sto/datum/" onclick="VeryCD.Track('/stat/baseDatum/');">资料</a></li>
-		<li><a href="http://www.verycd.com/sto/edu/" onclick="VeryCD.Track('/stat/baseEdu/');">教育</a></li>
-		<li><a href="http://www.verycd.com/yule/" onclick="VeryCD.Track('/stat/baseYule/');">娱乐</a></li>
-		<li><a class="four" target="_blank" href="http://www.verycd.com/theater/" onclick="VeryCD.Track('/stat/baseTheater/');">观影指南</a></li>
-		<li><a class="three" href="http://www.verycd.com/base/timetable/" onclick="VeryCD.Track('/stat/baseTimetable/');">排片表</a></li>
-        <li><a href="http://www.verycd.com/top/" onclick="VeryCD.Track('/stat/baseTop/');">驴榜</a></li>
+		<li><a href="/sto/music/" onclick="VeryCD.Track('/stat/baseMusic/');">音乐</a></li>
+		<li><a class="on" href="/sto/book/" onclick="VeryCD.Track('/stat/baseBook/');">图书</a></li>
+		<li><a href="/sto/software/" onclick="VeryCD.Track('/stat/baseSoftware/');">软件</a></li>
+		<li><a href="/sto/datum/" onclick="VeryCD.Track('/stat/baseDatum/');">资料</a></li>
+		<li><a href="/sto/edu/" onclick="VeryCD.Track('/stat/baseEdu/');">教育</a></li>
+		<li><a href="/yule/" onclick="VeryCD.Track('/stat/baseYule/');">娱乐</a></li>
+		<li><a class="four" target="_blank" href="/theater/" onclick="VeryCD.Track('/stat/baseTheater/');">观影指南</a></li>
+		<li><a class="three" href="/base/timetable/" onclick="VeryCD.Track('/stat/baseTimetable/');">排片表</a></li>
+        <li><a href="/top/" onclick="VeryCD.Track('/stat/baseTop/');">驴榜</a></li>
 	</ul>
 
 	<div class="more" style="font-size:12px;">
-        <a href="http://www.verycd.com/archives/" onclick="VeryCD.Track('/stat/baseArchives/')">更新列表»</a>
+        <a href="/archives/" onclick="VeryCD.Track('/stat/baseArchives/')">更新列表»</a>
     </div>
 	</div>
 </div>
@@ -355,6 +355,15 @@ list-style-type: none;
 
     
 </h2><br>
+<script type="text/javascript">
+$(document).ready(function(){
+$("img.lazy").show().lazyload({ 
+    effect : "fadeIn",
+   // placeholder : "img/grey.gif",
+    threshold : 60
+});
+});
+</script>
 
 
 <div id="top_ad" style="margin: 0 0 10px 0"></div>
@@ -400,9 +409,9 @@ foreach($emuleIndex['new'] as $row){
 ?>
 	<li class="list">
 	<div class="cover_3"><a
-		href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" target="_blank" onclick=""> <img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px" name="lazyload"
-		alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>"> </a></div>
+		href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" target="_blank" onclick=""><img class="lazy"  data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /></noscript></a></div>
 	<div class="cv_title">
 	<ul>
 		<li class="strong"><a
@@ -423,9 +432,9 @@ foreach($emuleIndex['rand'] as $row){
 ?>
 	<li class="list">
 	<div class="cover_3"><a
-		href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" target="_blank" onclick=""> <img style="width: 100px; height: 100px" src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>"
-		alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>"> </a></div>
+		href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" target="_blank" onclick=""><img class="lazy"  data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /></noscript></a></div>
 	<div class="cv_title">
 	<ul>
 		<li class="strong"><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onclick=""
@@ -445,9 +454,9 @@ foreach($emuleIndex['hot'] as $row){
 ?>
 	<li class="list">
 	<div class="cover_3"><a
-		href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" target="_blank" onclick=""> <img style="width: 100px; height: 100px" src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>"
-		alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>"> </a></div>
+		href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" target="_blank" onclick=""><img class="lazy"  data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /></noscript></a></div>
 	<div class="cv_title">
 	<ul>
 		<li class="strong"><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onclick=""
@@ -499,11 +508,9 @@ foreach($list['list'] as $k=>$row){
 	</div>
 	<div class="list_main clearfix">
 	<div class="li_img">
-	<div class="entry_cover  show_play"><!--[if IE 6]><span class="spacer" style="width:54px;height:74px;"></span><![endif]--><img
-		width="" height="" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>"
-		src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>"
-		class="cover_img">
+	<div class="entry_cover  show_play"><!--[if IE 6]><span class="spacer" style="width:54px;height:74px;"></span><![endif]--><img class="lazy cover_img"  data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="cover_img" /></noscript>
 	<div class="play_ico_small"></div>
 	</div>
 	</div>
@@ -570,11 +577,9 @@ foreach($v as $k=>$row){
 	<li class="list">
 	<div class="cover_3"><a
 		href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" target="_blank"
-		onclick=""> <img
-		src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>"
-		style="width: 100px; height: 100px" name="lazyload"
-		alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>"> </a></div>
+		onclick=""><img class="lazy"  data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /></noscript></a></div>
 	<div class="cv_title">
 	<ul>
 		<li class="strong"><a
@@ -647,7 +652,7 @@ foreach($value['rand'] as $key=>$row){
  echo $value['name'];
   } ?>
 		</div>
-		<p>Powered by <a href="http://www.phpwind.net/" target="_blank" rel="nofollow">phpwind v<?php echo htmlspecialchars(NEXT_VERSION, ENT_QUOTES, 'UTF-8');?></a> &copy;2003-2103 <a href="http://www.phpwind.com" target="_blank" rel="nofollow">phpwind.com</a> <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow"><?php echo htmlspecialchars(Wekit::C('site','info.icp'), ENT_QUOTES, 'UTF-8');?></a></p>
+		<p>Powered by <a href="#" target="_blank" rel="nofollow">phpwind v<?php echo htmlspecialchars(NEXT_VERSION, ENT_QUOTES, 'UTF-8');?></a> &copy;2013-<?php  echo date('Y'); ?> <a href="#" target="_blank" rel="nofollow">phpwind.com</a> <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow"><?php echo htmlspecialchars(Wekit::C('site','info.icp'), ENT_QUOTES, 'UTF-8');?></a></p>
 		<p><?php echo Wekit::C('site','statisticscode');?></p>
 	</div>
 	 
@@ -658,6 +663,11 @@ foreach($value['rand'] as $key=>$row){
 PwHook::display(array(PwSimpleHook::getInstance("footer"), "runDo"), array(), "", $__viewer);
 ?>
 </div>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F268a910d12a04866f4f834ce95825591' type='text/javascript'%3E%3C/script%3E"));
+</script>
 
 <!--返回顶部-->
 <a href="#" rel="nofollow" role="button" id="back_top" tabindex="-1">返回顶部</a>

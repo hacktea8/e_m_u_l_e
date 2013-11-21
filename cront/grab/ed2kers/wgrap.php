@@ -21,6 +21,9 @@ getinfodetail($ainfo);
 
 //getAllcate();
 
+/*============== 实时更新 =======================*/
+getCatearticle(0);
+exit;
 /*============ Get Cate article =================*/
 $res='excres.txt';
 $lastgrab=basename(__FILE__);

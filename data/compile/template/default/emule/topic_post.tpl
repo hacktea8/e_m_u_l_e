@@ -290,8 +290,8 @@ PwHook::display(array($pwpost, "runDo"), array('createHtmlBeforeContent'), "", $
 ?>
 				<div class="c"></div>
 				<div class="cc mb10">
-					<div class="cm">
-						<div class="cw">
+				<div class="cm">
+				<div class="cw">
 <div><img src="<?php echo htmlspecialchars($info[thum], ENT_QUOTES, 'UTF-8');?>" id="showthum" /></div>
 <br />封面: <br />
 <input name="thum" id="J_atc_thum" value="<?php echo htmlspecialchars($info[thum], ENT_QUOTES, 'UTF-8');?>" class="input length_6 mr15"<?php echo htmlspecialchars(!empty($isTopic) ? ' required' : '', ENT_QUOTES, 'UTF-8');?> aria-required="true" placeholder="<?php echo htmlspecialchars(!empty($info[thum]) ? $info[thum] : '请输入封面地址', ENT_QUOTES, 'UTF-8');?>" title="请输入封面地址" data-max="<?php echo htmlspecialchars(Wekit::C('bbs', 'title.length.max'), ENT_QUOTES, 'UTF-8');?>"/><span id="J_thum_tip"></span>

@@ -64,9 +64,7 @@ PwHook::display(array(PwSimpleHook::getInstance("head"), "runDo"), array(), "", 
 
 <link href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/css'.Wekit::getGlobal('theme','debug'); ?>/style.css?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>" rel="stylesheet" />
 <style>
-.aPre{
-   cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/pre.cur),auto;
-}
+.aPre{cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/pre.cur),auto;}
 .aNext{
    cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/next.cur),auto;right:0;
 }
@@ -562,11 +560,6 @@ list-style-type: none;
 }
 </style>
 
-
-
-<link rel="alternate" href="http://www.verycd.com/topics/2959853/feed" type="application/rss+xml" title="Syndicate this page with RSS">
-
-
 <div id="wrap">
 <?php if ($site_info_notice = Wekit::C('site','info.notice')) {?>
 <style>.header_wrap{top:29px;}body{padding-top:75px;}</style><div id="notice"><?php echo htmlspecialchars($site_info_notice, ENT_QUOTES, 'UTF-8');?></div>
@@ -800,8 +793,10 @@ list-style-type: none;
 #nav_div .small a.four:hover{ width:62px; color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon4.gif) no-repeat;}
 #nav_div .small a.three{width:48px; }
 #nav_div .small a.three:hover,#nav_div .small a.active{width:48px;color:#fff;background:url(http://v4.vcimg.com/global/images/global_bar_icon3.gif) no-repeat;}
-    </style>
-
+.lazy {display: none;}
+</style>
+<script type="text/javascript" src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/js'; ?>/jquery-2.0.2.min.js" ></script>
+<script type="text/javascript" src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/js'; ?>/jquery.lazyload.min.js" ></script>
 <div class="mainDiv" id="index_body_mainDiv">
 	<div id="nav_div" style="">
 	<ul id="header_ul_big" class="ul big">
@@ -813,19 +808,19 @@ list-style-type: none;
 } ?>
 	</ul>
 	<ul class="ul small">
-		<li><a href="http://www.verycd.com/sto/music/" onclick="VeryCD.Track('/stat/baseMusic/');">音乐</a></li>
-		<li><a class="on" href="http://www.verycd.com/sto/book/" onclick="VeryCD.Track('/stat/baseBook/');">图书</a></li>
-		<li><a href="http://www.verycd.com/sto/software/" onclick="VeryCD.Track('/stat/baseSoftware/');">软件</a></li>
-		<li><a href="http://www.verycd.com/sto/datum/" onclick="VeryCD.Track('/stat/baseDatum/');">资料</a></li>
-		<li><a href="http://www.verycd.com/sto/edu/" onclick="VeryCD.Track('/stat/baseEdu/');">教育</a></li>
-		<li><a href="http://www.verycd.com/yule/" onclick="VeryCD.Track('/stat/baseYule/');">娱乐</a></li>
-		<li><a class="four" target="_blank" href="http://www.verycd.com/theater/" onclick="VeryCD.Track('/stat/baseTheater/');">观影指南</a></li>
-		<li><a class="three" href="http://www.verycd.com/base/timetable/" onclick="VeryCD.Track('/stat/baseTimetable/');">排片表</a></li>
-        <li><a href="http://www.verycd.com/top/" onclick="VeryCD.Track('/stat/baseTop/');">驴榜</a></li>
+		<li><a href="/sto/music/" onclick="VeryCD.Track('/stat/baseMusic/');">音乐</a></li>
+		<li><a class="on" href="/sto/book/" onclick="VeryCD.Track('/stat/baseBook/');">图书</a></li>
+		<li><a href="/sto/software/" onclick="VeryCD.Track('/stat/baseSoftware/');">软件</a></li>
+		<li><a href="/sto/datum/" onclick="VeryCD.Track('/stat/baseDatum/');">资料</a></li>
+		<li><a href="/sto/edu/" onclick="VeryCD.Track('/stat/baseEdu/');">教育</a></li>
+		<li><a href="/yule/" onclick="VeryCD.Track('/stat/baseYule/');">娱乐</a></li>
+		<li><a class="four" target="_blank" href="/theater/" onclick="VeryCD.Track('/stat/baseTheater/');">观影指南</a></li>
+		<li><a class="three" href="/base/timetable/" onclick="VeryCD.Track('/stat/baseTimetable/');">排片表</a></li>
+        <li><a href="/top/" onclick="VeryCD.Track('/stat/baseTop/');">驴榜</a></li>
 	</ul>
 
 	<div class="more" style="font-size:12px;">
-        <a href="http://www.verycd.com/archives/" onclick="VeryCD.Track('/stat/baseArchives/')">更新列表»</a>
+        <a href="/archives/" onclick="VeryCD.Track('/stat/baseArchives/')">更新列表»</a>
     </div>
 	</div>
 </div>
@@ -844,6 +839,15 @@ list-style-type: none;
 
     
 </h2><br>
+<script type="text/javascript">
+$(document).ready(function(){
+$("img.lazy").show().lazyload({ 
+    effect : "fadeIn",
+   // placeholder : "img/grey.gif",
+    threshold : 60
+});
+});
+</script>
 
     <div id="content" style="width:730px">
         <div id="favBox" class="glassbox" style="display:none">
@@ -1016,8 +1020,9 @@ if($key%5==0){
 }
 ?>	   	            			<td>
 <a title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="folder-entry-title" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick="" target="_blank">
-<img class="folder-entry-thumb" src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>"></a>
+<img class="lazy folder-entry-thumb"  data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="folder-entry-thumb" /></noscript></a>
 <a title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="folder-entry-title" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick="" target="_blank"><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?></a>
 			</td>
 <?php 
@@ -1090,8 +1095,9 @@ foreach($info['relatdata'] as $row){
 ?>
                        	<p class="itshot">
 			<a class="relatelink" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick="" target="_blank">
-           <img title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" class="hot_img" height="100" width="100"></a>
+           <img class="lazy hot_img"  data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="hot_img" /></noscript></a>
 			 <a title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="topic-title" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick="" target="_blank"><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?></a>
 </p>
 <?php 
@@ -1103,8 +1109,9 @@ foreach($info['relatdata'] as $row){
 foreach($hotTopic as $row){
 ?>
 <dd class="itshot">
-<a id="entry_link_2960900" title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic'; ?>&aid=<?php echo htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8');?>" onClick="" target="_blank" style="text-decoration:none;"><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="img" class="hot_img" style="display:inline;" height="100" width="100">
+<a id="entry_link_2960900" title="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic'; ?>&aid=<?php echo htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8');?>" onClick="" target="_blank" style="text-decoration:none;"><img class="lazy hot_img"  data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px;display:inline;" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="hot_img" /></noscript>
                         <div id="entry_2960900" style="display:none;" class="entry_score_small"></div>
                         </a>
                         <br>

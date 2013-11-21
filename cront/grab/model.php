@@ -8,6 +8,15 @@ class Model{
     $this->db=new DB_MYSQL();
   }
 
+  function getCateBycid($cid){
+    if(!$cid){
+      return false;
+    }
+    $sql=sprintf('SELECT * FROM %s WHERE `flag`=1 AND `id`=%d LIMIT 1',$this->db->getTable('emule_cate'),$cid);
+    $res=$this->db->row_array($sql);
+     return $res;
+  }
+
   function getsubcatelist(){
     $sql=sprintf('SELECT `id`, `pid`, `name`,`url` FROM %s WHERE `flag`=1 AND `pid`>0',$this->db->getTable('emule_cate'));
     $res=$this->db->result_array($sql);
@@ -98,7 +107,24 @@ class Model{
     if(!$data){
        return false;
     }
+    $contents = array();
+    $contents['downurl'] = $data['downurl'];
+    unset($data['downurl']);
+    $contents['intro'] = $data['intro'];
+    $contents['keyword'] = '0';
+    $contents['relatdata'] = '0';
+    unset($data['intro']);
+    unset($data['oid']);
+    unset($data['keyword']);
+    unset($data['description']);
     $sql=$this->db->insert_string($this->db->getTable('emule_article'),$data);
+    $this->db->query($sql);
+    $id = $this->db->insert_id();
+    if(!$id){
+       return false;
+    }
+    $contents['id'] = $id;
+    $sql=$this->db->insert_string($this->db->getTable('emule_article_content'),$contents);
     $this->db->query($sql);
     return $this->checkArticleByOname($data['name']);
   }

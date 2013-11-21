@@ -4,9 +4,7 @@
 <template source='TPL:common.head' load='true' />
 <link href="{@theme:css}/style.css?v={@NEXT_RELEASE}" rel="stylesheet" />
 <style>
-.aPre{
-   cursor:url({@theme:site.images}/common/pre.cur),auto;
-}
+.aPre{cursor:url({@theme:site.images}/common/pre.cur),auto;}
 .aNext{
    cursor:url({@theme:site.images}/common/next.cur),auto;right:0;
 }
@@ -502,11 +500,6 @@ list-style-type: none;
 }
 </style>
 
-
-
-<link rel="alternate" href="http://www.verycd.com/topics/2959853/feed" type="application/rss+xml" title="Syndicate this page with RSS">
-
-
 <div id="wrap">
 <template source='TPL:common.header' load='true' />
 <template source='TPL:emule.common.nav' load='true' />
@@ -680,7 +673,7 @@ if($key%5==0){
 }
 #-->	   	            			<td>
 <a title="{$row['name']}" class="folder-entry-title" href="{@url:emule/topic/run?aid=$row['id']}" onClick="" target="_blank">
-<img class="folder-entry-thumb" src="{$thumhost}{$row['thum']}"></a>
+<img class="lazy folder-entry-thumb"  data-original="{$thumhost}{$row['thum']}" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="folder-entry-thumb" /></noscript></a>
 <a title="{$row['name']}" class="folder-entry-title" href="{@url:emule/topic/run?aid=$row['id']}" onClick="" target="_blank">{$row['name']}</a>
 			</td>
 <!--#
@@ -753,7 +746,7 @@ foreach($info['relatdata'] as $row){
 #-->
                        	<p class="itshot">
 			<a class="relatelink" href="{@url:emule/topic/run?aid=$row['id']}" onClick="" target="_blank">
-           <img title="{$row['name']}" src="{$thumhost}{$row['thum']}" class="hot_img" height="100" width="100"></a>
+           <img class="lazy hot_img"  data-original="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="hot_img" /></noscript></a>
 			 <a title="{$row['name']}" class="topic-title" href="{@url:emule/topic/run?aid=$row['id']}" onClick="" target="_blank">{$row['name']}</a>
 </p>
 <!--#
@@ -765,7 +758,7 @@ foreach($info['relatdata'] as $row){
 foreach($hotTopic as $row){
 #-->
 <dd class="itshot">
-<a id="entry_link_2960900" title="{$row['name']}" href="{@url:emule/topic/run}&aid={$row['id']}" onClick="" target="_blank" style="text-decoration:none;"><img src="{$thumhost}{$row['thum']}" alt="img" class="hot_img" style="display:inline;" height="100" width="100">
+<a id="entry_link_2960900" title="{$row['name']}" href="{@url:emule/topic/run}&aid={$row['id']}" onClick="" target="_blank" style="text-decoration:none;"><img class="lazy hot_img"  data-original="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px;display:inline;" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="hot_img" /></noscript>
                         <div id="entry_2960900" style="display:none;" class="entry_score_small"></div>
                         </a>
                         <br>
