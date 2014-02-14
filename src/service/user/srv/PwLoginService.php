@@ -50,6 +50,18 @@ class PwLoginService extends PwBaseHookService {
 		if (($result = $this->runWithVerified('afterLogin', $info)) instanceof PwError) return $result;
 		return $info;
 	}
+        public function setLoginInfo($info = ''){
+                Wind::import("SRV:user.srv.PwTryPwdBp");
+                $pwdBp = new PwTryPwdBp();
+                $info = $pwdBp->setLoginInfo($info);
+                return $info;
+        } 
+        public function loginError($type = 0, $param = array()){
+                Wind::import("SRV:user.srv.PwTryPwdBp");
+                $pwdBp = new PwTryPwdBp();
+                $info = $pwdBp->loginErrorType($type, $param);
+                return $info;
+        }
 	
 	/**
 	 * 登录检查输入

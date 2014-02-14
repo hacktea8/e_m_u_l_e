@@ -3,6 +3,7 @@
 	<hook name="header_info_3"/><a rel="nofollow" href="{@url:u/login/run}">登录</a><a rel="nofollow" href="{@url:u/register/run}">注册</a>
 </div>
 <!--# } else {
+if(0){
 	if ($pwforum && $pwforum->isForum()) {
 		$_tmpfid = $pwforum->fid;
 		$_tmpcid = $pwforum->getCateId();
@@ -30,6 +31,8 @@
 		</div>
 	</div>
 	<!--#
+} 
+
 		$messageCount = $loginUser->info['notices'] + $loginUser->info['messages'];
 		$messageClass = $messageCount ? 'header_message' : 'header_message header_message_none';
 	#-->

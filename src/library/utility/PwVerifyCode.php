@@ -143,4 +143,3 @@ class PwVerifyCode {
 		$session->set('verifycode', $code);*/
 	}
 }
-?>

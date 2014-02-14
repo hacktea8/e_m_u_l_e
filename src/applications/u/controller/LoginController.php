@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Shanghai');//此句用于消除时间差
 Wind::import('SRV:user.PwUser');
 Wind::import('SRV:user.srv.PwLoginService');
 Wind::import('APPS:u.service.helper.PwUserHelper');
@@ -13,7 +14,9 @@ Wind::import('APPS:u.service.helper.PwUserHelper');
  * @package products.u.controller
  */
 class LoginController extends PwBaseController {
-	
+        protected $login_send_sec_key = 'hacktea8userinfo';
+        protected $login_recv_sec_key = 'hacktea8userlogin';
+        protected $loginurl = 'http://bbs.hacktea8.com/pw_userapi.php';	
 	/*
 	 * (non-PHPdoc) @see PwBaseController::beforeAction()
 	 */
@@ -69,6 +72,82 @@ class LoginController extends PwBaseController {
 		$this->setOutput(PwUserHelper::getLoginMessage(), 'loginWay');
 		$this->setTemplate('login_fast');
 	}
+ 
+        protected function getSecode($k='',$mode=1){
+                $str='';
+                $end=32;
+                $key=$k?$k:$this->login_send_sec_key;
+                $spool='1234567890qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAMNBVCXZ!@#%&*-_+=,~`.,;';
+                if($mode){
+                    $t=date('YmdHm');
+                    $str=md5(md5($t).md5($key));
+                    $str=substr($str,6,16).substr(md5($spool),4,16);
+
+                }else{
+
+                    $len=strlen($spool)-1;
+                    for($i=0;$i<$end;$i++){
+                       $str.=$spool[mt_rand(0,$len)];
+                    }
+                $str=md5($str).md5($key);
+                }
+                return $str;
+        }
+
+        protected function getHtml($param){
+         //open connection  
+         $ch = curl_init() ;
+         //set the url, number of POST vars, POST data  
+         curl_setopt($ch, CURLOPT_URL,$param['url']) ;
+         unset($param['url']);
+         curl_setopt($ch, CURLOPT_POST,count($param)) ; // 启用时会发送一>个常规的POST请求，类型为：application/x-www-form-urlencoded，就像表单提交>的一样。  
+         curl_setopt($ch, CURLOPT_POSTFIELDS,$param); // 在HTTP中的“POST”>操作。如果要传送一个文件，需要一个@开头的文件名  
+         //curl_setopt($ch,CURLOPT_PROTOCOLS,CURLPROTO_HTTPS);
+         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+         $html=curl_exec($ch);
+         if($html===false){
+                echo 'Curl error: ' . curl_error($ch);
+         }
+
+         //close connection  
+         curl_close($ch) ;
+         return $html;
+       }
+
+        protected function checkLoginApi($row = array()){
+                $seq=substr($this->getSecode(),0,16);
+                //echo $seq;exit;
+                $row['logintype']=0;
+                $param=array(
+                   'url'=>$this->loginurl,
+                   'uname'=>iconv('UTF-8', 'GBK', trim($row['email_name'])),
+                   'upwd'=>md5(trim($row['pass'])),
+                   'logintype'=>$row['logintype'],
+                   'seq'=>$seq,
+                   'action'=>'login'
+                );
+                $html=$this->getHtml($param);
+                //var_dump($param);exit;
+               // var_dump($html);echo substr($this->getSecode(),0,16);exit;
+                $html=json_decode($html,1);
+                $oseq=substr($html['seq'],0,16);
+                $code=$this->login_recv_sec_key;
+                $seq=substr($this->getSecode($code),0,16);
+                if($oseq==$seq){
+return $html;
+                    unset($html['seq']);
+                    unset($html['safecv']);
+                    unset($html['synlogin']);
+                    $html['groups']=trim($html['groups'],',');
+                    if(empty($html['groups'])){
+                       $html['groups']=array();
+                    }else{
+                       $html['groups']=explode(',',$html['groups']);
+                    }
+                    return $html;
+                }
+                return false;
+        }
 
 	/**
 	 * 页面登录
@@ -92,10 +171,26 @@ class LoginController extends PwBaseController {
 		$login = new PwLoginService();
 		$this->runHook('c_login_dorun', $login);
 		
-		$isSuccess = $login->login($userForm['username'], $userForm['password'], $this->getRequest()->getClientIp(), $question, $userForm['answer']);
+		//$isSuccess = $login->login($userForm['username'], $userForm['password'], $this->getRequest()->getClientIp(), $question, $userForm['answer']);
+                $isSuccess = $this->checkLoginApi(array('email_name' => $userForm['username'], 'pass' => $userForm['password']));
+                
+                if(isset($isSuccess['uid'])){
+                   unset($isSuccess['safecv']);
+                   $info = $isSuccess;
+                   unset($info['synlogin']);
+                   unset($info['seq']);
+                   $info['memberid'] = 9;
+                   $info['status'] = 0;
+                   $info['password'] = time();
+                   $login->setLoginInfo($info);
+                }else{
+                   $isSuccess = $login->loginError();
+                } 
+//                var_dump($isSuccess);exit;
 		if ($isSuccess instanceof PwError) {
 			$this->showError($isSuccess->getError());
 		}
+                
 		$config = Wekit::C('site');
 		if ($config['windid'] != 'local') {
 			$localUser = $this->_getUserDs()->getUserByUid($isSuccess['uid'], PwUser::FETCH_MAIN); 
@@ -334,6 +429,10 @@ class LoginController extends PwBaseController {
 	public function checknameAction() {
 		$login = new PwLoginService();
 		$info = $login->checkInput($this->getInput('username'));
+                $info = array(
+                "uid"=> "1" ,"username"=> "admin" ,"email"=> "emule@hacktea8.com" ,"safecv"=> "" ,"regdate"=> "1379511518","regip"=> "60.176.86.232"
+                );
+//var_dump($info);exit;
 		if (!$info) $this->showError('USER:user.error.-14');
 		if (!empty($info['safecv'])) {
 			Wind::import('SRV:user.srv.PwRegisterService');

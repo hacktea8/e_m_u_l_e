@@ -13,6 +13,7 @@ Wind::import('SRV:emule.bo.PwEmuleModel');
  * @package 
  */
 class EmuleBaseController extends PwBaseController {
+        public $showimgapi = 'http://img.hacktea8.com/showpic.php?key=';
 	public $postion = array();
 	public $emule = '';
         protected $mem = '';
@@ -58,6 +59,8 @@ class EmuleBaseController extends PwBaseController {
     $this->redis=new PwBaseRediscache();
     $this->checkadmin();
     $this->siteinfo = Wekit::C('site');
+    $this->setOutput($this->showimgapi, 'showimgapi');
+    $this->setOutput($this->showimgapi.'3958009_0000671092.jpg', 'error_img');
   }
 
 	
@@ -124,6 +127,11 @@ class EmuleBaseController extends PwBaseController {
                 }
                 $this->loginUser->isadmin = false;
                 return false;
-       }	
+       }
+       protected function checkVerify(){
+                $root = dirname(__FILE__);
+                echo $root;exit;require_once $root.'/Verify/YinXiangMaLibConfig.php';
+                
+       }
 }
 ?>

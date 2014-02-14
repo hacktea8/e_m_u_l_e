@@ -84,7 +84,7 @@ class PwUserInfoDao extends PwBaseDao {
 	 * @return int
 	 */
 	public function addUser($fields) {
-		if (!$this->getBaseInstance()->addUser($fields)) return false;
+		if ($this->getBaseInstance()->addUser($fields)) return false;
 		$this->_add($fields, false);
 		return true;
 	}

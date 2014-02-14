@@ -57,6 +57,7 @@ if ($loginUser->isExists()) {
 };
 </script>
 <script src="<?php echo htmlspecialchars(Wind::getComponent('response')->getData('G','url','js'), ENT_QUOTES, 'UTF-8');?>/wind.js?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>"></script>
+<script src="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/js'; ?>/jquery-2.0.2.min.js?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>"></script>
 <?php
 PwHook::display(array(PwSimpleHook::getInstance("head"), "runDo"), array(), "", $__viewer);
 ?>
@@ -107,8 +108,8 @@ PwHook::display(array(PwSimpleHook::getInstance("head"), "runDo"), array(), "", 
 PwHook::display(array(PwSimpleHook::getInstance("header_nav"), "runDo"), array(), "", $__viewer);
 ?>
 		<div class="header_search" role="search">
-			<form action="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=search&c=s'; ?>" method="post">
-				<input type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="搜索其实很简单" x-webkit-speech speech name="keyword"/>
+			<form action="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=list&a=search'; ?>" method="post">
+				<input type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="搜索其实很简单" x-webkit-speech speech name="q"/>
 				<button type="submit" aria-label="搜索"><span>搜索</span></button>
 			<input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/></form>
 		</div>
@@ -119,6 +120,7 @@ PwHook::display(array(PwSimpleHook::getInstance("header_info_3"), "runDo"), arra
 ?><a rel="nofollow" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=login'; ?>">登录</a><a rel="nofollow" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=register'; ?>">注册</a>
 </div>
 <?php  } else {
+if(0){
 	if ($pwforum && $pwforum->isForum()) {
 		$_tmpfid = $pwforum->fid;
 		$_tmpcid = $pwforum->getCateId();
@@ -146,6 +148,8 @@ PwHook::display(array(PwSimpleHook::getInstance("header_info_3"), "runDo"), arra
 		</div>
 	</div>
 	<?php 
+} 
+
 		$messageCount = $loginUser->info['notices'] + $loginUser->info['messages'];
 		$messageClass = $messageCount ? 'header_message' : 'header_message header_message_none';
 	?>
@@ -221,6 +225,7 @@ PwHook::display(array(PwSimpleHook::getInstance("header_my"), "runDo"), array(),
 	</audio>
 	<?php  } 
   } ?>
+
 	</div>
 </header>
 <?php 
@@ -242,6 +247,7 @@ foreach ($child as $ck => $cv) {
 	</div>
 <?php }} ?>
 <div class="tac"> </div>
+
 	<div class="main_wrap">
 		<div class="box_wrap register cc">
 		<?php $this->content();?>
@@ -255,6 +261,21 @@ foreach ($child as $ck => $cv) {
 <div class="footer_wrap">
 	<div class="footer">
 		<pw-drag id="footer_segment"/>
+                <div class="tmode_traverseList">
+<ul class="cc">
+<?php if(is_array($__design_data['J_mod_3'])){
+						$__data=$__design_data['J_mod_3'];
+					}else{
+						$display=Wekit::load('design.srv.display.PwDesignDisplay');
+						$__data=$display->getModuleData(3);
+					};foreach($__data AS $__k=>$__v){?>
+  <li><a href="<?php echo WindSecurity::escapeHTML($__v['url']);?>" target="_blank" target="_blank"><?php if($__v['__style']){?><span style="<?php echo WindSecurity::escapeHTML($__v['__style']);?>"><?php echo WindSecurity::escapeHTML($__v['name']);?></span><?php }else{
+ echo WindSecurity::escapeHTML($__v['name']);
+ }?></a></li>
+<?php }?>
+  <li><a href="index.php?m=link&c=index&a=run" class="J_link_apply">申请链接</a></li>
+</ul>
+</div>
 		<div class="bottom">
 		<?php 
 			$nav = Wekit::load('SRV:nav.bo.PwNavBo');
@@ -264,7 +285,7 @@ foreach ($child as $ck => $cv) {
  echo $value['name'];
   } ?>
 		</div>
-		<p>Powered by <a href="http://www.phpwind.net/" target="_blank" rel="nofollow">phpwind v<?php echo htmlspecialchars(NEXT_VERSION, ENT_QUOTES, 'UTF-8');?></a> &copy;2003-2103 <a href="http://www.phpwind.com" target="_blank" rel="nofollow">phpwind.com</a> <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow"><?php echo htmlspecialchars(Wekit::C('site','info.icp'), ENT_QUOTES, 'UTF-8');?></a></p>
+		<p>Powered by <a href="#" target="_blank" rel="nofollow">phpwind v<?php echo htmlspecialchars(NEXT_VERSION, ENT_QUOTES, 'UTF-8');?></a> &copy;2013-<?php  echo date('Y'); ?> <a href="#" target="_blank" rel="nofollow">phpwind.com</a> <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow"><?php echo htmlspecialchars(Wekit::C('site','info.icp'), ENT_QUOTES, 'UTF-8');?></a></p>
 		<p><?php echo Wekit::C('site','statisticscode');?></p>
 	</div>
 	 
@@ -275,6 +296,12 @@ foreach ($child as $ck => $cv) {
 PwHook::display(array(PwSimpleHook::getInstance("footer"), "runDo"), array(), "", $__viewer);
 ?>
 </div>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F268a910d12a04866f4f834ce95825591' type='text/javascript'%3E%3C/script%3E"));
+
+</script>
 
 <!--返回顶部-->
 <a href="#" rel="nofollow" role="button" id="back_top" tabindex="-1">返回顶部</a>

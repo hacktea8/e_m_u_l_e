@@ -3,7 +3,7 @@ $currentpath = dirname(__FILE__);
 require_once($currentpath.'/CloudSearchApi.php');
 require_once($currentpath.'/CloudSearchIndex.php');
 require_once($currentpath.'/HelperError.php');
-define('APIROOT','http://css.aliyun.com/v1/api');
+define('APIROOT','http://css.aliyun.com');
 define('CLIENT_ID','6100084360938795');
 define('CLIENT_SECRET','2abc67908c9c062d6da13ca10fa8ccef');
 define('INDEXNAME','emu_hacktea8');
@@ -105,7 +105,7 @@ $query,$indexArr=array(),$page = NULL, $pageSize = NULL, $sort = NULL,
               '2',10,null,"","");
        break;
        default:
-       $kw = sprintf('q=%s',$param['kw']);
+       $kw = sprintf("cq=%s",$param['kw'], $param['kw']);
        $result=$index->search($kw,$param['page'],$param['page_size']);
        
     }

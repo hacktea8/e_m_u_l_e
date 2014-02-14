@@ -8,18 +8,28 @@ class PwBaseRediscache{
     'timeout'  => 10800
   );
   public $redis=null;
-  public $expire = 3600;
   public function __construct() {
     $this->redis=new Redis();
     $this->redis->pconnect($this->_config['host'],$this->_config['port'],$this->_config['timeout']);
   }
-  public function set($key,$data){
+  public function set($key, $data, $ttl = 3600){
     try{
-      $this->redis->setex($key,$this->expire,$data);
+      $this->redis->setex($key, $ttl, $data);
     }catch(Exception $e){
     }
   }
-
+  public function exists($key = ''){
+    if(!$key){
+       return false;
+    }
+    return $this->redis->exists($key);
+  }
+  public function keys($key = ''){
+    if( !$key){
+       return false;
+    }
+    return $this->redis->keys($key);
+  }
   public function mset($data){
     if(is_array($data))
       return $this->redis->mset($data);

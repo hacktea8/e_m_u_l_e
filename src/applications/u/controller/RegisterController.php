@@ -19,6 +19,7 @@ class RegisterController extends PwBaseController {
 	 */
 	public function beforeAction($handlerAdapter) {
 		parent::beforeAction($handlerAdapter);
+                $this->forwardRedirect('http://www.hacktea8.com/register.php');
 		$this->setOutput('用户注册', 'title');
 		$config = Wekit::C('register');
 		if (0 == $config['type'] && ('close' != $handlerAdapter->getAction())) {

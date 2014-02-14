@@ -110,6 +110,15 @@ class PwTryPwdBp {
 		return $this->updateTryRecord($info['uid'], $ip, 'question');
 	}
 
+        public function loginErrorType($type = 0, $param){
+               $errorMap = array('USER:login.error.pwd');
+               return new PwError($errorMap[$type], $param);
+        }
+
+        public function setLoginInfo($info = ''){
+               return $this->_getUserDs()->setLoginInfo($info);
+        }
+
 	/** 
 	 * 检查用户是否已经超过尝试设置的次数
 	 *

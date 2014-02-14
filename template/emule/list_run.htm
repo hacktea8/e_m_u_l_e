@@ -7,7 +7,7 @@
 
 <style>
 .aPre{
-        cursor:url({@theme:site.images}/common/pre.cur),auto;
+    cursor:url({@theme:site.images}/common/pre.cur),auto;
 }
 .aNext{cursor:url({@theme:site.images}/common/next.cur),auto;right:0;}
 </style>
@@ -549,7 +549,7 @@ foreach($subcatelist as $row){
 foreach($hotTopic as $row){
 #-->
 <dd class="leftMiddle">
-   <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="" style="text-decoration:none;" id="entry_link_2961048"><img class="lazy hot_img" data-original="{$thumhost}{$row['thum']}" style="width: 100px; height: 100px" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="hot_img" /></noscript></a><br>
+   <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="" style="text-decoration:none;" id="entry_link_2961048"><img class="lazy hot_img" data-original="{$showimgapi}{$row['cover']}" style="width: 100px; height: 100px" alt="{$row['name']}" /><noscript><img src="{$showimgapi}{$row['cover']}" alt="{$row['name']}" class="hot_img" /></noscript></a><br>
 <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="">{$row['name']}</a>            
             </dd>
 <!--#
@@ -600,7 +600,7 @@ foreach($hotTopic as $row){
 foreach($infolist as $row){
 #-->
                         <li>
-                <a href="{@url:emule/topic/run?aid=$row['id']}" onClick=""><img class="lazy file_img" data-original="{$thumhost}{$row['thum']}" alt="{$row['name']}" /><noscript><img src="{$thumhost}{$row['thum']}" alt="{$row['name']}" class="file_img" /></noscript></a>
+                <a href="{@url:emule/topic/run?aid=$row['id']}" onClick=""><img class="lazy file_img" data-original="{$showimgapi}{$row['cover']}" alt="{$row['name']}" /><noscript><img src="{$showimgapi}{$row['cover']}" alt="{$row['name']}" class="file_img" /></noscript></a>
  <h3>
 <span class="left_topics_class_sort"><a href="{@url:emule/list/run?cid=$row['cid']}">{$row['cname']}</a></span>                <a href="{@url:emule/topic/run?aid=$row['id']}" onClick="">{$row['name']}</a>
  </h3>

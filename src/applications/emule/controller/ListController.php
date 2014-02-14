@@ -80,7 +80,7 @@ class ListController extends EmuleBaseController {
                 $page = $page < 1 ? 1: $page;
                 $list = array();
                 if($q){
-                  $param = array('kw' => URLENCODE($q), 'page' => $page, 'page_size' => 20);
+                  $param = array('kw' => $q, 'page' => $page, 'page_size' => 20);
                   if(1 == $type){
                     $param[] = '';
                   }elseif(2 == $type){
@@ -102,7 +102,8 @@ class ListController extends EmuleBaseController {
 ["searchtime"]=> float(0.043) ["total"]=> int(98) ["num"]=> int(20) ["viewtotal"]=> int(98) } ["status"]=> string(2) "OK" }
 */
 		$this->setOutput($list['result'], 'searchlist');
-		$this->setOutput(URLENCODE($q), 'q');
+		$this->setOutput($q, 'kw');
+		$this->setOutput($q, 'q');
 		$this->setOutput(20, 'perpage');
 		$this->setOutput($page, 'page');
 		$this->setOutput($list['result']['viewtotal'], 'listcount');

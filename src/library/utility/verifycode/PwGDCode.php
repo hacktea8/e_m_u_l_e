@@ -279,4 +279,3 @@ class PwGDCode extends PwBaseCode {
 	}
 
 }
-?>

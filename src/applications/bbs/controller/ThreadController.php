@@ -21,6 +21,7 @@ class ThreadController extends PwBaseController {
 	 * 帖子列表页
 	 */
 	public function run() {
+                $this->forwardRedirect(WindUrlHelper::createUrl('emule/index/run'));
 		$tab = $this->getInput('tab');
 		$fid = intval($this->getInput('fid'));
 		$type = intval($this->getInput('type','get')); //主题分类ID

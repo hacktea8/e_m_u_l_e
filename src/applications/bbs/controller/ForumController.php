@@ -13,6 +13,10 @@ Wind::import('SRV:forum.srv.PwThreadList');
 
 class ForumController extends PwBaseController {
 
+        public function beforeAction($handlerAdapter) {
+                parent::beforeAction($handlerAdapter);
+                $this->forwardRedirect(WindUrlHelper::createUrl('emule/index/run')); 
+        }
 	public function run() {
 		$order = $this->getInput('order', 'get');
 		$page = intval($this->getInput('page', 'get'));

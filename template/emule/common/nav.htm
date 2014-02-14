@@ -103,7 +103,8 @@ list-style-type: none;
 $(document).ready(function(){
 $("img.lazy").show().lazyload({ 
     effect : "fadeIn",
-   // placeholder : "img/grey.gif",
+    //placeholder : "img/grey.gif",
+    placeholder : "{$error_img}",
     threshold : 60
 });
 });

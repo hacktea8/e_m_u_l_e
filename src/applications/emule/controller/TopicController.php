@@ -13,7 +13,6 @@ Wind::import('APPS:emule.controller.EmuleBaseController');
  */
 
 class TopicController extends EmuleBaseController {
-        public $showimgapi = 'http://img.hacktea8.com/showpic.php?key=';
         public $imguploadapiurl = 'http://img.hacktea8.com/imgapi/upload/?seq=';
         /**
          *
@@ -65,8 +64,11 @@ class TopicController extends EmuleBaseController {
                 $this->emule->emule['utime']=date('Y/m/d',$this->emule->emule['utime']);
                 $this->setOutput($this->emule->emule, 'info');
                 $this->postion=$this->emule->emule['cate'];
-
-//die('111');
+                $ip = Wind::getComponent('request')->getClientIp();
+                $key = sprintf('emuhitslog:%s:%d',$ip,$this->emule->emule['id']);
+                if(!$this->redis->exists($key)){
+                   $this->redis->set($key, 1, $this->expirettl['6h']);
+                }
 	}
 	
 	/**
@@ -80,8 +82,8 @@ class TopicController extends EmuleBaseController {
 		$this->setOutput('发表主题', 'headguide');
 		$this->setOutput('post', 'action');
 		$this->setOutput('setpost', 'do');
-		$this->setOutput($this->imguploadapiurl, 'imguploadapiurl');
 		$this->setOutput($this->space, 'space');
+		$this->setOutput($this->imguploadapiurl, 'imguploadapiurl');
 		$this->setTemplate('topic_post');
 	}
 	

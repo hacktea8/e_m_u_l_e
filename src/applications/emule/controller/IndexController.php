@@ -16,11 +16,10 @@ class IndexController extends EmuleBaseController {
    * @see wekit/wind/web/WindController::run()
    */
   public function run() {
-    //echo '<pre>';var_dump($config);exit;
+    //$this->getStaticHtml('', 1, 259200);
     $this->setOutput('index', 'src');
     $this->emule->emuleIndex=$this->mem->get('emu-emuleIndexinfo');
     $this->setOutput($this->emule->emuleIndex,'emuleIndex');
-//echo '<pre>';var_dump($this->emule->emuleIndex);exit;
 // seo设置
 
     Wind::import('SRV:seo.bo.PwSeoBo');
@@ -31,6 +30,7 @@ class IndexController extends EmuleBaseController {
     $des = $this->siteinfo["info.name"].$this->description;
     $seoBo->setCustomSeo($title, $keywords, $des);
     Wekit::setV('seo', $seoBo);
+
   }
 
   /*

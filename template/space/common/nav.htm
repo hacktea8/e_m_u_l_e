@@ -6,7 +6,9 @@
 	<div class="space_nav">
 		<ul>
 			<li class="{@Pw::isCurrent($src == 'index')}"><a href="{@url:space/index/run?uid=$space->spaceUid}">新鲜事</a></li>
-			<li class="{@Pw::isCurrent($src == 'thread')}"><a href="{@url:space/thread/run?uid=$space->spaceUid}">帖子</a></li>
+<!--# if($loginUser->uid == $space->spaceUid){#-->
+			<li class="{@Pw::isCurrent($src == 'share_topic')}"><a href="{@url:space/share_topic/run?uid=$space->spaceUid}">分享站点资源列表</a></li>
+<!--# } #-->
 			<hook name="space_nav" args="array($space, $src)" />
 			<li class="{@Pw::isCurrent($src == 'profile')}"><a href="{@url:space/profile/run?uid=$space->spaceUid}">资料</a></li>
 		</ul>

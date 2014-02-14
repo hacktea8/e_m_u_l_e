@@ -426,7 +426,7 @@ class CloudSearchApi {
      * @param bool $curl false  默认采用socket方式请求，请根据您的空间或服务器类型进行选择 。
      * @return array 返回decode后的HTTP response。
      */
-    public function apiCall($url, $params = array(), $method = self::METHOD_GET, $httpOptions = array(), $curl = true, $raw_response = false) {
+    public function apiCall($url, $params = array(), $method = self::METHOD_POST, $httpOptions = array(), $curl = true, $raw_response = false) {
         $params['nonce'] = $this->_makeNonce();
         $params['client_id'] = $this->_clientId;
         $params['sign'] = $this->_makeSign($params);

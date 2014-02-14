@@ -134,7 +134,24 @@ class PwUser {
 		PwSimpleHook::getInstance('PwUser_add')->runDo($dm);
 		return $uid;
 	}
-	
+        
+        public function setLoginInfo($info = ''){
+                $uinfo = $this->_getDao(self::FETCH_MAIN)->getUserByUid($info['uid']);
+//var_dump($uinfo);exit;
+                if( !isset($uinfo['uid'])){
+                   $this->_getDao(self::FETCH_MAIN)->addUser($info);
+                   $this->_getDao(self::FETCH_DATA)->addUser(array('uid' =>$info['uid']));
+                   $this->_getDao(self::FETCH_INFO)->addUser(array('uid' =>$info['uid']));
+                   return true;
+                }
+                if($uinfo['username'] != $info['username']){
+                   $this->_getDao(self::FETCH_MAIN)->editUser($uinfo['uid'], array('username' => $info['username']));
+                }
+                if($uinfo['email'] != $info['email']){
+                   $this->_getDao(self::FETCH_MAIN)->editUser($uinfo['uid'], array('email' => $info['email']));
+                }
+                return true;
+        }
 	/**
 	 * 激活用户
 	 *

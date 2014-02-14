@@ -67,7 +67,7 @@ PwHook::display(array(PwSimpleHook::getInstance("head"), "runDo"), array(), "", 
 
 <style>
 .aPre{
-        cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/pre.cur),auto;
+    cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/pre.cur),auto;
 }
 .aNext{cursor:url(<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/'.Wekit::C('site', 'theme.site.default').'/images'; ?>/common/next.cur),auto;right:0;}
 </style>
@@ -532,8 +532,8 @@ div.tip-verycd div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden
 PwHook::display(array(PwSimpleHook::getInstance("header_nav"), "runDo"), array(), "", $__viewer);
 ?>
 		<div class="header_search" role="search">
-			<form action="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=search&c=s'; ?>" method="post">
-				<input type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="搜索其实很简单" x-webkit-speech speech name="keyword"/>
+			<form action="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=list&a=search'; ?>" method="post">
+				<input type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="搜索其实很简单" x-webkit-speech speech name="q"/>
 				<button type="submit" aria-label="搜索"><span>搜索</span></button>
 			<input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/></form>
 		</div>
@@ -544,6 +544,7 @@ PwHook::display(array(PwSimpleHook::getInstance("header_info_3"), "runDo"), arra
 ?><a rel="nofollow" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=login'; ?>">登录</a><a rel="nofollow" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=register'; ?>">注册</a>
 </div>
 <?php  } else {
+if(0){
 	if ($pwforum && $pwforum->isForum()) {
 		$_tmpfid = $pwforum->fid;
 		$_tmpcid = $pwforum->getCateId();
@@ -571,6 +572,8 @@ PwHook::display(array(PwSimpleHook::getInstance("header_info_3"), "runDo"), arra
 		</div>
 	</div>
 	<?php 
+} 
+
 		$messageCount = $loginUser->info['notices'] + $loginUser->info['messages'];
 		$messageClass = $messageCount ? 'header_message' : 'header_message header_message_none';
 	?>
@@ -646,6 +649,7 @@ PwHook::display(array(PwSimpleHook::getInstance("header_my"), "runDo"), array(),
 	</audio>
 	<?php  } 
   } ?>
+
 	</div>
 </header>
 <?php 
@@ -667,6 +671,7 @@ foreach ($child as $ck => $cv) {
 	</div>
 <?php }} ?>
 <div class="tac"> </div>
+
  <style>
     #nav_div {
     margin: 10px 0 10px 0;
@@ -772,7 +777,8 @@ list-style-type: none;
 $(document).ready(function(){
 $("img.lazy").show().lazyload({ 
     effect : "fadeIn",
-   // placeholder : "img/grey.gif",
+    //placeholder : "img/grey.gif",
+    placeholder : "<?php echo htmlspecialchars($error_img, ENT_QUOTES, 'UTF-8');?>",
     threshold : 60
 });
 });
@@ -895,9 +901,9 @@ foreach($subcatelist as $row){
 foreach($hotTopic as $row){
 ?>
 <dd class="leftMiddle">
-   <a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick="" style="text-decoration:none;" id="entry_link_2961048"><img class="lazy hot_img" data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="hot_img" /></noscript></a><br>
+   <a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick="" style="text-decoration:none;" id="entry_link_2961048"><img class="lazy hot_img" data-original="<?php echo htmlspecialchars($showimgapi, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['cover'], ENT_QUOTES, 'UTF-8');?>" style="width: 100px; height: 100px" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($showimgapi, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['cover'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="hot_img" /></noscript></a><br>
 <a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick=""><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?></a>            
             </dd>
 <?php 
@@ -948,9 +954,9 @@ foreach($hotTopic as $row){
 foreach($infolist as $row){
 ?>
                         <li>
-                <a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick=""><img class="lazy file_img" data-original="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($thumhost, ENT_QUOTES, 'UTF-8');
- echo htmlspecialchars($row['thum'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="file_img" /></noscript></a>
+                <a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick=""><img class="lazy file_img" data-original="<?php echo htmlspecialchars($showimgapi, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['cover'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" /><noscript><img src="<?php echo htmlspecialchars($showimgapi, ENT_QUOTES, 'UTF-8');
+ echo htmlspecialchars($row['cover'], ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?>" class="file_img" /></noscript></a>
  <h3>
 <span class="left_topics_class_sort"><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=list&cid=', rawurlencode($row['cid']); ?>"><?php echo htmlspecialchars($row['cname'], ENT_QUOTES, 'UTF-8');?></a></span>                <a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=emule&c=topic&aid=', rawurlencode($row['id']); ?>" onClick=""><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');?></a>
  </h3>
@@ -1045,6 +1051,21 @@ $_page_max = min($__tplPageTotal, $__tplPageCurrent+3);
 <div class="footer_wrap">
 	<div class="footer">
 		<pw-drag id="footer_segment"/>
+                <div class="tmode_traverseList">
+<ul class="cc">
+<?php if(is_array($__design_data['J_mod_3'])){
+						$__data=$__design_data['J_mod_3'];
+					}else{
+						$display=Wekit::load('design.srv.display.PwDesignDisplay');
+						$__data=$display->getModuleData(3);
+					};foreach($__data AS $__k=>$__v){?>
+  <li><a href="<?php echo WindSecurity::escapeHTML($__v['url']);?>" target="_blank" target="_blank"><?php if($__v['__style']){?><span style="<?php echo WindSecurity::escapeHTML($__v['__style']);?>"><?php echo WindSecurity::escapeHTML($__v['name']);?></span><?php }else{
+ echo WindSecurity::escapeHTML($__v['name']);
+ }?></a></li>
+<?php }?>
+  <li><a href="index.php?m=link&c=index&a=run" class="J_link_apply">申请链接</a></li>
+</ul>
+</div>
 		<div class="bottom">
 		<?php 
 			$nav = Wekit::load('SRV:nav.bo.PwNavBo');
@@ -1065,12 +1086,12 @@ $_page_max = min($__tplPageTotal, $__tplPageCurrent+3);
 PwHook::display(array(PwSimpleHook::getInstance("footer"), "runDo"), array(), "", $__viewer);
 ?>
 </div>
-
+<div style="display:none;">
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F268a910d12a04866f4f834ce95825591' type='text/javascript'%3E%3C/script%3E"));
 </script>
-
+</div>
 <!--返回顶部-->
 <a href="#" rel="nofollow" role="button" id="back_top" tabindex="-1">返回顶部</a>
 

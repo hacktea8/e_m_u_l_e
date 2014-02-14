@@ -30,7 +30,9 @@ class PwBaseController extends WindController {
 
 		$this->_m = $handlerAdapter->getModule();
 		$this->_c = $handlerAdapter->getController();
+                $this->_c = $this->_c ? $this->_c : 'index';
 		$this->_a = $handlerAdapter->getAction();
+                $this->_a = $this->_a ? $this->_a : 'run';
 		$this->_mc = $this->_m . '/' . $this->_c;
 		$this->_mca = $this->_mc . '/' . $this->_a;
 		
@@ -141,4 +143,42 @@ class PwBaseController extends WindController {
 		if (!$theme) $theme = $config['theme.' . $type . '.default'];
 		parent::setTheme($theme, $themePack);
 	}
+        /** 
+         * $cache_dir 缓存目录  [权限 777] 
+         * $isindex   是否是首页 
+         * $ttl       生存时间(单位: 秒) 
+         */ 
+        protected function getStaticHtml($cache_dir = '', $isindex = 0, $ttl = 86400){ 
+          //获取网站根目录 
+          $root = dirname(dirname(dirname(dirname(__FILE__)))); 
+//die($root);
+          //判断缓存目录是否为相对目录 
+          $roots = '/' == substr($cache_dir, 0, 1) ? $cache_dir : $root.'/'.$cache_dir; 
+          //生成缓存文件的位置 
+          $cache_tpl = sprintf('%s/%s_%s_%s.html', $roots, $this->_m, $this->_c, $this->_a); 
+          if($isindex){ 
+            //是否为首页 
+            $cache_tpl = $root.'/index.html'; 
+          } 
+//die($cache_tpl);
+          //缓存文件存在且生存时间未过期 
+          if(file_exists($cache_tpl) && (time() - filemtime($cache_tpl)) < $ttl){ 
+            echo file_get_contents($cache_tpl);exit; 
+          }else{ 
+/*            $html = file_get_contents(WindUrlHelper::createUrl($this->_mca . '?time=' . time())); 
+//die($html);
+            if($html && strlen($html) > 5000){ 
+              //获取页面的html 并写入缓存文件 
+              file_put_contents($cache_tpl, $html); 
+              //修改缓存文件权限 
+              chmod($cache_tpl, 0777); 
+            } 
+*/
+            $cmd = sprintf("wget %s -O %s ", WindUrlHelper::createUrl($this->_mca), $cache_tpl);
+            $cmd = str_replace(array('?', '&'), array('\\?', '\\&'), $cmd);
+//echo ($cmd);
+            @exec($cmd);
+            @chmod($cache_tpl, 0777);
+          } 
+      } 
 }

@@ -10,6 +10,9 @@
 <meta name="keywords" content="{@G:seo.keywords}" />
 <link rel="stylesheet" type="text/css" href="{@theme:site.css}/emu_search_base.css?v={@NEXT_RELEASE}" />
 <link rel="stylesheet" type="text/css" href="{@theme:site.css}/emu_search_list.css?v={@NEXT_RELEASE}" />
+<style type="text/css">
+em{color:red;}
+</style>
 <script type="text/javascript" src="{@theme:site.js}/jquery-2.0.2.min.js?v={@NEXT_RELEASE}"></script>
 </head>
 <body>
@@ -32,9 +35,9 @@
                                 <!--# } #-->
 </a></div>
             <div class="search-form">
-                <form action="/index.php?m=emule&c=list&a=search" method="get" >
+                <form action="/index.php?m=emule&c=list&a=search" method="post" >
                     <input type="text" id="keyword" autocomplete="off" class="search-wrod" name="q" placeholder="请输入需要搜索的关键词" x-webkit-speech="" speech="" value="{$q}"/>
-                    <button type="submit" class="search-btn">立即搜索</button>
+                    <button type="submit" id="search_submit" class="search-btn">立即搜索</button>
                 </form>
                 <div class="search-keys">
 <!--# foreach($hot_search as $row){ #-->
@@ -100,7 +103,7 @@ $row['update_timestamp']=date('Y-m-d',$row['update_timestamp']);
 #-->                
                                 <li>
                   <div class="li-title">
-                      <a href="{$row['url']}" class="title h3" title="{$row['title']}">{$row['title']}</a>
+                      <a href="{$row['url']}" class="title h3" title="{$row['title']}">{$row['title']|html}</a>
                       <p class="soft-ext ext">
                           <span class="size imp">{$row['focus_count']}次</span>
                           <span class="num">{$row['hit_num']}次</span>
@@ -117,13 +120,13 @@ $row['update_timestamp']=date('Y-m-d',$row['update_timestamp']);
                           <span class="item star-bar"><span class="til">软件评分：</span><span class="star"><i style="width:80%;"></i></span></span>
                       </p>
 -->
-                      <p class="desc c666">{$row['body']}</p>
+                      <p class="desc c666">{$row['body']|html}</p>
                   </div>
                 </li>
 <!--# } #-->
             </ul>
             <div class="page-num">
-<page tpl="TPL:common.page" page="$page" per="$perpage" count="$listcount"  url="/index.php?m=emule&c=list&a=search&q=$q"/>
+<page tpl="TPL:common.page" page="$page" per="$perpage" count="$listcount"  url="/index.php?m=emule&c=list&a=search&q=$kw"/>
             </div>
                     </div><!-- /.lay-740 -->
         <div class="lay-240 fr">
@@ -132,7 +135,7 @@ $row['update_timestamp']=date('Y-m-d',$row['update_timestamp']);
             </div> -->
             <div class="sub-tab-box mt10">
                 <div class="sub-title">
-                    <span class="title h3">编辑推荐软件</span>
+                    <span class="title h3">编辑推荐</span>
                     <ul class="mod-tab" rel="xtaberTabs">
                         <li rel="xtaberTabItem" class="current">游戏</li>
                         <li rel="xtaberTabItem">书籍</li>

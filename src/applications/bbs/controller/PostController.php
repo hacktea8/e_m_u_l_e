@@ -20,6 +20,7 @@ class PostController extends PwBaseController {
 
 	public function beforeAction($handlerAdapter) {
 		parent::beforeAction($handlerAdapter);
+                $this->forwardRedirect(WindUrlHelper::createUrl('emule/index/run'));
 		$action = $handlerAdapter->getAction();
 
 		if (in_array($action, array('fastreply', 'replylist'))) {

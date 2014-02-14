@@ -18,6 +18,7 @@ class ForumListController extends PwBaseController {
 	 * @see WindController::run()
 	 */
 	public function run() {
+                $this->forwardRedirect(WindUrlHelper::createUrl('emule/index/run'));
 		/* @var $forumDs PwForum */
 		$forumDs = Wekit::load('forum.PwForum');
 		$list = $forumDs->getCommonForumList(PwForum::FETCH_MAIN | PwForum::FETCH_STATISTICS);
